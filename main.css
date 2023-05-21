@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    font-family: "Arial", "ヒラギノ角ゴシック", "源ノ角ゴシック", "sans-serif";
+    --md-ref-typeface-brand: "Arial", "ヒラギノ角ゴシック", "源ノ角ゴシック", "sans-serif";
+    --md-ref-typeface-plain: "Arial", "ヒラギノ角ゴシック", "源ノ角ゴシック", "sans-serif";
+}
+
+
+.title {
+    position: sticky;
+    top: calc(-80vh + 4rem);
+    width: 100%;
+    height: 80vh;
+    font-size: x-large;
+    box-sizing: border-box;
+    text-align: start;
+    z-index: 10;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.title h3 {
+    color: var(--md-sys-color-on-primary);
+    padding: 1rem;
+    margin: 0;
+}
+.title h1 {
+    color: var(--md-sys-color-on-primary);
+    padding: 1rem;
+    margin: 0;
+}
+
+.title::before {
+    content: "";
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background: url(./assets/IMG_4919.jpg) center / cover;
+    filter: brightness(60%);
+    z-index: -1;
+}
+
+.fixed-header {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    font-size: medium;
+    box-sizing: border-box;
+    pointer-events: none;
+    opacity: 0;
+    background: var(--md-sys-color-surface);
+    transition: .1s;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-cente;
+    z-index: 10;
+}
+
+.fixed-header h1 {
+    color: var(--md-sys-color-on-surface);
+    padding: 1rem;
+    margin: 0;
+}
+.fixed-header p {
+    color: var(--md-sys-color-on-surface);
+    padding: 1rem;
+    margin: 0;
+}
+
+md-filled-button {
+    margin: 1rem;
+}

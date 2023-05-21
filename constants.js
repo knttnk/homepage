@@ -1,0 +1,1 @@
+const topImageHeight = 60;
