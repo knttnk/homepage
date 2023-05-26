@@ -8,6 +8,10 @@ md-list {
     margin-right: auto;
 }
 
+md-list-item {
+    --md-list-item-list-item-container-color: transparent;
+}
+
 body {
     background-color: var(--md-sys-color-background);
     color: var(--md-sys-color-on-background);
@@ -87,9 +91,11 @@ th {
 
 .title {
     position: sticky;
-    top: calc(-80vh + 5rem);
+    top: calc(5rem - 80vh);
     width: 100%;
     height: 80vh;
+    margin: 0;
+    padding: 0;
     font-size: 2rem;
     box-sizing: border-box;
     text-align: start;
@@ -97,24 +103,27 @@ th {
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
+    pointer-events: none;
 }
 
 .title h3 {
+    pointer-events: none;
     color: var(--md-sys-color-on-primary);
     padding: 1rem;
     margin: 0;
 }
 
 .title h1 {
+    pointer-events: none;
     color: var(--md-sys-color-on-primary);
     padding: 1rem;
     margin: 0;
 }
 
 .title::before {
+    pointer-events: none;
     content: "";
     position: absolute;
-    box-sizing: border-box;
     width: 100%;
     height: 100%;
     background: url(./assets/IMG_4919.jpg) center / cover;
@@ -122,13 +131,15 @@ th {
     z-index: -1;
 }
 
-.fixed-header {
+.fixed-app-bar {
+    pointer-events: none;
     position: absolute;
     bottom: 0;
     height: 100%;
     width: 100%;
+    margin: 0;
+    padding: 0;
     font-size: medium;
-    box-sizing: border-box;
     pointer-events: none;
     opacity: 0;
     background: var(--md-sys-color-surface-variant);
@@ -140,13 +151,15 @@ th {
     z-index: 10;
 }
 
-.fixed-header h1 {
+.fixed-app-bar h1 {
+    pointer-events: none;
     color: var(--md-sys-color-on-surface-variant);
     padding: 1rem;
     margin: 0;
 }
 
-.fixed-header p {
+.fixed-app-bar p {
+    pointer-events: none;
     color: var(--md-sys-color-on-surface-variant);
     padding: 1rem;
     margin: 0;
