@@ -24,6 +24,7 @@
 
   <!-- その他 -->
   <title>田中健太のホームページ</title>
+  <script src="./js/clipboard.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
 </head>
 
@@ -40,7 +41,6 @@
       <!-- TODO: Appbarに -->
       <h1>田中 健太</h1>
       <h5>大阪大学大学院 工学研究科 機械工学専攻 <br> ​博士後期課程 学生</h5>
-      <md-icon-button></md-icon-button>
     </div>
   </div>
 
@@ -110,24 +110,26 @@
       </div>
 
       <div class="my-card">
-        <h2>連絡先（準備中）</h2>
-        <md-list-item noninteractive="true" headline="なんとかかんとか">
+        <h2>連絡先</h2>
+        <md-list-item noninteractive="true" headline="〒565-0871 大阪府吹田市山田丘２−１">
+          <!-- #505 M4 2-1 Yamadaoka, Suita, Osaka 565-0871 Japan -->
           <md-icon data-variant="icon" slot="start">distance</md-icon>
-          <md-outlined-button slot="end" aria-label="Click to copy">
+          <md-outlined-button slot="end" aria-label="Click to copy" onclick="copyAddress();">
             <md-icon slot="icon">content_copy</md-icon>
             Copy
           </md-outlined-button>
         </md-list-item>
-        <md-list-item noninteractive="true" headline="メールアドレス@ドメイン.coiu77m">
+        <md-list-item noninteractive="true" headline="kenta.tanaka [-at-] eom.mech.eng.osaka-u.ac.jp">
           <md-icon data-variant="icon" slot="start">mail</md-icon>
-          <md-outlined-button slot="end" aria-label="Click to copy">
+          <md-outlined-button slot="end" aria-label="Click to copy" onclick="copyMail();">
             <md-icon slot="icon">content_copy</md-icon>
             Copy
           </md-outlined-button>
         </md-list-item>
-        <md-list-item noninteractive="true" headline="+81-6-6879-7267">
+        <md-list-item noninteractive="true" headline="06-6879-7267">
+          <!-- +81-6-6879-7267 -->
           <md-icon data-variant="icon" slot="start">call</md-icon>
-          <md-outlined-button slot="end" aria-label="Click to copy">
+          <md-outlined-button slot="end" aria-label="Click to copy" onclick="copyPhone();">
             <md-icon slot="icon">content_copy</md-icon>
             Copy
           </md-outlined-button>
