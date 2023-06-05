@@ -16,9 +16,10 @@ body {
     background-color: var(--md-sys-color-background);
     color: var(--md-sys-color-on-background);
     margin: 0;
-    font-family: "Arial", "ヒラギノ角ゴシック", "源ノ角ゴシック", "sans-serif";
-    --md-ref-typeface-brand: "Arial", "ヒラギノ角ゴシック", "源ノ角ゴシック", "sans-serif";
-    --md-ref-typeface-plain: "Arial", "ヒラギノ角ゴシック", "源ノ角ゴシック", "sans-serif";
+
+    font-family: 'Noto Sans JP', sans-serif;
+    --md-ref-typeface-brand: 'Noto Sans JP', sans-serif;
+    --md-ref-typeface-plain: 'Noto Sans JP', sans-serif;
 }
 
 /* TODO: これ以降をなるべく削除 */
@@ -107,10 +108,11 @@ th {
     pointer-events: none;
 }
 
-.title h3 {
+.title h6 {
     pointer-events: none;
     color: var(--md-sys-color-on-primary);
-    padding: 1rem;
+    padding: 0.2rem;
+    padding-left: 1rem;
     margin: 0;
 }
 
