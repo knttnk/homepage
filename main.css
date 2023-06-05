@@ -108,7 +108,7 @@ th {
     pointer-events: none;
 }
 
-.title h6 {
+.title h5 {
     pointer-events: none;
     color: var(--md-sys-color-on-primary);
     padding: 0.2rem;
@@ -161,7 +161,7 @@ th {
     margin: 0;
 }
 
-.fixed-app-bar p {
+.fixed-app-bar h5 {
     pointer-events: none;
     color: var(--md-sys-color-on-surface-variant);
     padding: 1rem;
