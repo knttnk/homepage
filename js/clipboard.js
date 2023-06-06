@@ -9,7 +9,7 @@ function copyMail() {
 
 function copyAddress() {
     navigator.clipboard.writeText(
-        "〒565-0871 大阪府吹田市山田丘２−１"
+        "〒565-0871 大阪府吹田市山田丘２−１ M4棟 505号室"
     );
 }
 

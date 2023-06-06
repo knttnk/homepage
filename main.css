@@ -1,11 +1,10 @@
-md-filled-button {
-    margin: 1rem;
-}
+
 
 md-list {
     max-width: 60rem;
     margin-left: auto;
     margin-right: auto;
+    --md-list-container-color: transparent;
 }
 
 md-list-item {
@@ -26,16 +25,24 @@ body {
 /* TODO: これ以降をなるべく削除 */
 
 .my-card {
-    background: var(--md-sys-color-secondary-container);
+    background: var(--md-ref-palette-neutral95);
     padding: 2rem;
     margin: 1rem;
     border-radius: 2rem;
+    --md-elevation-level: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+    .my-card {
+        background: var(--md-ref-palette-neutral10);
+    }
 }
 
 @media screen and (max-width: 600px) {
     .my-card {
         padding: 1rem;
         border-radius: 1rem;
+
     }
 }
 
@@ -77,6 +84,12 @@ h5 {
     margin: 0;
 }
 
+h6 {
+    color: var(--md-sys-color-on-surface);
+    padding: 1rem;
+    margin: 0;
+}
+
 p {
     color: var(--md-sys-color-on-surface);
     padding: 1rem;
@@ -109,6 +122,10 @@ th {
     margin: 0;
 }
 
+th {
+    font-weight: 500;
+}
+
 
 .title {
     position: sticky;
@@ -130,7 +147,7 @@ th {
 
 .title h6 {
     pointer-events: none;
-    color: var(--md-sys-color-on-primary);
+    color: var(--md-sys-color-on-primary-light);
     padding: 0.2rem;
     padding-left: 1rem;
     margin: 0;
@@ -138,7 +155,7 @@ th {
 
 .title h1 {
     pointer-events: none;
-    color: var(--md-sys-color-on-primary);
+    color: var(--md-sys-color-on-primary-light);
     padding: 0;
     padding-left: 1rem;
     padding-bottom: 1rem;
@@ -168,8 +185,7 @@ th {
     font-size: medium;
     pointer-events: none;
     opacity: 0;
-    background: var(--md-sys-color-surface-variant);
-    color: var(--md-sys-color-surface-variant);
+    background: var(--md-ref-palette-neutral90);
     transition: .1s;
     display: flex;
     align-items: flex-end;
@@ -177,23 +193,23 @@ th {
     z-index: 10;
 }
 
+@media (prefers-color-scheme: dark) {
+    .fixed-app-bar {
+        background: var(--md-ref-palette-neutral20);
+    }
+}
+
 .fixed-app-bar h1 {
     pointer-events: none;
-    color: var(--md-sys-color-on-surface-variant);
+    color: var(--md-sys-color-on-surface);
     padding: 1rem;
     margin: 0;
 }
 
 .fixed-app-bar h5 {
     pointer-events: none;
-    color: var(--md-sys-color-on-surface-variant);
+    color: var(--md-sys-color-on-surface);
     padding: 0;
     padding-bottom: 1rem;
     margin: 0;
-}
-
-@media only screen and (max-width: 767px) {
-    #css {
-        width: auto;
-    }
 }
