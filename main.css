@@ -128,7 +128,7 @@ th {
     pointer-events: none;
 }
 
-.title h5 {
+.title h6 {
     pointer-events: none;
     color: var(--md-sys-color-on-primary);
     padding: 0.2rem;
