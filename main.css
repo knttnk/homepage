@@ -40,6 +40,10 @@ body {
     color: var(--md-sys-color-on-secondary-container);
 }
 
+.my-card h5 {
+    color: var(--md-sys-color-on-secondary-container);
+}
+
 
 .my-card p {
     color: var(--md-sys-color-on-secondary-container);
@@ -52,6 +56,12 @@ h2 {
 }
 
 h3 {
+    color: var(--md-sys-color-on-surface);
+    padding: 1rem;
+    margin: 0;
+}
+
+h5 {
     color: var(--md-sys-color-on-surface);
     padding: 1rem;
     margin: 0;
