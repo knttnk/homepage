@@ -139,7 +139,10 @@ th {
 .title h1 {
     pointer-events: none;
     color: var(--md-sys-color-on-primary);
-    padding: 1rem;
+    padding: 0;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
     margin: 0;
 }
 
@@ -184,7 +187,8 @@ th {
 .fixed-app-bar h5 {
     pointer-events: none;
     color: var(--md-sys-color-on-surface-variant);
-    padding: 1rem;
+    padding: 0;
+    padding-bottom: 1rem;
     margin: 0;
 }
 
