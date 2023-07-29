@@ -14,7 +14,6 @@ body {
     background-color: var(--md-sys-color-background);
     color: var(--md-sys-color-on-background);
     margin: 0;
-
     font-family: 'Noto Sans JP', sans-serif;
     --md-ref-typeface-brand: 'Noto Sans JP', sans-serif;
     --md-ref-typeface-plain: 'Noto Sans JP', sans-serif;
@@ -34,7 +33,6 @@ body {
     .my-card {
         padding: 1rem;
         border-radius: 1rem;
-
     }
 }
 
@@ -57,6 +55,7 @@ h6 {
     padding: 1rem;
     margin: 0;
 }
+
 
 table {
     margin-left: auto;
@@ -88,81 +87,102 @@ th {
     font-weight: 500;
 }
 
-
-.title {
-    position: sticky;
+.flex-app-bar {
+    position: relative;
     background-color: var(--md-sys-color-primary);
-    top: calc(5rem - 80vh);
     width: 100%;
     height: 80vh;
     margin: 0;
     padding: 0;
     font-size: 2rem;
-    box-sizing: border-box;
-    text-align: start;
-    z-index: 10;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
+    z-index: -3;
     pointer-events: none;
 }
 
-.title h6 {
-    color: var(--md-sys-color-on-primary-light);
-    padding: 0.2rem;
-    padding-left: 1rem;
-    margin: 0;
-}
-
-.title h1 {
-    color: var(--md-sys-color-on-primary-light);
-    padding: 0;
-    padding-left: 1rem;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-    margin: 0;
-}
-
-.title::before {
+.flex-app-bar::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url(./assets/IMG_4919.jpg) center / cover;
-    filter: brightness(60%);
+    bottom: 0;
+    padding: 0;
+    margin: 0;
+    background: url(./assets/face.webp) center / cover;
+    z-index: -2;
+}
+
+.grey-glass {
+    background: #00000099;
+    width: 100%;
+    height: 12rem;
+    margin: 0;
+    position: absolute;
     z-index: -1;
+    bottom: 0;
+    backdrop-filter: blur(.05rem);
+}
+
+.grey-glass .title {
+    /* width: 100%; */
+    height: max-content;
+    max-width: 64rem;
+    position: relative;
+    padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 0;
+
+}
+
+.grey-glass .title h6,
+.grey-glass .title h1 {
+    display: block;
+    color: var(--md-sys-color-on-primary-light);
+    padding: 0 1rem;
+    /* position: relative; */
+    margin: 0;
 }
 
 .fixed-app-bar {
     pointer-events: none;
-    position: absolute;
-    bottom: 0;
-    height: 100%;
+    position: fixed;
+    top: 0;
+    height: 5rem;
     width: 100%;
     margin: 0;
     padding: 0;
     font-size: medium;
-    pointer-events: none;
     opacity: 0;
     background: var(--md-sys-color-surface-container);
     transition: .1s;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
     z-index: 10;
 }
 
-.fixed-app-bar h1 {
-    pointer-events: none;
-    color: var(--md-sys-color-on-surface-container);
+.fixed-app-bar .title {
+    display: block;
+    height: 5rem;
+    max-width: 62rem;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
     padding: 1rem;
-    margin: 0;
+
 }
 
-.fixed-app-bar h5 {
+.fixed-app-bar .title h1,
+.fixed-app-bar .title h6 {
     pointer-events: none;
+    position: absolute;
     color: var(--md-sys-color-on-surface-container);
-    padding: 0;
-    padding-bottom: 1rem;
-    margin: 0;
+    padding: 0 1rem;
+    margin: 0 auto;
+    bottom: 3rem;
+}
+
+.fixed-app-bar .title h1 {
+    left: 0;
+}
+
+.fixed-app-bar .title h6 {
+    right: 0;
 }
