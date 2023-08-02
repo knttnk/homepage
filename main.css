@@ -21,6 +21,23 @@ body {
 
 /* TODO: これ以降をなるべく削除 */
 
+.menu {
+    background: var(--md-sys-color-background);
+    width: 100%;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+.menu md-icon-button {
+    display: block;
+    position: relative;
+    margin: 1rem;
+    right: 0;
+}
+
 .my-card {
     background: var(--md-sys-color-surface-container-low);
     padding: 2rem;
