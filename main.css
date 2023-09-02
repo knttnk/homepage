@@ -1,13 +1,13 @@
 md-list {
     max-width: 60rem;
+    display: grid;
     margin-left: auto;
     margin-right: auto;
     --md-list-container-color: transparent;
 }
 
 md-list-item {
-    --md-list-item-list-item-container-color: transparent;
-    word-break: break-all;
+    --md-list-item-container-color: transparent;
 }
 
 body {
