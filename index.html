@@ -57,10 +57,20 @@
       <div class="my-card">
         <h2>プロフィール</h2>
         <md-list>
-          <md-list-item noninteractive headline="氏名" supporting-text="田中 健太" multi-line-supporting-text> </md-list-item>
-          <md-list-item noninteractive headline="所属" supporting-text="大阪大学大学院 工学研究科 機械工学専攻 機械動力学領域 （石川・南研究室） 博士後期課程1年"
-            multi-line-supporting-text> </md-list-item>
-          <md-list-item noninteractive headline="生年月日" supporting-text="1999年2月11日" multi-line-supporting-text>
+          <md-list-item>
+            <div slot="overline">氏名</div>
+            <div slot="supporting-text">田中 健太</div>
+          </md-list-item>
+          <md-list-item>
+            <div slot="overline">所属</div>
+            <div slot="supporting-text">
+              大阪大学大学院 工学研究科 機械工学専攻
+              機械動力学領域 （石川・南研究室） 博士後期課程1年
+            </div>
+          </md-list-item>
+          <md-list-item>
+            <div slot="overline">生年月日</div>
+            <div slot="supporting-text">1999年2月11日</div>
           </md-list-item>
         </md-list>
         <table>
@@ -134,7 +144,6 @@
 
       <div class="my-card">
         <h2>連絡先</h2>
-
         <md-filled-button type="button" href="https://ishikawa-lab.sakura.ne.jp/" target="_blank" style="margin: 1rem;">
           <md-icon slot="icon">open_in_new</md-icon>
           石川・南研究室
@@ -149,26 +158,30 @@
           Twitter
         </md-filled-tonal-button>
         <md-list>
-          <md-list-item noninteractive multi-line-supporting-text headline="住所"
-            supporting-text="〒565-0871 大阪府吹田市山田丘２−１ M4棟 505号室">
+          <md-list-item>
+            <div slot="overline">住所</div>
+            <div slot="supporting-text">〒565-0871 <br> 大阪府吹田市山田丘２−１ M4棟 505号室</div>
             <!-- #505 M4 2-1 Yamadaoka, Suita, Osaka 565-0871 Japan -->
-            <md-icon data-variant="icon" slot="start">distance</md-icon>
+            <md-icon slot="start">distance</md-icon>
             <md-filled-tonal-button slot="end" aria-label="Click to copy" onclick="copyAddress();">
               <md-icon slot="icon">content_copy</md-icon>
               Copy
             </md-filled-tonal-button>
           </md-list-item>
-          <md-list-item noninteractive headline="メールアドレス" supporting-text="kenta.tanaka--a--eom.mech.eng.osaka-u.ac.jp"
-            multi-line-supporting-text>
-            <md-icon data-variant="icon" slot="start">mail</md-icon>
+          <md-list-item>
+            <div slot="overline">メールアドレス</div>
+            <div slot="supporting-text">kenta.tanaka--a--eom.mech.eng.osaka-u.ac.jp</div>
+            <md-icon slot="start">mail</md-icon>
             <md-filled-tonal-button slot="end" aria-label="Click to copy" onclick="copyMail();">
               <md-icon slot="icon">content_copy</md-icon>
               Copy
             </md-filled-tonal-button>
           </md-list-item>
-          <md-list-item noninteractive headline="電話番号" supporting-text="06-6879-7267" multi-line-supporting-text>
+          <md-list-item>
+            <div slot="overline">電話番号</div>
+            <div slot="supporting-text">06-6879-7267</div>
             <!-- +81-6-6879-7267 -->
-            <md-icon data-variant="icon" slot="start">call</md-icon>
+            <md-icon slot="start">call</md-icon>
             <md-filled-tonal-button slot="end" aria-label="Click to copy" onclick="copyPhone();">
               <md-icon slot="icon">content_copy</md-icon>
               Copy
