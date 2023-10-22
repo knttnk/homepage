@@ -10,6 +10,7 @@ md-list {
 
 md-list-item {
     --md-list-item-container-color: transparent;
+    word-break: break-all;
 }
 
 body {
@@ -186,7 +187,6 @@ th {
     font-size: medium;
     opacity: 0;
     background: var(--md-sys-color-surface-container);
-    transition: .1s;
     z-index: 10;
 }
 
