@@ -9,5 +9,7 @@ import '@material/web/button/text-button.js';
 import '@material/web/menu/menu';
 import '@material/web/menu/menu-item';
 
+import '@material/web/fab/fab.js';
+
 import '@material/web/list/list.js';
 import '@material/web/list/list-item.js';
