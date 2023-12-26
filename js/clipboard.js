@@ -8,14 +8,14 @@ function copyMail() {
 }
 
 function copyAddress() {
+    let address1 = i18next.t('contact.address1');
+    let address2 = i18next.t('contact.address2');
     navigator.clipboard.writeText(
-        "〒565-0871 大阪府吹田市山田丘２−１ M4棟 505号室"
+        `${address1} ${address2}`
     );
 }
 
-
 function copyPhone() {
-    navigator.clipboard.writeText(
-        "06-6879-7267"
-    );
+    let phone = i18next.t('contact.phone1');
+    navigator.clipboard.writeText(phone);
 }
