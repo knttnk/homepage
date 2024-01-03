@@ -40,6 +40,12 @@ i18next.use(i18nextBrowserLanguageDetector).init({
           latter: "Grad. Sch. of Engineering, Osaka Univ.",
           detail: "Ph.D Student of Mechanical Dynamics (Ishikawa & Minami Lab.), Dept. of Mechanical Engineering, Grad. Sch. of Engineering, Osaka Univ."
         },
+        "fixed-app-bar": {
+          affiliation: {
+            former: "",
+            latter: "Osaka Univ.",
+          }
+        },
         birth: {
           birth: "Birth",
           birthdate: "11 February 1999"
@@ -111,6 +117,12 @@ i18next.use(i18nextBrowserLanguageDetector).init({
           former: "大阪大学大学院 工学研究科",
           latter: "機械工学専攻 ​博士後期課程",
           detail: "大阪大学大学院 工学研究科 機械工学専攻 ​博士後期課程 機械動力学領域 （石川・南研究室） 博士後期課程1年"
+        },
+        "fixed-app-bar": {
+          affiliation: {
+            former: "大阪大学大学院 工学研究科",
+            latter: "機械工学専攻 ​博士後期課程",
+          }
         },
         birth: {
           birth: "生年月日",
