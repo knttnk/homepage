@@ -81,7 +81,7 @@ i18next.use(i18nextBrowserLanguageDetector).init({
         publication: {
           publication: "Publications",
           domestic: {
-            conference: "Domestic Conference",
+            conference: "Domestic Conference (Japan)",
           },
           international: {
             conference: "International Conference",
