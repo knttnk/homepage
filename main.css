@@ -159,12 +159,12 @@ th {
 .grey-glass {
     background: #00000099;
     width: 100%;
-    height: 12rem;
+    height: 6em;
     margin: 0;
     position: absolute;
     z-index: -1;
     bottom: 0;
-    backdrop-filter: blur(.05rem);
+    backdrop-filter: blur(.05em);
 }
 
 .grey-glass .title {
@@ -172,7 +172,7 @@ th {
     height: max-content;
     max-width: 62rem;
     position: relative;
-    padding: 1rem;
+    padding: 0.5em;
     margin-left: auto;
     margin-right: auto;
     bottom: 0;
@@ -183,7 +183,7 @@ th {
 .grey-glass .title h1 {
     display: block;
     color: var(--md-sys-color-on-primary-light);
-    padding: 0 1rem;
+    padding: 0 .5rem;
     /* position: relative; */
     margin: 0;
 }
