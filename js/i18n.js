@@ -2,11 +2,24 @@
 function changeLanguage(lng) {
   i18next.changeLanguage(lng).then(function (t) {
     jQuery("*").localize();
-  });
+    var resultLanguage = lng || i18next.language;
 
-  if (lng) {
-    document.documentElement.lang = lng;
-  }
+    switch (resultLanguage) {
+      case "en":
+        document.documentElement.lang = "en";
+        jQuery('#flex-app-bar').css({
+          'font-size': '1.3rem',
+        });
+        break;
+      case "ja":
+      default:
+        document.documentElement.lang = "ja";
+        jQuery('#flex-app-bar').css({
+          'font-size': '2rem',
+        });
+        break;
+    }
+  });
 }
 
 // use plugins and options as needed, for options, detail see
