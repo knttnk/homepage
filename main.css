@@ -10,7 +10,6 @@ md-list {
 
 md-list-item {
     --md-list-item-container-color: transparent;
-    word-break: break-all;
 }
 
 md-fab {
