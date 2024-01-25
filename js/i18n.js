@@ -101,6 +101,8 @@ i18next.use(i18nextBrowserLanguageDetector).init({
           description1: "Unofficial BibTeX style file for ISCIE.",
           product2: "The Inverted Pendulum Game",
           description2: "A game to control an inverted pendulum. You can experience the effect of information alteration.",
+          product3: "NQLib",
+          description3: "Python library to design noise shaping quantizer for discrete-valued input control.",
         },
         contact: {
           contact: "Contact",
