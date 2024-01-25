@@ -194,6 +194,8 @@ i18next.use(i18nextBrowserLanguageDetector).init({
           description1: "非公式のISCIE用BibTeXスタイルファイル．",
           product2: "The Inverted Pendulum Game",
           description2: "倒立振子を制御するゲームで，情報改変の効果を体験できます．",
+          product3: "NQLib",
+          description3: "Pythonによる，離散値制御のための動的量子化器の設計ライブラリ．",
         },
         contact: {
           contact: "連絡先",
