@@ -86,6 +86,7 @@ i18next.use(i18nextBrowserLanguageDetector).init({
           international: {
             conference: "International Conference",
             conference1: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: NQLib: Python Library for the Practical Design of Noise Shaping Quantizers: SICE Annual Conference 2021",
+            conference2: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: Improving Controllability of Manual Control Systems by Altering Visual Information: 29th International Symposium on Artificial Life and Robotics (2024)",
           },
           awards: {
             awards: "Awards",
@@ -93,6 +94,13 @@ i18next.use(i18nextBrowserLanguageDetector).init({
           grant: {
             grant: "Research Grants",
           },
+        },
+        products: {
+          products: "Products",
+          product1: "iscie.bst",
+          description1: "Unofficial BibTeX style file for ISCIE.",
+          product2: "The Inverted Pendulum Game",
+          description2: "A game to control an inverted pendulum. You can experience the effect of information alteration.",
         },
         contact: {
           contact: "Contact",
@@ -166,6 +174,7 @@ i18next.use(i18nextBrowserLanguageDetector).init({
           international: {
             conference: "国際会議",
             conference1: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: NQLib: Python Library for the Practical Design of Noise Shaping Quantizers: SICE Annual Conference 2021",
+            conference2: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: Improving Controllability of Manual Control Systems by Altering Visual Information: 29th International Symposium on Artificial Life and Robotics (2024)",
           },
           awards: {
             awards: "受賞",
@@ -176,6 +185,13 @@ i18next.use(i18nextBrowserLanguageDetector).init({
             grant: "外部資金",
             grant1: "次世代挑戦的研究者育成プロジェクト (2023/4 - 2026/3)",
           },
+        },
+        products: {
+          products: "制作物",
+          product1: "iscie.bst",
+          description1: "非公式のISCIE用BibTeXスタイルファイル．",
+          product2: "The Inverted Pendulum Game",
+          description2: "倒立振子を制御するゲームで，情報改変の効果を体験できます．",
         },
         contact: {
           contact: "連絡先",

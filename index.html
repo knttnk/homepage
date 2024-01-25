@@ -164,6 +164,7 @@
       <h3 data-i18n="publication.international.conference"></h3>
       <ul>
         <li data-i18n="publication.international.conference1"></li>
+        <li data-i18n="publication.international.conference2"></li>
       </ul>
 
       <h3 data-i18n="publication.awards.awards"></h3>
@@ -176,6 +177,33 @@
       <ul>
         <li data-i18n="publication.grant.grant1"></li>
       </ul>
+    </div>
+
+    <div class="my-card">
+      <!-- TODO: DataTableに -->
+      <h2 data-i18n="products.products"></h2>
+      <md-list>
+        <md-list-item>
+          <md-icon slot="start">code</md-icon>
+          <div slot="headline" data-i18n="products.product1"></div>
+          <div slot="supporting-text" data-i18n="products.description1"></div>
+          <md-filled-tonal-icon-button slot="end" type="button" href="https://github.com/knttnk/iscie_bst/"
+            target="_blank" style="margin: 1rem;">
+            <md-icon>open_in_new</md-icon>
+          </md-filled-tonal-icon-button>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item>
+          <md-icon slot="start">sports_esports</md-icon>
+          <div slot="headline" data-i18n="products.product2"></div>
+          <div slot="supporting-text" data-i18n="products.description2"></div>
+          <md-filled-tonal-icon-button slot="end" type="button" href="https://knttnk.github.io/pendulum_game_web/"
+            target="_blank" style="margin: 1rem;">
+            <md-icon>open_in_new</md-icon>
+          </md-filled-tonal-icon-button>
+        </md-list-item>
+      </md-list>
+
     </div>
 
     <div class="my-card">
@@ -208,7 +236,7 @@
             Copy
           </md-filled-tonal-button>
         </md-list-item>
-        <md-list-item>
+        <md-list-item style="word-break: break-all;">
           <div slot="overline" data-i18n="contact.email"></div>
           <div slot="supporting-text" data-i18n="contact.email1"></div>
           <md-icon slot="start">mail</md-icon>
@@ -217,7 +245,7 @@
             Copy
           </md-filled-tonal-button>
         </md-list-item>
-        <md-list-item>
+        <md-list-item style="word-break: break-all;">
           <div slot="overline" data-i18n="contact.phone"></div>
           <div slot="supporting-text" data-i18n="contact.phone1"></div>
           <!-- +81-6-6879-7267 -->
