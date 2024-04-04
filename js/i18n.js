@@ -82,11 +82,12 @@ i18next.use(i18nextBrowserLanguageDetector).init({
           publication: "Publications",
           domestic: {
             conference: "Domestic Conference (Japan)",
+            paper: "Journal Paper (Japan)",
           },
           international: {
             conference: "International Conference",
-            conference1: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: NQLib: Python Library for the Practical Design of Noise Shaping Quantizers: SICE Annual Conference 2021",
-            conference2: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: Improving Controllability of Manual Control Systems by Altering Visual Information: 29th International Symposium on Artificial Life and Robotics (2024)",
+            conference1: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: NQLib: Python Library for the Practical Design of Noise Shaping Quantizers; in 2021 SICE Annual Conference, pp. 814–816 (2021)",
+            conference2: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: Improving Controllability of Manual Control Systems by Altering Visual Information; in 29th International Symposium on Artificial Life and Robotics, pp. 356–359 (2024)",
           },
           awards: {
             awards: "Awards",
@@ -172,13 +173,15 @@ i18next.use(i18nextBrowserLanguageDetector).init({
           publication: "業績",
           domestic: {
             conference: "国内会議",
-            conference1: "田中 健太，南 裕樹，石川 将人：ノイズシェーピング量子化器設計のためのPython ライブラリNQLib の開発：第63 回自動制御連合講演会",
-            conference2: "田中 健太，南 裕樹，石川 将人：人間機械系の制御性能向上のための視覚情報の改変， 第65回自動制御連合講演会，pp. 824–827 (2022/11)",
+            conference1: "田中 健太，南 裕樹，石川 将人：ノイズシェーピング量子化器設計のための Python ライブラリ NQLib の開発；自動制御連合講演会講演論文集 第 63 回自動制御連合講演会, pp. 474–477 (2020)",
+            conference2: "田中 健太，南 裕樹，石川 将人：人間機械系の制御性能向上のための視覚情報の改変；自動制御連合講演会講演論文集 第 65 回 自動制御連合講演会, pp. 824–827 (2022)",
+            paper: "学術雑誌掲載論文",
+            paper1: "田中 健太，南 裕樹，石川 将人：情報改変による強化学習の効率化：倒立振子の安定化制御を例として；システム制御情報学会論文誌，Vol.xx, No.xx, pp.xxx–xxx (2024)"
           },
           international: {
             conference: "国際会議",
-            conference1: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: NQLib: Python Library for the Practical Design of Noise Shaping Quantizers: SICE Annual Conference 2021",
-            conference2: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: Improving Controllability of Manual Control Systems by Altering Visual Information: 29th International Symposium on Artificial Life and Robotics (2024)",
+            conference1: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: NQLib: Python Library for the Practical Design of Noise Shaping Quantizers; in 2021 SICE Annual Conference, pp. 814–816 (2021)",
+            conference2: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: Improving Controllability of Manual Control Systems by Altering Visual Information; in 29th International Symposium on Artificial Life and Robotics, pp. 356–359 (2024)",
           },
           awards: {
             awards: "受賞",
