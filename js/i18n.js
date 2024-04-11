@@ -129,7 +129,7 @@ i18next.use(i18nextBrowserLanguageDetector).init({
           affiliation: "所属",
           former: "大阪大学大学院 工学研究科",
           latter: "機械工学専攻 ​博士後期課程",
-          detail: "大阪大学大学院 工学研究科 機械工学専攻 ​博士後期課程 機械動力学領域 （石川・南研究室） 博士後期課程2年"
+          detail: "大阪大学大学院 工学研究科 機械工学専攻 機械動力学領域 （石川・南研究室） 博士後期課程2年"
         },
         "fixed-app-bar": {
           affiliation: {
