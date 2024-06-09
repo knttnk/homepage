@@ -175,6 +175,7 @@ i18next.use(i18nextBrowserLanguageDetector).init({
             conference: "国内会議",
             conference1: "田中 健太，南 裕樹，石川 将人：ノイズシェーピング量子化器設計のための Python ライブラリ NQLib の開発；自動制御連合講演会講演論文集 第 63 回自動制御連合講演会, pp. 474–477 (2020)",
             conference2: "田中 健太，南 裕樹，石川 将人：人間機械系の制御性能向上のための視覚情報の改変；自動制御連合講演会講演論文集 第 65 回 自動制御連合講演会, pp. 824–827 (2022)",
+            conference3: "南裕樹，田中健太，荻尾優吾：Python を用いた制御系設計：えっ！ そんなことできるの？ ；第11 回制御部門マルチシンポジウム, 3A7–2 (2023)",
             paper: "学術雑誌掲載論文",
             paper1: "田中 健太，南 裕樹，石川 将人：情報改変による強化学習の効率化：倒立振子の安定化制御を例として；システム制御情報学会論文誌，Vol.xx, No.xx, pp.xxx–xxx (2024)"
           },
@@ -188,10 +189,12 @@ i18next.use(i18nextBrowserLanguageDetector).init({
             award1: "空気調和・衛生工学会振興賞学生賞 (2020年度)",
             award2: "計測自動制御学会優秀学生賞 (2022年度)",
           },
-          grant: {
-            grant: "外部資金",
-            grant1: "次世代挑戦的研究者育成プロジェクト (2023/4 - 2026/3)",
-          },
+          others: {
+            others: "その他",
+            other1: "MathWorks Minidrone Competition Japan 2021 決勝進出",
+            other2: "次世代挑戦的研究者育成プロジェクトに採用(2022/4–2025/3)",
+            other3: "立石科学技術振興財団研究助成(C) に採用(2024/4–2026/3)",
+          }
         },
         products: {
           products: "制作物",
