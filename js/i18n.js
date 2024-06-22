@@ -93,10 +93,15 @@ i18next.use(i18nextBrowserLanguageDetector).init({
           },
           awards: {
             awards: "Awards",
+            award1: "Outstanding Student Award for Students from The Society of Heating, Air-Conditioning and Sanitary Engineers of Japan (FY2020)",
+            award2: "Excellent Student Award from The Society of Instrument and Control Engineers (2022)",
           },
-          grant: {
-            grant: "Research Grants",
-          },
+          others: {
+            others: "Others",
+            other1: "Finalist in MathWorks Minidrone Competition Japan 2021",
+            other2: "The Next Generation Researcher Development Project (April 2022 – March 2025)",
+            other3: "Research Grant (C) from Tateisi Science and Technology Foundation (April 2024 – March 2026)",  // shi ではなく si なのは https://www.tateisi-f.org/research/c/
+          }
         },
         products: {
           products: "Products",
@@ -177,12 +182,12 @@ i18next.use(i18nextBrowserLanguageDetector).init({
             conference: "国内会議",
             conference1: "田中 健太，南 裕樹，石川 将人：ノイズシェーピング量子化器設計のための Python ライブラリ NQLib の開発；自動制御連合講演会講演論文集 第 63 回自動制御連合講演会, pp. 474–477 (2020)",
             conference2: "田中 健太，南 裕樹，石川 将人：人間機械系の制御性能向上のための視覚情報の改変；自動制御連合講演会講演論文集 第 65 回 自動制御連合講演会, pp. 824–827 (2022)",
-            conference3: "南裕樹，田中健太，荻尾優吾：Python を用いた制御系設計：えっ！ そんなことできるの？ ；第11 回制御部門マルチシンポジウム, 3A7–2 (2023)",
+            conference3: "南 裕樹，田中 健太，荻尾 優吾：Python を用いた制御系設計：えっ！ そんなことできるの？ ；第11 回制御部門マルチシンポジウム, 3A7–2 (2023)",
           },
           papars: {
             paper: "学術雑誌掲載論文",
             paper1: "田中 健太，南 裕樹，石川 将人：情報改変による強化学習の効率化：倒立振子の安定化制御を例として；システム制御情報学会論文誌，Vol.xx, No.xx, pp.xxx–xxx (2024)",
-            paper2: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: NQLib: A Python Library for Noise-shaping Quantizer Synthesis; SoftwareX, Vol.xx, No.xx, pp.xxx–xxx (2024)"
+            paper2: "Kenta Tanaka, Yuki Minami, Masato Ishikawa: NQLib: A Python Library for Noise-Shaping Quantizer Synthesis; SoftwareX, Vol. 27, 101792 (2024)"
           },
           international: {
             conference: "国際会議",
