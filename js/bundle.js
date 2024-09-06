@@ -981,6 +981,7 @@ MdRipple = __decorate([
  * Accessibility Object Model reflective aria properties.
  */
 const ARIA_PROPERTIES = [
+    'role',
     'ariaAtomic',
     'ariaAutoComplete',
     'ariaBusy',
@@ -1348,7 +1349,7 @@ class Button extends buttonBaseClass {
          */
         this.hasIcon = false;
         /**
-         * The default behavior of the button. May be "text", "reset", or "submit"
+         * The default behavior of the button. May be "button", "reset", or "submit"
          * (default).
          */
         this.type = 'submit';
@@ -1385,7 +1386,10 @@ class Button extends buttonBaseClass {
       ${this.renderElevationOrOutline?.()}
       <div class="background"></div>
       <md-focus-ring part="focus-ring" for=${buttonId}></md-focus-ring>
-      <md-ripple for=${buttonId} ?disabled="${isDisabled}"></md-ripple>
+      <md-ripple
+        part="ripple"
+        for=${buttonId}
+        ?disabled="${isDisabled}"></md-ripple>
       ${buttonOrLink}
     `;
     }
@@ -1677,7 +1681,7 @@ class IconButton extends iconButtonBaseClass {
          */
         this.selected = false;
         /**
-         * The default behavior of the button. May be "text", "reset", or "submit"
+         * The default behavior of the button. May be "button", "reset", or "submit"
          * (default).
          */
         this.type = 'submit';
@@ -3682,6 +3686,18 @@ class Menu extends s$1 {
         super.disconnectedCallback();
         this.cleanUpGlobalEventListeners();
     }
+    getBoundingClientRect() {
+        if (!this.surfaceEl) {
+            return super.getBoundingClientRect();
+        }
+        return this.surfaceEl.getBoundingClientRect();
+    }
+    getClientRects() {
+        if (!this.surfaceEl) {
+            return super.getClientRects();
+        }
+        return this.surfaceEl.getClientRects();
+    }
     render() {
         return this.renderSurface();
     }
@@ -3822,17 +3838,15 @@ class Menu extends s$1 {
      */
     animateClose() {
         let resolve;
-        let reject;
         // This promise blocks the surface position controller from setting
         // display: none on the surface which will interfere with this animation.
-        const animationEnded = new Promise((res, rej) => {
+        const animationEnded = new Promise((res) => {
             resolve = res;
-            reject = rej;
         });
         const surfaceEl = this.surfaceEl;
         const slotEl = this.slotEl;
         if (!surfaceEl || !slotEl) {
-            reject();
+            resolve(false);
             return animationEnded;
         }
         const openDirection = this.openDirection;
@@ -3900,7 +3914,7 @@ class Menu extends s$1 {
                 animation.cancel();
                 child.classList.toggle('md-menu-hidden', false);
             });
-            reject();
+            resolve(false);
         });
         surfaceHeightAnimation.addEventListener('finish', () => {
             surfaceEl.classList.toggle('animating', false);
@@ -4069,7 +4083,7 @@ __decorate([
  * SPDX-License-Identifier: Apache-2.0
  */
 // Generated stylesheet for ./menu/internal/menu-styles.css.
-const styles$8 = i$4 `:host{--md-elevation-level: var(--md-menu-container-elevation, 2);--md-elevation-shadow-color: var(--md-menu-container-shadow-color, var(--md-sys-color-shadow, #000));min-width:112px;color:unset;display:contents}md-focus-ring{--md-focus-ring-shape: var(--md-menu-container-shape, var(--md-sys-shape-corner-extra-small, 4px))}.menu{border-radius:var(--md-menu-container-shape, var(--md-sys-shape-corner-extra-small, 4px));display:none;inset:auto;border:none;padding:0px;overflow:visible;background-color:rgba(0,0,0,0);color:inherit;opacity:0;z-index:20;position:absolute;user-select:none;max-height:inherit;height:inherit;min-width:inherit;max-width:inherit}.menu::backdrop{display:none}.fixed{position:fixed}.items{display:block;list-style-type:none;margin:0;outline:none;box-sizing:border-box;background-color:var(--md-menu-container-color, var(--md-sys-color-surface-container, #f3edf7));height:inherit;max-height:inherit;overflow:auto;min-width:inherit;max-width:inherit;border-radius:inherit}.item-padding{padding-block:8px}.has-overflow:not([popover]) .items{overflow:visible}.has-overflow.animating .items,.animating .items{overflow:hidden}.has-overflow.animating .items{pointer-events:none}.animating ::slotted(.md-menu-hidden){opacity:0}slot{display:block;height:inherit;max-height:inherit}::slotted(:is(md-divider,[role=separator])){margin:8px 0}@media(forced-colors: active){.menu{border-style:solid;border-color:CanvasText;border-width:1px}}
+const styles$8 = i$4 `:host{--md-elevation-level: var(--md-menu-container-elevation, 2);--md-elevation-shadow-color: var(--md-menu-container-shadow-color, var(--md-sys-color-shadow, #000));min-width:112px;color:unset;display:contents}md-focus-ring{--md-focus-ring-shape: var(--md-menu-container-shape, var(--md-sys-shape-corner-extra-small, 4px))}.menu{border-radius:var(--md-menu-container-shape, var(--md-sys-shape-corner-extra-small, 4px));display:none;inset:auto;border:none;padding:0px;overflow:visible;background-color:rgba(0,0,0,0);color:inherit;opacity:0;z-index:20;position:absolute;user-select:none;max-height:inherit;height:inherit;min-width:inherit;max-width:inherit;scrollbar-width:inherit}.menu::backdrop{display:none}.fixed{position:fixed}.items{display:block;list-style-type:none;margin:0;outline:none;box-sizing:border-box;background-color:var(--md-menu-container-color, var(--md-sys-color-surface-container, #f3edf7));height:inherit;max-height:inherit;overflow:auto;min-width:inherit;max-width:inherit;border-radius:inherit;scrollbar-width:inherit}.item-padding{padding-block:8px}.has-overflow:not([popover]) .items{overflow:visible}.has-overflow.animating .items,.animating .items{overflow:hidden}.has-overflow.animating .items{pointer-events:none}.animating ::slotted(.md-menu-hidden){opacity:0}slot{display:block;height:inherit;max-height:inherit}::slotted(:is(md-divider,[role=separator])){margin:8px 0}@media(forced-colors: active){.menu{border-style:solid;border-color:CanvasText;border-width:1px}}
 `;
 
 /**
