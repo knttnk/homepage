@@ -1,15 +1,21 @@
+md-filled-button,
+md-outlined-button,
+md-filled-tonal-button {
+    width: fit-content;
+}
+
 md-list {
-    max-width: 60rem;
+    max-width: 100%;
     display: grid;
     margin: 0;
-    margin-left: auto;
-    margin-right: auto;
     padding: 0;
     --md-list-container-color: transparent;
 }
 
 md-list-item {
     --md-list-item-container-color: transparent;
+    --md-list-item-leading-space: 1rem;
+    --md-list-item-trailing-space: 1rem;
 }
 
 md-fab {
@@ -20,27 +26,26 @@ md-fab {
 }
 
 md-elevated-card {
-    background: var(--md-sys-color-surface-container-low);
     padding: 2rem;
     margin: 1rem;
     border-radius: 2rem;
-    --md-elevation-level: 1;
 }
 
 @media screen and (max-width: 600px) {
     md-elevated-card {
-        background: var(--md-sys-color-surface-container-low);
-        padding: 1rem;
+        padding: 0;
+        margin: 1rem;
         border-radius: 1rem;
-        border-radius: 2rem;
-        --md-elevation-level: 1;
     }
 }
 
 md-elevated-card p,
+md-elevated-card h1,
 md-elevated-card h2,
 md-elevated-card h3,
-md-elevated-card h5 {
+md-elevated-card h4,
+md-elevated-card h5,
+md-elevated-card h6 {
     color: var(--md-sys-color-on-surface-container-low);
 }
 
@@ -48,9 +53,12 @@ md-elevated-card h5 {
     position: relative;
 }
 
+html {
+    min-width: 360px;
+}
+
 body {
-    width: max(100%, 350px);
-    /* 350px以下の幅にしない */
+    width: 100%;
     background-color: var(--md-sys-color-background);
     color: var(--md-sys-color-on-background);
     margin: 0;
@@ -83,26 +91,39 @@ body {
     margin-right: auto;
     margin-left: auto;
     width: 100%;
-    max-width: 68rem;
+    max-width: 48rem;
     display: block;
 }
 
 
-
 p,
+h1,
 h2,
 h3,
+h4,
 h5,
 h6 {
     color: var(--md-sys-color-on-surface);
-    padding: 1rem;
-    margin: 0;
+    padding: 0;
+    margin: 1rem;
+}
+
+ul {
+    padding: 0;
+    margin: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+
+li {
+    padding: 0;
+    margin: 0.5rem 0;
+    margin-left: 1.5rem;
 }
 
 
 table {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 1rem;
     border-collapse: collapse;
 }
 
@@ -131,14 +152,14 @@ th {
 }
 
 .flex-app-bar {
+    width: 100%;
     position: relative;
     background-color: var(--md-sys-color-primary);
-    width: 100%;
     height: 80vh;
     margin: 0;
     padding: 0;
     font-size: 2rem;
-    z-index: -3;
+    z-index: 1;
     pointer-events: none;
 }
 
@@ -156,75 +177,86 @@ th {
 
 .grey-glass {
     background: #00000099;
+    position: absolute;
     width: 100%;
     height: 6em;
     margin: 0;
-    position: absolute;
     z-index: -1;
     bottom: 0;
-    backdrop-filter: blur(.05em);
+    backdrop-filter: blur(.2rem);
+    /* 子要素の設定 */
+    display: flex;
+    justify-content: center;
 }
 
 .grey-glass .title {
-    /* width: 100%; */
-    height: max-content;
-    max-width: 62rem;
+    width: 100%;
+    max-width: 40rem;
     position: relative;
-    padding: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 0;
+    margin: 1rem;
     bottom: 0;
-
 }
 
 .grey-glass .title h6,
 .grey-glass .title h1 {
     display: block;
     color: var(--md-sys-color-on-primary-light);
-    padding: 0 .5rem;
+    padding: 0;
     /* position: relative; */
     margin: 0;
 }
 
 .fixed-app-bar {
+    width: 100%;
     pointer-events: none;
     position: fixed;
     top: 0;
     height: 5rem;
-    width: 100%;
     margin: 0;
     padding: 0;
-    font-size: medium;
     opacity: 0;
     background: var(--md-sys-color-surface-container);
     z-index: 10;
+    /* 子要素の設定 */
+    display: flex;
+    justify-content: center;
 }
 
 .fixed-app-bar .title {
-    display: block;
     height: 5rem;
-    max-width: 62rem;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1rem;
-
+    padding: 0;
+    margin: 0;
+    max-width: 42rem;
+    width: 100%;
+    /* 子要素の設定 */
+    display: flex;
+    justify-content: space-between;
 }
 
-.fixed-app-bar .title h1,
-.fixed-app-bar .title h6 {
-    pointer-events: none;
-    position: absolute;
+.fixed-app-bar .title .name,
+.fixed-app-bar .title .affiliation {
+    padding: 0;
+    margin: 1rem;
+    width: fit-content;
+    /* 文字の設定 */
     color: var(--md-sys-color-on-surface-container);
-    padding: 0 1rem;
-    margin: 0 auto;
-    bottom: 3rem;
+    font-weight: bold;
 }
 
-.fixed-app-bar .title h1 {
+.fixed-app-bar .title .name {
     left: 0;
+    margin-right: 0;
+    /* 文字の設定 */
+    font-size: 2rem;
 }
 
-.fixed-app-bar .title h6 {
+.fixed-app-bar .title .affiliation {
     right: 0;
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 文字の設定 */
+    font-size: .8rem;
 }

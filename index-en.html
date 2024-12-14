@@ -3,16 +3,19 @@
 
 <head>
   <title>Kenta Tanaka - Ph.D Student at Osaka University</title>
+  <!-- フォント -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" defer>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin defer>
   <!-- https://m3.material.io/theme-builder#/custom のexportから -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
   <link rel="stylesheet" href="theming/theme.css">
   <link rel="stylesheet" href="main.css">
-  <script src="./js/bundle.js" defer></script>
 
   <!-- その他 -->
+  <script src="./js/bundle.js" defer></script>
   <script src="./js/clipboard.js"></script>
   <meta name="description" content="Website of Kenta Tanaka - Doctoral Student at Osaka University">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QRCL4J4CZ"></script>
@@ -24,13 +27,11 @@
     gtag('config', 'G-7QRCL4J4CZ');
   </script>
 
-  <!-- フォント -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" defer>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin defer>
-
+  <!-- 他言語のリンク -->
   <link rel="alternate" hreflang="x-default" href="https://knttnk.github.io/homepage/index.html" />
   <link rel="alternate" hreflang="ja-jp" href="https://knttnk.github.io/homepage/index.html" />
   <link rel="alternate" hreflang="en-us" href="https://knttnk.github.io/homepage/index-en.html" />
+  <!-- フォント -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="preload" as="style">
 </head>
 
@@ -41,12 +42,12 @@
   <!-- TODO: Appbarに -->
   <div class="fixed-app-bar" id="fixed-app-bar">
     <div class="title">
-      <h1>Kenta Tanaka</h1>
-      <h6>
-        <span></span>
-        <br>
-        <span>Osaka Univ.</span>
-      </h6>
+      <div class="name">Kenta Tanaka</div>
+      <div class="affiliation">
+        <span>
+          Osaka Univ.
+        </span>
+      </div>
     </div>
   </div>
   <div class="flex-app-bar" id="flex-app-bar" style="font-size: 1.3rem;">
@@ -82,7 +83,7 @@
   </span>
 
   <span class="main-content">
-    <div class="my-card">
+    <md-elevated-card>
       <h2>Profile</h2>
       <md-list>
         <md-list-item>
@@ -135,17 +136,18 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </md-elevated-card>
 
-    <div class="my-card">
+    <md-elevated-card>
       <!-- TODO: DataTableに -->
       <h2>Publications</h2>
-      <h3>Journal Papers</h3>
       <md-filled-tonal-button type="button" href="assets/kenta_tanaka_biblist_en.bib" target="_blank"
         style="margin: 1rem;">
         <md-icon slot="icon">open_in_new</md-icon>
         Publication list (BibTeX)
       </md-filled-tonal-button>
+
+      <h3>Journal Papers</h3>
       <ul>
         <li>
           <a href="https://www.jstage.jst.go.jp/article/iscie/37/8/37_234/_article/-char/en/" target="_blank">
@@ -153,7 +155,7 @@
             Improving Efficiency of Reinforcement Learning by Information Alteration:
             A Case Study of Stabilizing Inverted Pendulum;
             Transactions of the Institute of Systems, Control and Information Engineers,
-            Vol. 37, No. 8, pp. 234–236 (2024)</a>
+            Vol. 37, No. 8, pp. 234–236 (2024) (in Japanese)</a>
         </li>
         <!-- （査読あり） -->
         <li>
@@ -169,19 +171,26 @@
       <ul>
         <li>
           <a href="https://doi.org/10.11511/jacc.63.0_474" target="_blank">
-            Kenta Tanaka, Yuki Minami, Masato Ishikawa: Development of Python Library NQLib for Design of Noise Shaping
-            Quantizers; The 63rd Japan Joint Automatic Control Conference, pp. 474–477
-            (2020) (in Japanese)</a>
+            Kenta Tanaka, Yuki Minami, Masato Ishikawa:
+            Development of Python Library NQLib for Design of Noise Shaping Quantizers;
+            The 63rd Japan Joint Automatic Control Conference,
+            pp. 474–477 (2020) (in Japanese)
+          </a>
         </li> <!-- （口頭発表，査読なし） -->
         <li>
           <a href="https://doi.org/10.11511/jacc.65.0_824" target="_blank">
-            Kenta Tanaka, Yuki Minami, Masato Ishikawa: Alteration of Visual Information for Control Performance
-            Improvement of Man-Machine Systems; The 65th Japan Joint Automatic Control Conference, pp. 824–827 (2022)
-            (in Japanese)
+            Kenta Tanaka, Yuki Minami, Masato Ishikawa:
+            Alteration of Visual Information for Control Performance Improvement of Man-Machine Systems;
+            The 65th Japan Joint Automatic Control Conference,
+            pp. 824–827 (2022) (in Japanese)
           </a>
         </li>
         <!-- （口頭発表，査読なし） -->
-        <li>南 裕樹，田中 健太，荻尾 優吾：Python を用いた制御系設計：えっ！ そんなことできるの？ ；第11 回制御部門マルチシンポジウム, 3A7–2 (2023)</li> <!-- （口頭発表，査読なし） -->
+        <li>
+          南 裕樹，田中 健太，荻尾 優吾：
+          Python を用いた制御系設計：えっ！ そんなことできるの？；
+          第11 回制御部門マルチシンポジウム, 3A7–2 (2023)
+        </li> <!-- （口頭発表，査読なし） -->
       </ul>
 
       <h3>International Conference</h3>
@@ -213,9 +222,9 @@
         <li>The Next Generation Researcher Development Project (April 2023 – March 2026)</li>
         <li>Research Grant (C) from Tateisi Science and Technology Foundation (April 2024 – March 2026)</li>
       </ul>
-    </div>
+    </md-elevated-card>
 
-    <div class="my-card">
+    <md-elevated-card>
       <!-- TODO: DataTableに -->
       <h2>Products</h2>
       <md-list>
@@ -263,23 +272,25 @@
         </md-list-item>
       </md-list>
 
-    </div>
+    </md-elevated-card>
 
-    <div class="my-card">
+    <md-elevated-card>
       <h2>Contact</h2>
-      <md-filled-button type="button" href="https://ishikawa-lab.sakura.ne.jp/" target="_blank" style="margin: 1rem;">
-        <md-icon slot="icon">open_in_new</md-icon>
-        <span>Ishikawa & Minami Lab.</span>
-      </md-filled-button>
-      <md-filled-tonal-button type="button" href="https://github.com/knttnk" target="_blank" style="margin: 1rem;">
-        <md-icon slot="icon">open_in_new</md-icon>
-        GitHub
-      </md-filled-tonal-button>
-      <md-filled-tonal-button type="button" href="https://twitter.com/Aqr_Tbn_eng" target="_blank"
-        style="margin: 1rem;">
-        <md-icon slot="icon">open_in_new</md-icon>
-        X (Twitter)
-      </md-filled-tonal-button>
+      <div>
+        <md-filled-button type="button" href="https://ishikawa-lab.sakura.ne.jp/" target="_blank" style="margin: 1rem;">
+          <md-icon slot="icon">open_in_new</md-icon>
+          <span>Ishikawa & Minami Lab.</span>
+        </md-filled-button>
+        <md-filled-tonal-button type="button" href="https://github.com/knttnk" target="_blank" style="margin: 1rem;">
+          <md-icon slot="icon">open_in_new</md-icon>
+          GitHub
+        </md-filled-tonal-button>
+        <md-filled-tonal-button type="button" href="https://twitter.com/Aqr_Tbn_eng" target="_blank"
+          style="margin: 1rem;">
+          <md-icon slot="icon">open_in_new</md-icon>
+          X (Twitter)
+        </md-filled-tonal-button>
+      </div>
       <md-list>
         <md-list-item>
           <div slot="overline">Address</div>
@@ -315,7 +326,7 @@
           </md-filled-tonal-button>
         </md-list-item>
       </md-list>
-    </div>
+    </md-elevated-card>
   </span>
 
   <div style="height: 5rem;"></div>

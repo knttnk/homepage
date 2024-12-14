@@ -3,16 +3,19 @@
 
 <head>
   <title>田中 健太 - 大阪大学大学院工学研究科機械工学専攻博士後期課程学生</title>
+  <!-- フォント -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" defer>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin defer>
   <!-- https://m3.material.io/theme-builder#/custom のexportから -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
   <link rel="stylesheet" href="theming/theme.css">
   <link rel="stylesheet" href="main.css">
-  <script src="./js/bundle.js" defer></script>
 
   <!-- その他 -->
+  <script src="./js/bundle.js" defer></script>
   <script src="./js/clipboard.js"></script>
   <meta name="description" content="Website of Kenta Tanaka - Doctoral Student at Osaka University">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QRCL4J4CZ"></script>
@@ -24,13 +27,11 @@
     gtag('config', 'G-7QRCL4J4CZ');
   </script>
 
-  <!-- フォント -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" defer>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin defer>
-
+  <!-- 他言語のリンク -->
   <link rel="alternate" hreflang="x-default" href="https://knttnk.github.io/homepage/index.html" />
   <link rel="alternate" hreflang="ja-jp" href="https://knttnk.github.io/homepage/index.html" />
   <link rel="alternate" hreflang="en-us" href="https://knttnk.github.io/homepage/index-en.html" />
+  <!-- フォント -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="preload" as="style">
 </head>
 
@@ -41,12 +42,13 @@
   <!-- TODO: Appbarに -->
   <div class="fixed-app-bar" id="fixed-app-bar">
     <div class="title">
-      <h1>田中 健太</h1>
-      <h6>
-        <span>大阪大学大学院 工学研究科</span>
-        <br>
-        <span>機械工学専攻 ​博士後期課程</span>
-      </h6>
+      <div class="name">田中 健太</div>
+      <div class="affiliation">
+        <span>
+          大阪大学大学院 工学研究科<br>
+          機械工学専攻 ​博士後期課程
+        </span>
+      </div>
     </div>
   </div>
   <div class="flex-app-bar" id="flex-app-bar" style="font-size: 2.0rem;">
@@ -146,8 +148,12 @@
       <h3>学術雑誌掲載論文</h3>
       <ul>
         <li>
-          <a href="https://doi.org/10.5687/iscie.37.234" target="_blank">田中 健太，南 裕樹，石川
-            将人：情報改変による強化学習の効率化：倒立振子の安定化制御を例として；システム制御情報学会論文誌，Vol. 37, No. 8, pp. 234–236 (2024)</a>
+          <a href="https://doi.org/10.5687/iscie.37.234" target="_blank">
+            田中 健太，南 裕樹，石川 将人：
+            情報改変による強化学習の効率化：
+            倒立振子の安定化制御を例として；
+            システム制御情報学会論文誌，
+            Vol. 37, No. 8, pp. 234–236 (2024)</a>
         </li>
         <!-- （査読あり） -->
         <li>
@@ -163,17 +169,26 @@
       <ul>
         <li>
           <a href="https://doi.org/10.11511/jacc.63.0_474" target="_blank">
-            田中 健太，南 裕樹，石川 将人：ノイズシェーピング量子化器設計のための Python ライブラリ NQLib の開発；自動制御連合講演会講演論文集 第 63 回自動制御連合講演会, pp. 474–477
-            (2020)</a>
+            田中 健太，南 裕樹，石川 将人：
+            ノイズシェーピング量子化器設計のための Python ライブラリ NQLib の開発；
+            自動制御連合講演会講演論文集 第 63 回自動制御連合講演会,
+            pp. 474–477 (2020)
+          </a>
         </li> <!-- （口頭発表，査読なし） -->
         <li>
           <a href="https://doi.org/10.11511/jacc.65.0_824" target="_blank">
-            田中 健太，南 裕樹，石川 将人：人間機械系の制御性能向上のための視覚情報の改変；自動制御連合講演会講演論文集 第 65 回 自動制御連合講演会, pp. 824–827 (2022)
+            田中 健太，南 裕樹，石川 将人：
+            人間機械系の制御性能向上のための視覚情報の改変；
+            自動制御連合講演会講演論文集 第 65 回 自動制御連合講演会,
+            pp. 824–827 (2022)
           </a>
         </li>
         <!-- （口頭発表，査読なし） -->
-        <li>南 裕樹，田中 健太，荻尾 優吾：Python を用いた制御系設計：えっ！ そんなことできるの？ ；第11 回制御部門マルチシンポジウム, 3A7–2 (2023)</li>
-        <!-- （口頭発表，査読なし） -->
+        <li>
+          南 裕樹，田中 健太，荻尾 優吾：
+          Python を用いた制御系設計：えっ！ そんなことできるの？；
+          第11 回制御部門マルチシンポジウム, 3A7–2 (2023)
+        </li> <!-- （口頭発表，査読なし） -->
       </ul>
 
       <h3>国際会議</h3>
@@ -256,19 +271,21 @@
 
     <md-elevated-card>
       <h2>連絡先</h2>
-      <md-filled-button type="button" href="https://ishikawa-lab.sakura.ne.jp/" target="_blank" style="margin: 1rem;">
-        <md-icon slot="icon">open_in_new</md-icon>
-        <span>石川・南研究室</span>
-      </md-filled-button>
-      <md-filled-tonal-button type="button" href="https://github.com/knttnk" target="_blank" style="margin: 1rem;">
-        <md-icon slot="icon">open_in_new</md-icon>
-        GitHub
-      </md-filled-tonal-button>
-      <md-filled-tonal-button type="button" href="https://twitter.com/Aqr_Tbn_eng" target="_blank"
-        style="margin: 1rem;">
-        <md-icon slot="icon">open_in_new</md-icon>
-        X (Twitter)
-      </md-filled-tonal-button>
+      <div>
+        <md-filled-button type="button" href="https://ishikawa-lab.sakura.ne.jp/" target="_blank" style="margin: 1rem;">
+          <md-icon slot="icon">open_in_new</md-icon>
+          <span>石川・南研究室</span>
+        </md-filled-button>
+        <md-filled-tonal-button type="button" href="https://github.com/knttnk" target="_blank" style="margin: 1rem;">
+          <md-icon slot="icon">open_in_new</md-icon>
+          GitHub
+        </md-filled-tonal-button>
+        <md-filled-tonal-button type="button" href="https://twitter.com/Aqr_Tbn_eng" target="_blank"
+          style="margin: 1rem;">
+          <md-icon slot="icon">open_in_new</md-icon>
+          X (Twitter)
+        </md-filled-tonal-button>
+      </div>
       <md-list>
         <md-list-item>
           <div slot="overline">住所</div>
