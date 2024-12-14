@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
   <link rel="stylesheet" href="theming/theme.css">
   <link rel="stylesheet" href="main.css">
+  <style>
+    md-icon[filled] {
+      font-variation-settings: 'FILL' 1;
+    }
+  </style>
 
   <!-- その他 -->
   <script src="./js/bundle.js" defer></script>
@@ -39,51 +44,9 @@
 <!-- TODO: https://github.com/material-components/material-web/blob/main/docs/theming/typography.md を参考に -->
 
 <body>
-  <!-- TODO: Appbarに -->
-  <div class="fixed-app-bar" id="fixed-app-bar">
-    <div class="title">
-      <div class="name">田中 健太</div>
-      <div class="affiliation">
-        <span>
-          大阪大学大学院 工学研究科<br>
-          機械工学専攻 ​博士後期課程
-        </span>
-      </div>
-    </div>
-  </div>
-  <div class="flex-app-bar" id="flex-app-bar" style="font-size: 2.0rem;">
-    <div class="grey-glass">
-      <div class="title">
-        <h6>大阪大学大学院 工学研究科</h6>
-        <h6>機械工学専攻 ​博士後期課程</h6>
-        <h1>田中 健太</h1>
-      </div>
-    </div>
-  </div>
-  <span class="language-area">
-    <md-fab size="medium" aria-label="Language" id="language-anchor">
-      <md-icon slot="icon">language</md-icon>
-    </md-fab>
-    <md-menu id="language-menu" anchor="language-anchor" positioning="fixed">
-      <md-menu-item href="index.html">
-        <div slot="headline" id="language-japanese">日本語</div>
-      </md-menu-item>
-      <md-menu-item href="index-en.html">
-        <div slot="headline" id="language-english">English</div>
-      </md-menu-item>
-    </md-menu>
-    <script type="module">
-      // This example uses anchor as an ID reference
-      const anchorElement = document.body.querySelector('#language-anchor');
-      const menuElement = document.body.querySelector('#language-menu');
+  <div id="header"></div>
 
-      anchorElement.addEventListener('click', () => {
-        menuElement.open = true;
-      });
-    </script>
-  </span>
-
-  <span class="main-content">
+  <span class="main-content" id="main-content">
     <md-elevated-card>
       <h2>プロフィール</h2>
       <md-list>
@@ -324,9 +287,10 @@
     </md-elevated-card>
   </span>
 
-  <div style="height: 5rem;"></div>
+  <div style="height: 9rem;"></div>
 
   <script src="./js/animation.js"></script>
+  <script src="./js/handle_components.js"></script>
 </body>
 
 </html>

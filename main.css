@@ -20,7 +20,7 @@ md-list-item {
 
 md-fab {
     position: fixed;
-    bottom: 1rem;
+    bottom: 6rem;
     right: 1rem;
     z-index: 1001;
 }

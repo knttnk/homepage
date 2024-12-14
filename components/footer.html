@@ -1,0 +1,37 @@
+<span class="language-area">
+  <md-fab size="medium" aria-label="Language" id="language-anchor">
+    <md-icon slot="icon">language</md-icon>
+  </md-fab>
+  <md-menu id="language-menu" anchor="language-anchor" positioning="fixed">
+    <md-menu-item href="index.html">
+      <div slot="headline" id="language-japanese">日本語</div>
+    </md-menu-item>
+    <md-menu-item href="index-en.html">
+      <div slot="headline" id="language-english">English</div>
+    </md-menu-item>
+  </md-menu>
+  <script type="module">
+    // This example uses anchor as an ID reference
+    const anchorElement = document.body.querySelector('#language-anchor');
+    const menuElement = document.body.querySelector('#language-menu');
+
+    anchorElement.addEventListener('click', () => {
+      menuElement.open = true;
+    });
+  </script>
+</span>
+
+<md-navigation-bar style="position: fixed; bottom: 0;" active-index="0">
+  <md-navigation-tab href="index.html" label="プロフィール">
+    <md-icon slot="inactive-icon">home</md-icon>
+    <md-icon slot="active-icon" filled>home</md-icon>
+  </md-navigation-tab>
+  <md-navigation-tab href="index.html" label="研究紹介">
+    <md-icon slot="inactive-icon">description</md-icon>
+    <md-icon slot="active-icon" filled>description</md-icon>
+  </md-navigation-tab>
+  <md-navigation-tab href="index.html" label="業績">
+    <md-icon slot="inactive-icon">home</md-icon>
+    <md-icon slot="active-icon" filled>home</md-icon>
+  </md-navigation-tab>
+</md-navigation-bar>

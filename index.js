@@ -18,4 +18,5 @@ import '@material/web/divider/divider.js';
 
 // lab 内のやつで、将来的に変わるはず
 import '@material/web/labs/navigationbar/navigation-bar.js';
+import '@material/web/labs/navigationtab/navigation-tab.js';
 import '@material/web/labs/card/elevated-card.js';
