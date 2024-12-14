@@ -151,6 +151,15 @@ th {
     font-weight: 500;
 }
 
+.pre-header {
+    width: 100%;
+    background-color: var(--md-sys-color-primary);
+    height: 80vh;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+}
+
 .flex-app-bar {
     width: 100%;
     position: relative;
