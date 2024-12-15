@@ -60,8 +60,12 @@
   <script src="js/animation.js"></script>
   <script src="js/handle_components.js"></script>
   <script>
-    writeNavBar(0);
-    handleComponents('home', 'ja');
+    writeNavBar(0, "./");
+    handleComponents(
+      "contents/home-ja.html",
+      "components/header-ja.html",
+      "components/lang-button-ja.html",
+    );
   </script>
 
 </body>
