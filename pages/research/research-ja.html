@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+
+<head>
+    <!-- 第三者リソース -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="preload" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com" defer>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin defer>
+    <!-- https://m3.material.io/theme-builder#/custom のexportから -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
+    <style>
+        md-icon[filled] {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- その他スタイル -->
+    <link rel="stylesheet" href="/theming/theme.css">
+    <link rel="stylesheet" href="/main.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- その他 -->
+    <title>田中 健太 - 大阪大学大学院工学研究科機械工学専攻博士後期課程学生</title>
+    <script src="/js/bundle.js" defer></script>
+    <script src="/js/clipboard.js"></script>
+    <meta name="description" content="Website of Kenta Tanaka - Doctoral Student at Osaka University">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QRCL4J4CZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-7QRCL4J4CZ');
+    </script>
+
+    <!-- 他言語のリンク -->
+    <link rel="alternate" hreflang="x-default" href="https://knttnk.github.io/homepage/index.html" />
+    <link rel="alternate" hreflang="ja-jp" href="https://knttnk.github.io/homepage/index.html" />
+    <link rel="alternate" hreflang="en-us" href="https://knttnk.github.io/homepage/index-en.html" />
+</head>
+<!-- TODO: テキストをmaterialに -->
+<!-- TODO: https://github.com/material-components/material-web/blob/main/docs/theming/typography.md を参考に -->
+
+<body>
+    <div class="pre-header"></div>
+
+    <span class="main-content" id="main-content">
+    </span>
+
+    <div style="height: 9rem;"></div>
+
+    <script src="/js/animation.js"></script>
+    <script src="/js/handle_components.js"></script>
+    <script>
+        writeNavBar(1);
+        handleComponents('research/research', 'ja');
+    </script>
+</body>
+
+</html>
