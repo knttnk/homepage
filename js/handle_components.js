@@ -1,32 +1,48 @@
 /**
  * 
- * @param {string} mainPath  /pages/ に続くパス 拡張子を含めない
- * @param {string} language  'ja' or 'en'
+ * @param {string} contentPath  /contents/ 以下の内容を含んだhtmlへのパス
+ * @param {string} rootPath  トップのディレクトリへのパス ../ など
+ * @param {string} lang  "ja" or "en"
  */
 async function handleComponents(
-  mainPath,
-  headerPath,
-  langButtonPath,
+  contentPath,
+  rootPath,
+  lang,
 ) {
   // メインコンテンツを挿入
   const mainContent = document.getElementById('main-content');
-  const mainText = await fetch(mainPath).then(response => response.text());
+  const mainText = await fetch(
+    rootPath + "contents/" + contentPath,
+  ).then(response => response.text());
   mainContent.innerHTML = mainText;
 
   // ヘッダーを置換
-  const header = await fetch(headerPath).then(response => response.text());
+  const header = await fetch(
+    rootPath + (
+      // lang === "en" ?  // TODO: 実装
+      //   "components/header-en.html" :
+      //   "components/header-ja.html"
+      "components/header-ja.html"
+    )
+  ).then(response => response.text());
   const preHeader = document.getElementsByClassName('pre-header')[0];
   preHeader.remove();
   mainContent.insertAdjacentHTML('beforeBegin', header);
 
   // 言語ボタンを挿入
-  const langButton = await fetch(langButtonPath).then(response => response.text());
+  const langButton = await fetch(
+    rootPath + "components/lang-button.html"
+  ).then(response => response.text());
   mainContent.insertAdjacentHTML('afterEnd', langButton);
   const anchorElement = document.body.querySelector('#language-anchor');
   const menuElement = document.body.querySelector('#language-menu');
   anchorElement.addEventListener('click', () => {
     menuElement.open = true;
   });
+  const jaButton = document.body.querySelector('#language-japanese').parentElement;
+  const enButton = document.body.querySelector('#language-english').parentElement;
+  jaButton.setAttribute('href', rootPath + 'index.html');
+  enButton.setAttribute('href', rootPath + 'index-en.html');
 }
 
 /**
