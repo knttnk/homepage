@@ -95,6 +95,10 @@ body {
     display: block;
 }
 
+.bottom-space {
+    height: 9rem;
+}
+
 
 p,
 h1,
