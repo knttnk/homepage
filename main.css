@@ -178,7 +178,7 @@ th {
 
 .pre-header {
     width: 100%;
-    background-color: var(--md-sys-color-primary);
+    background-color: var(--md-sys-color-primary-light);
     height: 80vh;
     margin: 0;
     padding: 0;
@@ -188,7 +188,7 @@ th {
 .flex-app-bar {
     width: 100%;
     position: relative;
-    background-color: var(--md-sys-color-primary);
+    background-color: var(--md-sys-color-primary-light);
     height: 80vh;
     margin: 0;
     padding: 0;
