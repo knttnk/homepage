@@ -1,367 +1,409 @@
 <!DOCTYPE html>
 <html lang="en-US">
+	<head>
+		<!-- TODO: 英語でもNavBarとかを実装する -->
+		<title>Kenta Tanaka - Ph.D Student at The University of Osaka</title>
+		<!-- フォント -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" defer />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin defer />
+		<!-- https://m3.material.io/theme-builder#/custom のexportから -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" />
+		<link rel="stylesheet" href="theming/theme.css" />
+		<link rel="stylesheet" href="main.css" />
 
-<head>
-  <!-- TODO: 英語でもNavBarとかを実装する -->
-  <title>Kenta Tanaka - Ph.D Student at The University of Osaka</title>
-  <!-- フォント -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" defer>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin defer>
-  <!-- https://m3.material.io/theme-builder#/custom のexportから -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
-  <link rel="stylesheet" href="theming/theme.css">
-  <link rel="stylesheet" href="main.css">
+		<!-- その他 -->
+		<script src="./js/bundle.js" defer></script>
+		<script src="./js/clipboard.js"></script>
+		<meta name="description" content="Website of Kenta Tanaka - Doctoral Student at The University of Osaka" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-  <!-- その他 -->
-  <script src="./js/bundle.js" defer></script>
-  <script src="./js/clipboard.js"></script>
-  <meta name="description" content="Website of Kenta Tanaka - Doctoral Student at The University of Osaka">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-7QRCL4J4CZ"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QRCL4J4CZ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+			gtag('config', 'G-7QRCL4J4CZ');
+		</script>
 
-    gtag('config', 'G-7QRCL4J4CZ');
-  </script>
+		<!-- 他言語のリンク -->
+		<link rel="alternate" hreflang="x-default" href="https://knttnk.github.io/homepage/index.html" />
+		<link rel="alternate" hreflang="ja-jp" href="https://knttnk.github.io/homepage/index.html" />
+		<link rel="alternate" hreflang="en-us" href="https://knttnk.github.io/homepage/index-en.html" />
+		<!-- フォント -->
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="preload" as="style" />
+	</head>
 
-  <!-- 他言語のリンク -->
-  <link rel="alternate" hreflang="x-default" href="https://knttnk.github.io/homepage/index.html" />
-  <link rel="alternate" hreflang="ja-jp" href="https://knttnk.github.io/homepage/index.html" />
-  <link rel="alternate" hreflang="en-us" href="https://knttnk.github.io/homepage/index-en.html" />
-  <!-- フォント -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="preload" as="style">
-</head>
+	<!-- TODO: テキストをmaterialに -->
+	<!-- TODO: https://github.com/material-components/material-web/blob/main/docs/theming/typography.md を参考に -->
 
-<!-- TODO: テキストをmaterialに -->
-<!-- TODO: https://github.com/material-components/material-web/blob/main/docs/theming/typography.md を参考に -->
+	<body>
+		<!-- TODO: Appbarに -->
+		<div class="fixed-app-bar" id="fixed-app-bar">
+			<div class="title">
+				<div class="name">Kenta Tanaka</div>
+				<div class="affiliation">
+					<span> The Univ. of Osaka </span>
+				</div>
+			</div>
+		</div>
+		<div class="flex-app-bar" id="flex-app-bar" style="font-size: 1.3rem">
+			<div class="grey-glass">
+				<div class="title">
+					<h6>Dept. of Mechanical Engineering,</h6>
+					<h6>Grad. Sch. of Engineering, The Univ. of Osaka</h6>
+					<h1>Kenta Tanaka</h1>
+				</div>
+			</div>
+		</div>
+		<span class="language-area">
+			<md-fab size="medium" aria-label="Language" id="language-anchor">
+				<md-icon slot="icon">language</md-icon>
+			</md-fab>
+			<md-menu id="language-menu" anchor="language-anchor" positioning="fixed">
+				<md-menu-item href="index.html">
+					<div slot="headline" id="language-japanese">日本語</div>
+				</md-menu-item>
+				<md-menu-item href="index-en.html">
+					<div slot="headline" id="language-english">English</div>
+				</md-menu-item>
+			</md-menu>
+			<script type="module">
+				// This example uses anchor as an ID reference
+				const anchorElement = document.body.querySelector('#language-anchor');
+				const menuElement = document.body.querySelector('#language-menu');
 
-<body>
-  <!-- TODO: Appbarに -->
-  <div class="fixed-app-bar" id="fixed-app-bar">
-    <div class="title">
-      <div class="name">Kenta Tanaka</div>
-      <div class="affiliation">
-        <span>
-          The Univ. of Osaka
-        </span>
-      </div>
-    </div>
-  </div>
-  <div class="flex-app-bar" id="flex-app-bar" style="font-size: 1.3rem;">
-    <div class="grey-glass">
-      <div class="title">
-        <h6>Dept. of Mechanical Engineering,</h6>
-        <h6>Grad. Sch. of Engineering, The Univ. of Osaka</h6>
-        <h1>Kenta Tanaka</h1>
-      </div>
-    </div>
-  </div>
-  <span class="language-area">
-    <md-fab size="medium" aria-label="Language" id="language-anchor">
-      <md-icon slot="icon">language</md-icon>
-    </md-fab>
-    <md-menu id="language-menu" anchor="language-anchor" positioning="fixed">
-      <md-menu-item href="index.html">
-        <div slot="headline" id="language-japanese">日本語</div>
-      </md-menu-item>
-      <md-menu-item href="index-en.html">
-        <div slot="headline" id="language-english">English</div>
-      </md-menu-item>
-    </md-menu>
-    <script type="module">
-      // This example uses anchor as an ID reference
-      const anchorElement = document.body.querySelector('#language-anchor');
-      const menuElement = document.body.querySelector('#language-menu');
+				anchorElement.addEventListener('click', () => {
+					menuElement.open = true;
+				});
+			</script>
+		</span>
 
-      anchorElement.addEventListener('click', () => {
-        menuElement.open = true;
-      });
-    </script>
-  </span>
+		<span class="main-content">
+			<md-elevated-card>
+				<h2>Profile</h2>
+				<md-list>
+					<md-list-item>
+						<div slot="overline">Full Name</div>
+						<div slot="supporting-text">Kenta Tanaka</div>
+					</md-list-item>
+					<md-list-item>
+						<div slot="overline">Affiliation</div>
+						<div slot="supporting-text">
+							Ph.D Student of Mechanical Dynamics (Ishikawa Lab.), Dept. of Mechanical Engineering, Grad. Sch. of
+							Engineering, The Univ. of Osaka
+						</div>
+					</md-list-item>
+					<md-list-item>
+						<div slot="overline">Birth</div>
+						<div slot="supporting-text">11 February 1999</div>
+					</md-list-item>
+				</md-list>
+				<table>
+					<thead>
+						<tr>
+							<th>Month</th>
+							<th>Biography</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>March 2017</td>
+							<td>Graduated from Higashi Katsushika Senior High School</td>
+						</tr>
+						<tr>
+							<td>April 2017</td>
+							<td>
+								Enrolled in Division of Mechanical, Materials and Manufacturing Science, School of Engineering, Osaka
+								University
+							</td>
+						</tr>
+						<tr>
+							<td>March 2021</td>
+							<td>
+								Graduated from Division of Mechanical, Materials and Manufacturing Science, School of Engineering, Osaka
+								University
+							</td>
+						</tr>
+						<tr>
+							<td>April 2021</td>
+							<td>Enrolled in the Master's Program, Department of Mechanical Engineering, The University of Osaka</td>
+						</tr>
+						<tr>
+							<td>March 2023</td>
+							<td>
+								Graduated from the Master's Program, Department of Mechanical Engineering, The University of Osaka
+							</td>
+						</tr>
+						<tr>
+							<td>April 2023</td>
+							<td>Enrolled in the Doctoral Program, Department of Mechanical Engineering, The University of Osaka</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-elevated-card>
 
-  <span class="main-content">
-    <md-elevated-card>
-      <h2>Profile</h2>
-      <md-list>
-        <md-list-item>
-          <div slot="overline">Full Name</div>
-          <div slot="supporting-text">Kenta Tanaka</div>
-        </md-list-item>
-        <md-list-item>
-          <div slot="overline">Affiliation</div>
-          <div slot="supporting-text">Ph.D Student of Mechanical Dynamics (Ishikawa Lab.), Dept. of Mechanical
-            Engineering, Grad. Sch. of Engineering, The Univ. of Osaka</div>
-        </md-list-item>
-        <md-list-item>
-          <div slot="overline">Birth</div>
-          <div slot="supporting-text">11 February 1999</div>
-        </md-list-item>
-      </md-list>
-      <table>
-        <thead>
-          <tr>
-            <th>Month</th>
-            <th>Biography</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>March 2017</td>
-            <td>Graduated from Higashi Katsushika Senior High School</td>
-          </tr>
-          <tr>
-            <td>April 2017</td>
-            <td>Enrolled in Division of Mechanical, Materials and Manufacturing Science, School of Engineering, Osaka
-              University</td>
-          </tr>
-          <tr>
-            <td>March 2021</td>
-            <td>Graduated from Division of Mechanical, Materials and Manufacturing Science, School of Engineering, Osaka
-              University</td>
-          </tr>
-          <tr>
-            <td>April 2021</td>
-            <td>Enrolled in the Master's Program, Department of Mechanical Engineering, The University of Osaka</td>
-          </tr>
-          <tr>
-            <td>March 2023</td>
-            <td>Graduated from the Master's Program, Department of Mechanical Engineering, The University of Osaka</td>
-          </tr>
-          <tr>
-            <td>April 2023</td>
-            <td>Enrolled in the Doctoral Program, Department of Mechanical Engineering, The University of Osaka</td>
-          </tr>
-        </tbody>
-      </table>
-    </md-elevated-card>
+			<md-elevated-card>
+				<!-- TODO: DataTableに -->
+				<h2>Publications</h2>
+				<md-filled-tonal-button
+					type="button"
+					href="assets/kenta_tanaka_biblist_en.bib"
+					target="_blank"
+					style="margin: 1rem"
+				>
+					<md-icon slot="icon">open_in_new</md-icon>
+					Publication list (BibTeX)
+				</md-filled-tonal-button>
 
-    <md-elevated-card>
-      <!-- TODO: DataTableに -->
-      <h2>Publications</h2>
-      <md-filled-tonal-button type="button" href="assets/kenta_tanaka_biblist_en.bib" target="_blank"
-        style="margin: 1rem;">
-        <md-icon slot="icon">open_in_new</md-icon>
-        Publication list (BibTeX)
-      </md-filled-tonal-button>
+				<h3>Journal Papers</h3>
+				<ul>
+					<li>
+						<a href="https://www.jstage.jst.go.jp/article/iscie/37/8/37_234/_article/-char/en/" target="_blank">
+							Kenta Tanaka, Yuki Minami, Masato Ishikawa: Improving Efficiency of Reinforcement Learning by Information
+							Alteration: A Case Study of Stabilizing Inverted Pendulum; Transactions of the Institute of Systems,
+							Control and Information Engineers, Vol. 37, No. 8, pp. 234–236 (2024) (in Japanese)</a
+						>
+					</li>
+					<!-- （査読あり） -->
+					<li>
+						<a href="https://www.sciencedirect.com/science/article/pii/S2352711024001638" target="_blank">
+							Kenta Tanaka, Yuki Minami, Masato Ishikawa: NQLib: A Python Library for Noise-Shaping Quantizer Synthesis;
+							SoftwareX, Vol. 27, 101792 (2024)
+						</a>
+					</li>
+					<!-- （査読あり） -->
+					<li>
+						<a href="https://doi.org/10.1109/ACCESS.2025.3572082" target="_blank" rel="noopener noreferrer">
+							Kenta Tanaka, Yuki Minami, Masato Ishikawa: Operability improvement of Human-machine Systems by Altering
+							Visual Information: A Case-study of the Inverted Pendulum; IEEE Access, Vol. 13, pp. 93566–93573 (2025)
+						</a>
+					</li>
+					<!-- （査読あり） -->
+				</ul>
 
-      <h3>Journal Papers</h3>
-      <ul>
-        <li>
-          <a href="https://www.jstage.jst.go.jp/article/iscie/37/8/37_234/_article/-char/en/" target="_blank">
-            Kenta Tanaka, Yuki Minami, Masato Ishikawa:
-            Improving Efficiency of Reinforcement Learning by Information Alteration:
-            A Case Study of Stabilizing Inverted Pendulum;
-            Transactions of the Institute of Systems, Control and Information Engineers,
-            Vol. 37, No. 8, pp. 234–236 (2024) (in Japanese)</a>
-        </li>
-        <!-- （査読あり） -->
-        <li>
-          <a href="https://www.sciencedirect.com/science/article/pii/S2352711024001638" target="_blank">
-            Kenta Tanaka, Yuki Minami, Masato Ishikawa:
-            NQLib: A Python Library for Noise-Shaping Quantizer Synthesis;
-            SoftwareX, Vol. 27, 101792 (2024)
-          </a>
-        </li> <!-- （査読あり） -->
-    <li>
-      <a href="https://doi.org/10.1109/ACCESS.2025.3572082" target="_blank"
-        rel="noopener noreferrer">
-        Kenta Tanaka, Yuki Minami, Masato Ishikawa:
-        Operability improvement of Human-machine Systems by Altering Visual Information: A Case-study of the Inverted Pendulum;
-        IEEE Access, Vol. 13, pp. 93566–93573 (2025)
-      </a>
-    </li> <!-- （査読あり） -->
-      </ul>
+				<h3>Domestic Conference (Japan)</h3>
+				<ul>
+					<li>
+						<a href="https://doi.org/10.11511/jacc.63.0_474" target="_blank">
+							Kenta Tanaka, Yuki Minami, Masato Ishikawa: Development of Python Library NQLib for Design of Noise
+							Shaping Quantizers; The 63rd Japan Joint Automatic Control Conference, pp. 474–477 (2020) (in Japanese)
+						</a>
+					</li>
+					<!-- （口頭発表，査読なし） -->
+					<li>
+						<a href="https://doi.org/10.11511/jacc.65.0_824" target="_blank">
+							Kenta Tanaka, Yuki Minami, Masato Ishikawa: Alteration of Visual Information for Control Performance
+							Improvement of Man-Machine Systems; The 65th Japan Joint Automatic Control Conference, pp. 824–827 (2022)
+							(in Japanese)
+						</a>
+					</li>
+					<!-- （口頭発表，査読なし） -->
+					<li>
+						Yuki Minami, Kenta Tanaka, Yugo Ogio: Control System Design with Python: What? Can we do this?; The 11th
+						SICE Multi-Symposium on Control Systems, 3A7–2 (2024) (in Japanese)
+					</li>
+					<!-- （口頭発表，査読なし） -->
+					<li>
+						Kenta Tanaka, Yuki Minami, Masato Ishikawa: Visual Information Alteration for Manual Control of Dynamic
+						Systems with Unstable Zero; The 12th SICE Multi-Symposium on Control Systems, 1PS2–17 (2025) (in Japanese)
+					</li>
+					<!-- （口頭発表，査読なし） -->
+				</ul>
 
-      <h3>Domestic Conference (Japan)</h3>
-      <ul>
-        <li>
-          <a href="https://doi.org/10.11511/jacc.63.0_474" target="_blank">
-            Kenta Tanaka, Yuki Minami, Masato Ishikawa:
-            Development of Python Library NQLib for Design of Noise Shaping Quantizers;
-            The 63rd Japan Joint Automatic Control Conference,
-            pp. 474–477 (2020) (in Japanese)
-          </a>
-        </li> <!-- （口頭発表，査読なし） -->
-        <li>
-          <a href="https://doi.org/10.11511/jacc.65.0_824" target="_blank">
-            Kenta Tanaka, Yuki Minami, Masato Ishikawa:
-            Alteration of Visual Information for Control Performance Improvement of Man-Machine Systems;
-            The 65th Japan Joint Automatic Control Conference,
-            pp. 824–827 (2022) (in Japanese)
-          </a>
-        </li>
-        <!-- （口頭発表，査読なし） -->
-        <li>
-          Yuki Minami, Kenta Tanaka, Yugo Ogio:
-          Control System Design with Python: What? Can we do this?;
-          The 11th SICE Multi-Symposium on Control Systems, 3A7–2 (2024) (in Japanese)
-        </li> <!-- （口頭発表，査読なし） -->
-        <li>
-          Kenta Tanaka, Yuki Minami, Masato Ishikawa:
-          Visual Information Alteration for Manual Control of Dynamic Systems with Unstable Zero;
-          The 12th SICE Multi-Symposium on Control Systems, 1PS2–17 (2025) (in Japanese)
-        </li> <!-- （口頭発表，査読なし） -->
-      </ul>
+				<h3>International Conference</h3>
+				<ul>
+					<li>
+						Kenta Tanaka, Yuki Minami, Masato Ishikawa: NQLib: Python Library for the Practical Design of Noise Shaping
+						Quantizers; in 2021 SICE Annual Conference, pp. 814–816 (2021)
+					</li>
+					<!-- （口頭発表，査読あり） -->
+					<li>
+						Kenta Tanaka, Yuki Minami, Masato Ishikawa: Improving Controllability of Manual Control Systems by Altering
+						Visual Information; in 29th International Symposium on Artificial Life and Robotics, pp. 356–359 (2024)
+					</li>
+					<!-- （口頭発表，査読あり） -->
+				</ul>
 
-      <h3>International Conference</h3>
-      <ul>
-        <li>
-          Kenta Tanaka, Yuki Minami, Masato Ishikawa: NQLib:
-          Python Library for the Practical Design of Noise Shaping Quantizers;
-          in 2021 SICE Annual Conference, pp. 814–816 (2021)
-        </li> <!-- （口頭発表，査読あり） -->
-        <li>
-          Kenta Tanaka, Yuki Minami, Masato Ishikawa:
-          Improving Controllability of Manual Control Systems by Altering Visual Information;
-          in 29th International Symposium on Artificial Life and Robotics,
-          pp. 356–359 (2024)
-        </li>
-        <!-- （口頭発表，査読あり） -->
-      </ul>
+				<h3>Awards</h3>
+				<ul>
+					<li>
+						Outstanding Student Award for Students from The Society of Heating, Air-Conditioning and Sanitary Engineers
+						of Japan (FY2020)
+					</li>
+					<li>Superior Student Award from The Society of Instrument and Control Engineers (FY2022)</li>
+					<li>
+						<a href="https://www.sice-ctrl.jp/about/award/honorees/" target="_blank">
+							Poster Presentation Award of Multi-Symposium on Control Systems (2025)
+						</a>
+					</li>
+				</ul>
 
-      <h3>Awards</h3>
-      <ul>
-        <li>Outstanding Student Award for Students from The Society of Heating, Air-Conditioning and Sanitary Engineers
-          of Japan (FY2020)</li>
-        <li>Superior Student Award from The Society of Instrument and Control Engineers (FY2022)</li>
-        <li>
-          <a href="https://www.sice-ctrl.jp/about/award/honorees/" target="_blank">
-            Poster Presentation Award of Multi-Symposium on Control Systems (2025)
-          </a>
-        </li>
-      </ul>
+				<h3>Others</h3>
+				<ul>
+					<li>Finalist in MathWorks Minidrone Competition Japan 2021</li>
+					<li>The Next Generation Researcher Development Project (April 2023 – March 2026)</li>
+					<li>Research Grant (C) from Tateisi Science and Technology Foundation (April 2024 – March 2026)</li>
+				</ul>
+			</md-elevated-card>
 
-      <h3>Others</h3>
-      <ul>
-        <li>Finalist in MathWorks Minidrone Competition Japan 2021</li>
-        <li>The Next Generation Researcher Development Project (April 2023 – March 2026)</li>
-        <li>Research Grant (C) from Tateisi Science and Technology Foundation (April 2024 – March 2026)</li>
-      </ul>
-    </md-elevated-card>
+			<md-elevated-card>
+				<!-- TODO: DataTableに -->
+				<h2>Products</h2>
+				<md-list>
+					<md-list-item>
+						<md-icon slot="start">code</md-icon>
+						<div slot="headline">NQLib</div>
+						<div slot="supporting-text">
+							Python library to design noise shaping quantizer for discrete-valued input control.
+						</div>
+						<md-filled-tonal-icon-button
+							slot="end"
+							type="button"
+							href="https://github.com/knttnk/NQLib/"
+							target="_blank"
+							style="margin: 1rem"
+						>
+							<md-icon>open_in_new</md-icon>
+						</md-filled-tonal-icon-button>
+					</md-list-item>
+					<md-divider></md-divider>
+					<md-list-item>
+						<md-icon slot="start">sports_esports</md-icon>
+						<div slot="headline">The Inverted Pendulum Game</div>
+						<div slot="supporting-text">
+							A game to control an inverted pendulum. You can experience the effect of information alteration.
+						</div>
+						<md-filled-tonal-icon-button
+							slot="end"
+							type="button"
+							href="https://knttnk.github.io/pendulum_game_web/"
+							target="_blank"
+							style="margin: 1rem"
+						>
+							<md-icon>open_in_new</md-icon>
+						</md-filled-tonal-icon-button>
+					</md-list-item>
+					<md-divider></md-divider>
+					<md-list-item>
+						<md-icon slot="start">code</md-icon>
+						<div slot="headline">iscie.bst</div>
+						<div slot="supporting-text">Unofficial BibTeX style file for ISCIE.</div>
+						<md-filled-tonal-icon-button
+							slot="end"
+							type="button"
+							href="https://github.com/knttnk/iscie_bst/"
+							target="_blank"
+							style="margin: 1rem"
+						>
+							<md-icon>open_in_new</md-icon>
+						</md-filled-tonal-icon-button>
+					</md-list-item>
+					<md-divider></md-divider>
+					<md-list-item>
+						<md-icon slot="start">extension</md-icon>
+						<div slot="headline">Snippet Utilities</div>
+						<div slot="supporting-text">VS Code extension to easily register code snippets.</div>
+						<md-filled-tonal-icon-button
+							slot="end"
+							type="button"
+							href="https://marketplace.visualstudio.com/items?itemName=knttnk.snippet-utilities"
+							target="_blank"
+							style="margin: 1rem"
+						>
+							<md-icon>open_in_new</md-icon>
+						</md-filled-tonal-icon-button>
+					</md-list-item>
+					<md-divider></md-divider>
+					<md-list-item>
+						<md-icon slot="start">check</md-icon>
+						<div slot="headline">Custom Japanese Proofreading</div>
+						<div slot="supporting-text">
+							VS Code extension to customize Japanese proofreading. You can add your own rules and dictionaries.
+						</div>
+						<md-filled-tonal-icon-button
+							slot="end"
+							type="button"
+							href="https://marketplace.visualstudio.com/items?itemName=knttnk.custom-japanese-proofreading"
+							target="_blank"
+							style="margin: 1rem"
+							rel="noopener noreferrer"
+						>
+							<md-icon>open_in_new</md-icon>
+						</md-filled-tonal-icon-button>
+					</md-list-item>
+				</md-list>
+			</md-elevated-card>
 
-    <md-elevated-card>
-      <!-- TODO: DataTableに -->
-      <h2>Products</h2>
-      <md-list>
-        <md-list-item>
-          <md-icon slot="start">code</md-icon>
-          <div slot="headline">NQLib</div>
-          <div slot="supporting-text">Python library to design noise shaping quantizer for discrete-valued input
-            control.</div>
-          <md-filled-tonal-icon-button slot="end" type="button" href="https://github.com/knttnk/NQLib/" target="_blank"
-            style="margin: 1rem;">
-            <md-icon>open_in_new</md-icon>
-          </md-filled-tonal-icon-button>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item>
-          <md-icon slot="start">sports_esports</md-icon>
-          <div slot="headline">The Inverted Pendulum Game</div>
-          <div slot="supporting-text">A game to control an inverted pendulum. You can
-            experience the effect of information alteration.</div>
-          <md-filled-tonal-icon-button slot="end" type="button" href="https://knttnk.github.io/pendulum_game_web/"
-            target="_blank" style="margin: 1rem;">
-            <md-icon>open_in_new</md-icon>
-          </md-filled-tonal-icon-button>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item>
-          <md-icon slot="start">code</md-icon>
-          <div slot="headline">iscie.bst</div>
-          <div slot="supporting-text">Unofficial BibTeX style file for ISCIE.</div>
-          <md-filled-tonal-icon-button slot="end" type="button" href="https://github.com/knttnk/iscie_bst/"
-            target="_blank" style="margin: 1rem;">
-            <md-icon>open_in_new</md-icon>
-          </md-filled-tonal-icon-button>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item>
-          <md-icon slot="start">extension</md-icon>
-          <div slot="headline">Snippet Utilities</div>
-          <div slot="supporting-text">VS Code extension to easily register code snippets.</div>
-          <md-filled-tonal-icon-button slot="end" type="button"
-            href="https://marketplace.visualstudio.com/items?itemName=knttnk.snippet-utilities" target="_blank"
-            style="margin: 1rem;">
-            <md-icon>open_in_new</md-icon>
-          </md-filled-tonal-icon-button>
-        </md-list-item>
-    <md-divider></md-divider>
-    <md-list-item>
-      <md-icon slot="start">check</md-icon>
-      <div slot="headline">Custom Japanese Proofreading</div>
-      <div slot="supporting-text"> VS Code extension to customize Japanese proofreading. You can add your own rules and dictionaries.</div>
-      <md-filled-tonal-icon-button slot="end" type="button"
-        href="https://marketplace.visualstudio.com/items?itemName=knttnk.custom-japanese-proofreading" target="_blank"
-        style="margin: 1rem;" rel="noopener noreferrer">
-        <md-icon>open_in_new</md-icon>
-      </md-filled-tonal-icon-button>
-    </md-list-item>
-      </md-list>
+			<md-elevated-card>
+				<h2>Contact</h2>
+				<div>
+					<md-filled-button
+						type="button"
+						href="https://ishikawa-lab.sakura.ne.jp/"
+						target="_blank"
+						style="margin: 1rem"
+					>
+						<md-icon slot="icon">open_in_new</md-icon>
+						<span>Ishikawa Lab.</span>
+					</md-filled-button>
+					<md-filled-tonal-button type="button" href="https://github.com/knttnk" target="_blank" style="margin: 1rem">
+						<md-icon slot="icon">open_in_new</md-icon>
+						GitHub
+					</md-filled-tonal-button>
+					<md-filled-tonal-button
+						type="button"
+						href="https://twitter.com/Aqr_Tbn_eng"
+						target="_blank"
+						style="margin: 1rem"
+					>
+						<md-icon slot="icon">open_in_new</md-icon>
+						X (Twitter)
+					</md-filled-tonal-button>
+				</div>
+				<md-list>
+					<md-list-item>
+						<div slot="overline">Address</div>
+						<div slot="supporting-text">
+							<span>#505 M4 2-1 Yamadaoka,</span>
+							<br />
+							<span>Suita, Osaka 565-0871 Japan</span>
+						</div>
+						<!-- #505 M4 2-1 Yamadaoka, Suita, Osaka 565-0871 Japan -->
+						<md-icon slot="start">distance</md-icon>
+						<md-filled-tonal-button slot="end" aria-label="Click to copy" onclick="copyAddress('en');">
+							<md-icon slot="icon">content_copy</md-icon>
+							Copy
+						</md-filled-tonal-button>
+					</md-list-item>
+					<md-list-item style="word-break: break-all">
+						<div slot="overline">Email</div>
+						<div slot="supporting-text">kenta.tanaka+at+eom.mech.eng.osaka-u.ac.jp</div>
+						<md-icon slot="start">mail</md-icon>
+						<md-filled-tonal-button slot="end" aria-label="Click to copy" onclick="copyMail();">
+							<md-icon slot="icon">content_copy</md-icon>
+							Copy
+						</md-filled-tonal-button>
+					</md-list-item>
+					<md-list-item style="word-break: break-all">
+						<div slot="overline">Phone</div>
+						<div slot="supporting-text">+81-6-6879-7267</div>
+						<!-- +81-6-6879-7267 -->
+						<md-icon slot="start">call</md-icon>
+						<md-filled-tonal-button slot="end" aria-label="Click to copy" onclick="copyPhone('en');">
+							<md-icon slot="icon">content_copy</md-icon>
+							Copy
+						</md-filled-tonal-button>
+					</md-list-item>
+				</md-list>
+			</md-elevated-card>
+		</span>
 
-    </md-elevated-card>
+		<div style="height: 5rem"></div>
 
-    <md-elevated-card>
-      <h2>Contact</h2>
-      <div>
-        <md-filled-button type="button" href="https://ishikawa-lab.sakura.ne.jp/" target="_blank" style="margin: 1rem;">
-          <md-icon slot="icon">open_in_new</md-icon>
-          <span>Ishikawa Lab.</span>
-        </md-filled-button>
-        <md-filled-tonal-button type="button" href="https://github.com/knttnk" target="_blank" style="margin: 1rem;">
-          <md-icon slot="icon">open_in_new</md-icon>
-          GitHub
-        </md-filled-tonal-button>
-        <md-filled-tonal-button type="button" href="https://twitter.com/Aqr_Tbn_eng" target="_blank"
-          style="margin: 1rem;">
-          <md-icon slot="icon">open_in_new</md-icon>
-          X (Twitter)
-        </md-filled-tonal-button>
-      </div>
-      <md-list>
-        <md-list-item>
-          <div slot="overline">Address</div>
-          <div slot="supporting-text">
-            <span>#505 M4 2-1 Yamadaoka,</span>
-            <br>
-            <span>Suita, Osaka 565-0871 Japan</span>
-          </div>
-          <!-- #505 M4 2-1 Yamadaoka, Suita, Osaka 565-0871 Japan -->
-          <md-icon slot="start">distance</md-icon>
-          <md-filled-tonal-button slot="end" aria-label="Click to copy" onclick="copyAddress('en');">
-            <md-icon slot="icon">content_copy</md-icon>
-            Copy
-          </md-filled-tonal-button>
-        </md-list-item>
-        <md-list-item style="word-break: break-all;">
-          <div slot="overline">Email</div>
-          <div slot="supporting-text">kenta.tanaka+at+eom.mech.eng.osaka-u.ac.jp</div>
-          <md-icon slot="start">mail</md-icon>
-          <md-filled-tonal-button slot="end" aria-label="Click to copy" onclick="copyMail();">
-            <md-icon slot="icon">content_copy</md-icon>
-            Copy
-          </md-filled-tonal-button>
-        </md-list-item>
-        <md-list-item style="word-break: break-all;">
-          <div slot="overline">Phone</div>
-          <div slot="supporting-text">+81-6-6879-7267</div>
-          <!-- +81-6-6879-7267 -->
-          <md-icon slot="start">call</md-icon>
-          <md-filled-tonal-button slot="end" aria-label="Click to copy" onclick="copyPhone('en');">
-            <md-icon slot="icon">content_copy</md-icon>
-            Copy
-          </md-filled-tonal-button>
-        </md-list-item>
-      </md-list>
-    </md-elevated-card>
-  </span>
-
-  <div style="height: 5rem;"></div>
-
-  <script src="./js/animation.js"></script>
-</body>
-
+		<script src="./js/animation.js"></script>
+	</body>
 </html>
