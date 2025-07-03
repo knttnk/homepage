@@ -1,42 +1,42 @@
 md-filled-button,
 md-outlined-button,
 md-filled-tonal-button {
-    width: fit-content;
+  width: fit-content;
 }
 
 md-list {
-    max-width: 100%;
-    display: grid;
-    margin: 0;
-    padding: 0;
-    --md-list-container-color: transparent;
+  max-width: 100%;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  --md-list-container-color: transparent;
 }
 
 md-list-item {
-    --md-list-item-container-color: transparent;
-    --md-list-item-leading-space: 1rem;
-    --md-list-item-trailing-space: 1rem;
+  --md-list-item-container-color: transparent;
+  --md-list-item-leading-space: 1rem;
+  --md-list-item-trailing-space: 1rem;
 }
 
 md-fab {
-    position: fixed;
-    bottom: 6rem;
-    right: 1rem;
-    z-index: 1001;
+  position: fixed;
+  bottom: 6rem;
+  right: 1rem;
+  z-index: 1001;
 }
 
 md-elevated-card {
-    padding: 2rem;
-    margin: 1rem;
-    border-radius: 2rem;
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 2rem;
 }
 
 @media screen and (max-width: 600px) {
-    md-elevated-card {
-        padding: 0;
-        margin: 1rem;
-        border-radius: 1rem;
-    }
+  md-elevated-card {
+    padding: 0;
+    margin: 1rem;
+    border-radius: 1rem;
+  }
 }
 
 md-elevated-card p,
@@ -46,59 +46,58 @@ md-elevated-card h3,
 md-elevated-card h4,
 md-elevated-card h5,
 md-elevated-card h6 {
-    color: var(--md-sys-color-on-surface-container-low);
+  color: var(--md-sys-color-on-surface-container-low);
 }
 
 .language-area {
-    position: relative;
+  position: relative;
 }
 
 html {
-    min-width: 360px;
+  min-width: 360px;
 }
 
 body {
-    width: 100%;
-    background-color: var(--md-sys-color-background);
-    color: var(--md-sys-color-on-background);
-    margin: 0;
-    padding: 0;
-    font-family: 'Noto Sans JP', sans-serif;
-    --md-ref-typeface-brand: 'Noto Sans JP', sans-serif;
-    --md-ref-typeface-plain: 'Noto Sans JP', sans-serif;
+  width: 100%;
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  --md-ref-typeface-brand: "Noto Sans JP", sans-serif;
+  --md-ref-typeface-plain: "Noto Sans JP", sans-serif;
 }
 
 /* TODO: これ以降をなるべく削除 */
 
 .menu {
-    background: var(--md-sys-color-background);
-    width: 100%;
-    position: fixed;
-    padding: 0;
-    margin: 0;
-    bottom: 0;
-    z-index: 10;
+  background: var(--md-sys-color-background);
+  width: 100%;
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  bottom: 0;
+  z-index: 10;
 }
 
 .menu md-icon-button {
-    display: block;
-    position: relative;
-    margin: 1rem;
-    right: 0;
+  display: block;
+  position: relative;
+  margin: 1rem;
+  right: 0;
 }
 
 .main-content {
-    margin-right: auto;
-    margin-left: auto;
-    width: 100%;
-    max-width: 48rem;
-    display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  max-width: 48rem;
+  display: block;
 }
 
 .bottom-space {
-    height: 9rem;
+  height: 9rem;
 }
-
 
 p,
 h1,
@@ -107,190 +106,207 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--md-sys-color-on-surface);
-    padding: 0;
-    margin: 1rem;
+  color: var(--md-sys-color-on-surface);
+  padding: 0;
+  margin: 1rem;
 }
 
 a:link {
-    color: var(--md-sys-color-primary);
-    text-decoration: underline;
+  color: var(--md-sys-color-primary);
+  text-decoration: underline;
 }
 
 a:visited {
-    color: var(--md-sys-color-tertiary);
-    text-decoration: underline;
+  color: var(--md-sys-color-tertiary);
+  text-decoration: underline;
 }
 
 a:hover {
-    color: var(--md-sys-color-secondary);
-    text-decoration: underline;
+  color: var(--md-sys-color-secondary);
+  text-decoration: underline;
 }
 
 a:active {
-    color: var(--md-sys-color-primary);
-    text-decoration: underline;
+  color: var(--md-sys-color-primary);
+  text-decoration: underline;
 }
 
 ul,
 ol {
-    padding: 0;
-    margin: 0 1rem;
-    margin-bottom: 1rem;
+  padding: 0;
+  margin: 0 1rem;
+  margin-bottom: 1rem;
 }
-
 
 li {
-    padding: 0;
-    margin: 0.5rem 0;
-    margin-left: 1.5rem;
+  padding: 0;
+  margin: 0.5rem 0;
+  margin-left: 1.5rem;
 }
-
 
 table {
-    margin: 1rem;
-    border-collapse: collapse;
+  margin: 1rem;
+  border-collapse: collapse;
 }
 
-
 thead {
-    background-color: var(--md-sys-color-primary);
-    color: var(--md-sys-color-on-primary);
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
 }
 
 tbody {
-    background-color: var(--md-sys-color-surface);
-    color: var(--md-sys-color-on-surface);
-    margin: 0;
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  margin: 0;
 }
 
 td,
 th {
-    border: 1px solid var(--md-sys-color-surface-variant);
-    border-spacing: 0;
-    padding: 1rem;
-    margin: 0;
+  border: 1px solid var(--md-sys-color-surface-variant);
+  border-spacing: 0;
+  padding: 1rem;
+  margin: 0;
 }
 
 th {
-    font-weight: 500;
+  font-weight: 500;
+}
+
+img {
+  max-width: 300pt;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+  padding: 0;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+figcaption {
+  text-align: center;
+  margin: auto 2rem;
+  color: var(--md-sys-color-primary);
 }
 
 .pre-header {
-    width: 100%;
-    background-color: var(--md-sys-color-primary-light);
-    height: 80vh;
-    margin: 0;
-    padding: 0;
-    pointer-events: none;
+  width: 100%;
+  background-color: var(--md-sys-color-primary-light);
+  height: 80vh;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
 }
 
 .flex-app-bar {
-    width: 100%;
-    position: relative;
-    background-color: var(--md-sys-color-primary-light);
-    height: 80vh;
-    margin: 0;
-    padding: 0;
-    font-size: 2rem;
-    z-index: 1;
-    pointer-events: none;
+  width: 100%;
+  position: relative;
+  background-color: var(--md-sys-color-primary-light);
+  height: 80vh;
+  margin: 0;
+  padding: 0;
+  font-size: 2rem;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .flex-app-bar::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    bottom: 0;
-    padding: 0;
-    margin: 0;
-    background: url(./assets/face.webp) center / cover;
-    z-index: -2;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  background: url(./assets/face.webp) center / cover;
+  z-index: -2;
 }
 
 .grey-glass {
-    background: #00000099;
-    position: absolute;
-    width: 100%;
-    height: 6em;
-    margin: 0;
-    z-index: -1;
-    bottom: 0;
-    backdrop-filter: blur(.2rem);
-    /* 子要素の設定 */
-    display: flex;
-    justify-content: center;
+  background: #00000099;
+  position: absolute;
+  width: 100%;
+  height: 6em;
+  margin: 0;
+  z-index: -1;
+  bottom: 0;
+  backdrop-filter: blur(0.2rem);
+  /* 子要素の設定 */
+  display: flex;
+  justify-content: center;
 }
 
 .grey-glass .title {
-    width: 100%;
-    max-width: 40rem;
-    position: relative;
-    padding: 0;
-    margin: 1rem;
-    bottom: 0;
+  width: 100%;
+  max-width: 40rem;
+  position: relative;
+  padding: 0;
+  margin: 1rem;
+  bottom: 0;
 }
 
 .grey-glass .title h6,
 .grey-glass .title h1 {
-    display: block;
-    color: var(--md-sys-color-on-primary-light);
-    padding: 0;
-    /* position: relative; */
-    margin: 0;
+  display: block;
+  color: var(--md-sys-color-on-primary-light);
+  padding: 0;
+  /* position: relative; */
+  margin: 0;
 }
 
 .fixed-app-bar {
-    width: 100%;
-    pointer-events: none;
-    position: fixed;
-    top: 0;
-    height: 5rem;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    background: var(--md-sys-color-surface-container);
-    z-index: 10;
-    /* 子要素の設定 */
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  height: 5rem;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  background: var(--md-sys-color-surface-container);
+  z-index: 10;
+  /* 子要素の設定 */
+  display: flex;
+  justify-content: center;
 }
 
 .fixed-app-bar .title {
-    height: 5rem;
-    padding: 0;
-    margin: 0;
-    max-width: 42rem;
-    width: 100%;
-    /* 子要素の設定 */
-    display: flex;
-    justify-content: space-between;
+  height: 5rem;
+  padding: 0;
+  margin: 0;
+  max-width: 42rem;
+  width: 100%;
+  /* 子要素の設定 */
+  display: flex;
+  justify-content: space-between;
 }
 
 .fixed-app-bar .title .name,
 .fixed-app-bar .title .affiliation {
-    padding: 0;
-    margin: 1rem;
-    width: fit-content;
-    /* 文字の設定 */
-    color: var(--md-sys-color-on-surface-container);
-    font-weight: bold;
+  padding: 0;
+  margin: 1rem;
+  width: fit-content;
+  /* 文字の設定 */
+  color: var(--md-sys-color-on-surface-container);
+  font-weight: bold;
 }
 
 .fixed-app-bar .title .name {
-    left: 0;
-    margin-right: 0;
-    /* 文字の設定 */
-    font-size: 2rem;
+  left: 0;
+  margin-right: 0;
+  /* 文字の設定 */
+  font-size: 2rem;
 }
 
 .fixed-app-bar .title .affiliation {
-    right: 0;
-    margin-left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* 文字の設定 */
-    font-size: .8rem;
+  right: 0;
+  margin-left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 文字の設定 */
+  font-size: 0.8rem;
 }
