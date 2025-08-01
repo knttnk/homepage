@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://knttnk.github.io/homepage/sitemap.xml
