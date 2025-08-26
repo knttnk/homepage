@@ -624,7 +624,6 @@ class Ripple extends i$3 {
         this.rippleScale = '';
         this.initialSize = 0;
         this.state = State.INACTIVE;
-        this.checkBoundsAfterContextMenu = false;
         this.attachableController = new AttachableController(this, this.onControlChange.bind(this));
     }
     get htmlFor() {
@@ -713,13 +712,6 @@ class Ripple extends i$3 {
             this.startPressAnimation(event);
             return;
         }
-        // after a longpress contextmenu event, an extra `pointerdown` can be
-        // dispatched to the pressed element. Check that the down is within
-        // bounds of the element in this case.
-        if (this.checkBoundsAfterContextMenu && !this.inBounds(event)) {
-            return;
-        }
-        this.checkBoundsAfterContextMenu = false;
         // Wait for a hold after touch delay
         this.state = State.TOUCH_DELAY;
         await new Promise((resolve) => {
@@ -757,18 +749,22 @@ class Ripple extends i$3 {
         if (this.disabled) {
             return;
         }
-        this.checkBoundsAfterContextMenu = true;
         this.endPressAnimation();
     }
     determineRippleSize() {
         const { height, width } = this.getBoundingClientRect();
         const maxDim = Math.max(height, width);
         const softEdgeSize = Math.max(SOFT_EDGE_CONTAINER_RATIO * maxDim, SOFT_EDGE_MINIMUM_SIZE);
-        const initialSize = Math.floor(maxDim * INITIAL_ORIGIN_SCALE);
+        // `?? 1` may be removed once `currentCSSZoom` is widely available.
+        const zoom = this.currentCSSZoom ?? 1;
+        const initialSize = Math.floor((maxDim * INITIAL_ORIGIN_SCALE) / zoom);
         const hypotenuse = Math.sqrt(width ** 2 + height ** 2);
         const maxRadius = hypotenuse + PADDING;
         this.initialSize = initialSize;
-        this.rippleScale = `${(maxRadius + softEdgeSize) / initialSize}`;
+        // The dimensions may be altered by CSS `zoom`, which needs to be
+        // compensated for in the final scale() value.
+        const maybeZoomedScale = (maxRadius + softEdgeSize) / initialSize;
+        this.rippleScale = `${maybeZoomedScale / zoom}`;
         this.rippleSize = `${initialSize}px`;
     }
     getNormalizedPointerEventCoords(pointerEvent) {
@@ -777,14 +773,21 @@ class Ripple extends i$3 {
         const documentX = scrollX + left;
         const documentY = scrollY + top;
         const { pageX, pageY } = pointerEvent;
-        return { x: pageX - documentX, y: pageY - documentY };
+        // `?? 1` may be removed once `currentCSSZoom` is widely available.
+        const zoom = this.currentCSSZoom ?? 1;
+        return {
+            x: (pageX - documentX) / zoom,
+            y: (pageY - documentY) / zoom,
+        };
     }
     getTranslationCoordinates(positionEvent) {
         const { height, width } = this.getBoundingClientRect();
+        // `?? 1` may be removed once `currentCSSZoom` is widely available.
+        const zoom = this.currentCSSZoom ?? 1;
         // end in the center
         const endPoint = {
-            x: (width - this.initialSize) / 2,
-            y: (height - this.initialSize) / 2,
+            x: (width / zoom - this.initialSize) / 2,
+            y: (height / zoom - this.initialSize) / 2,
         };
         let startPoint;
         if (positionEvent instanceof PointerEvent) {
@@ -792,8 +795,8 @@ class Ripple extends i$3 {
         }
         else {
             startPoint = {
-                x: width / 2,
-                y: height / 2,
+                x: width / zoom / 2,
+                y: height / zoom / 2,
             };
         }
         // center around start point
@@ -876,15 +879,6 @@ class Ripple extends i$3 {
         }
         const isPrimaryButton = event.buttons === 1;
         return this.isTouch(event) || isPrimaryButton;
-    }
-    /**
-     * Check if the event is within the bounds of the element.
-     *
-     * This is only needed for the "stuck" contextmenu longpress on Chrome.
-     */
-    inBounds({ x, y }) {
-        const { top, left, bottom, right } = this.getBoundingClientRect();
-        return x >= left && x <= right && y >= top && y <= bottom;
     }
     isTouch({ pointerType }) {
         return pointerType === 'touch';
@@ -1512,8 +1506,7 @@ class Button extends buttonBaseClass {
         this.buttonElement?.blur();
     }
     render() {
-        // Link buttons may not be disabled
-        const isRippleDisabled = !this.href && (this.disabled || this.softDisabled);
+        const isRippleDisabled = this.disabled || this.softDisabled;
         const buttonOrLink = this.href ? this.renderLink() : this.renderButton();
         // TODO(b/310046938): due to a limitation in focus ring/ripple, we can't use
         // the same ID for different elements, so we change the ID instead.
@@ -1552,6 +1545,8 @@ class Button extends buttonBaseClass {
       aria-label="${ariaLabel || E}"
       aria-haspopup="${ariaHasPopup || E}"
       aria-expanded="${ariaExpanded || E}"
+      aria-disabled=${this.disabled || this.softDisabled || E}
+      tabindex="${this.disabled && !this.softDisabled ? -1 : E}"
       href=${this.href}
       download=${this.download || E}
       target=${this.target || E}
@@ -1570,10 +1565,10 @@ class Button extends buttonBaseClass {
     `;
     }
     handleClick(event) {
-        // If the button is soft-disabled, we need to explicitly prevent the click
-        // from propagating to other event listeners as well as prevent the default
-        // action.
-        if (!this.href && this.softDisabled) {
+        // If the button is soft-disabled or a disabled link, we need to explicitly
+        // prevent the click from propagating to other event listeners as well as
+        // prevent the default action.
+        if (this.softDisabled || (this.disabled && this.href)) {
             event.stopImmediatePropagation();
             event.preventDefault();
             return;
@@ -1670,7 +1665,7 @@ const styles$l = i$6 `md-elevation{transition-duration:280ms}:host(:is([disabled
  * SPDX-License-Identifier: Apache-2.0
  */
 // Generated stylesheet for ./button/internal/shared-styles.css.
-const styles$k = i$6 `:host{border-start-start-radius:var(--_container-shape-start-start);border-start-end-radius:var(--_container-shape-start-end);border-end-start-radius:var(--_container-shape-end-start);border-end-end-radius:var(--_container-shape-end-end);box-sizing:border-box;cursor:pointer;display:inline-flex;gap:8px;min-height:var(--_container-height);outline:none;padding-block:calc((var(--_container-height) - max(var(--_label-text-line-height),var(--_icon-size)))/2);padding-inline-start:var(--_leading-space);padding-inline-end:var(--_trailing-space);place-content:center;place-items:center;position:relative;font-family:var(--_label-text-font);font-size:var(--_label-text-size);line-height:var(--_label-text-line-height);font-weight:var(--_label-text-weight);text-overflow:ellipsis;text-wrap:nowrap;user-select:none;-webkit-tap-highlight-color:rgba(0,0,0,0);vertical-align:top;--md-ripple-hover-color: var(--_hover-state-layer-color);--md-ripple-pressed-color: var(--_pressed-state-layer-color);--md-ripple-hover-opacity: var(--_hover-state-layer-opacity);--md-ripple-pressed-opacity: var(--_pressed-state-layer-opacity)}md-focus-ring{--md-focus-ring-shape-start-start: var(--_container-shape-start-start);--md-focus-ring-shape-start-end: var(--_container-shape-start-end);--md-focus-ring-shape-end-end: var(--_container-shape-end-end);--md-focus-ring-shape-end-start: var(--_container-shape-end-start)}:host(:is([disabled],[soft-disabled])){cursor:default;pointer-events:none}.button{border-radius:inherit;cursor:inherit;display:inline-flex;align-items:center;justify-content:center;border:none;outline:none;-webkit-appearance:none;vertical-align:middle;background:rgba(0,0,0,0);text-decoration:none;min-width:calc(64px - var(--_leading-space) - var(--_trailing-space));width:100%;z-index:0;height:100%;font:inherit;color:var(--_label-text-color);padding:0;gap:inherit;text-transform:inherit}.button::-moz-focus-inner{padding:0;border:0}:host(:hover) .button{color:var(--_hover-label-text-color)}:host(:focus-within) .button{color:var(--_focus-label-text-color)}:host(:active) .button{color:var(--_pressed-label-text-color)}.background{background-color:var(--_container-color);border-radius:inherit;inset:0;position:absolute}.label{overflow:hidden}:is(.button,.label,.label slot),.label ::slotted(*){text-overflow:inherit}:host(:is([disabled],[soft-disabled])) .label{color:var(--_disabled-label-text-color);opacity:var(--_disabled-label-text-opacity)}:host(:is([disabled],[soft-disabled])) .background{background-color:var(--_disabled-container-color);opacity:var(--_disabled-container-opacity)}@media(forced-colors: active){.background{border:1px solid CanvasText}:host(:is([disabled],[soft-disabled])){--_disabled-icon-color: GrayText;--_disabled-icon-opacity: 1;--_disabled-container-opacity: 1;--_disabled-label-text-color: GrayText;--_disabled-label-text-opacity: 1}}:host([has-icon]:not([trailing-icon])){padding-inline-start:var(--_with-leading-icon-leading-space);padding-inline-end:var(--_with-leading-icon-trailing-space)}:host([has-icon][trailing-icon]){padding-inline-start:var(--_with-trailing-icon-leading-space);padding-inline-end:var(--_with-trailing-icon-trailing-space)}::slotted([slot=icon]){display:inline-flex;position:relative;writing-mode:horizontal-tb;fill:currentColor;flex-shrink:0;color:var(--_icon-color);font-size:var(--_icon-size);inline-size:var(--_icon-size);block-size:var(--_icon-size)}:host(:hover) ::slotted([slot=icon]){color:var(--_hover-icon-color)}:host(:focus-within) ::slotted([slot=icon]){color:var(--_focus-icon-color)}:host(:active) ::slotted([slot=icon]){color:var(--_pressed-icon-color)}:host(:is([disabled],[soft-disabled])) ::slotted([slot=icon]){color:var(--_disabled-icon-color);opacity:var(--_disabled-icon-opacity)}.touch{position:absolute;top:50%;height:48px;left:0;right:0;transform:translateY(-50%)}:host([touch-target=wrapper]){margin:max(0px,(48px - var(--_container-height))/2) 0}:host([touch-target=none]) .touch{display:none}
+const styles$k = i$6 `:host{border-start-start-radius:var(--_container-shape-start-start);border-start-end-radius:var(--_container-shape-start-end);border-end-start-radius:var(--_container-shape-end-start);border-end-end-radius:var(--_container-shape-end-end);box-sizing:border-box;cursor:pointer;display:inline-flex;gap:8px;min-height:var(--_container-height);outline:none;padding-block:calc((var(--_container-height) - max(var(--_label-text-line-height),var(--_icon-size)))/2);padding-inline-start:var(--_leading-space);padding-inline-end:var(--_trailing-space);place-content:center;place-items:center;position:relative;font-family:var(--_label-text-font);font-size:var(--_label-text-size);line-height:var(--_label-text-line-height);font-weight:var(--_label-text-weight);text-overflow:ellipsis;text-wrap:nowrap;user-select:none;-webkit-tap-highlight-color:rgba(0,0,0,0);vertical-align:top;--md-ripple-hover-color: var(--_hover-state-layer-color);--md-ripple-pressed-color: var(--_pressed-state-layer-color);--md-ripple-hover-opacity: var(--_hover-state-layer-opacity);--md-ripple-pressed-opacity: var(--_pressed-state-layer-opacity)}md-focus-ring{--md-focus-ring-shape-start-start: var(--_container-shape-start-start);--md-focus-ring-shape-start-end: var(--_container-shape-start-end);--md-focus-ring-shape-end-end: var(--_container-shape-end-end);--md-focus-ring-shape-end-start: var(--_container-shape-end-start)}:host(:is([disabled],[soft-disabled])){cursor:default;pointer-events:none}.button{border-radius:inherit;cursor:inherit;display:inline-flex;align-items:center;justify-content:center;border:none;outline:none;-webkit-appearance:none;vertical-align:middle;background:rgba(0,0,0,0);text-decoration:none;min-width:calc(64px - var(--_leading-space) - var(--_trailing-space));width:100%;z-index:0;height:100%;font:inherit;color:var(--_label-text-color);padding:0;gap:inherit;text-transform:inherit}.button::-moz-focus-inner{padding:0;border:0}:host(:hover) .button{color:var(--_hover-label-text-color)}:host(:focus-within) .button{color:var(--_focus-label-text-color)}:host(:active) .button{color:var(--_pressed-label-text-color)}.background{background:var(--_container-color);border-radius:inherit;inset:0;position:absolute}.label{overflow:hidden}:is(.button,.label,.label slot),.label ::slotted(*){text-overflow:inherit}:host(:is([disabled],[soft-disabled])) .label{color:var(--_disabled-label-text-color);opacity:var(--_disabled-label-text-opacity)}:host(:is([disabled],[soft-disabled])) .background{background:var(--_disabled-container-color);opacity:var(--_disabled-container-opacity)}@media(forced-colors: active){.background{border:1px solid CanvasText}:host(:is([disabled],[soft-disabled])){--_disabled-icon-color: GrayText;--_disabled-icon-opacity: 1;--_disabled-container-opacity: 1;--_disabled-label-text-color: GrayText;--_disabled-label-text-opacity: 1}}:host([has-icon]:not([trailing-icon])){padding-inline-start:var(--_with-leading-icon-leading-space);padding-inline-end:var(--_with-leading-icon-trailing-space)}:host([has-icon][trailing-icon]){padding-inline-start:var(--_with-trailing-icon-leading-space);padding-inline-end:var(--_with-trailing-icon-trailing-space)}::slotted([slot=icon]){display:inline-flex;position:relative;writing-mode:horizontal-tb;fill:currentColor;flex-shrink:0;color:var(--_icon-color);font-size:var(--_icon-size);inline-size:var(--_icon-size);block-size:var(--_icon-size)}:host(:hover) ::slotted([slot=icon]){color:var(--_hover-icon-color)}:host(:focus-within) ::slotted([slot=icon]){color:var(--_focus-icon-color)}:host(:active) ::slotted([slot=icon]){color:var(--_pressed-icon-color)}:host(:is([disabled],[soft-disabled])) ::slotted([slot=icon]){color:var(--_disabled-icon-color);opacity:var(--_disabled-icon-opacity)}.touch{position:absolute;top:50%;height:48px;left:0;right:0;transform:translateY(-50%)}:host([touch-target=wrapper]){margin:max(0px,(48px - var(--_container-height))/2) 0}:host([touch-target=none]) .touch{display:none}
 `;
 
 /**
