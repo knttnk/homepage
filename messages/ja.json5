@@ -1,0 +1,108 @@
+{
+    "Common": {
+        "knttnk": "田中 健太",
+        "switch_language": "言語の切り替え",
+        "affiliation_long": "兵庫県立大学 大学院工学研究科 知能情報 助教",
+        "affiliation_short": "兵庫県立大学 助教",
+        "affiliation_long_1": "兵庫県立大学 大学院工学研究科",
+        "affiliation_long_2": "知能情報 助教",
+    },
+    "Manifest": {
+        "name": "兵庫県立大学 田中健太のホームページ",
+        "description": "兵庫県立大学 田中健太のホームページ"
+    },
+    "Metadata": {
+        "title": "兵庫県立大学 田中健太のホームページ"
+    },
+    "HomePage": {
+        "description": "このページは工事中です．プロフィールや研究業績をご覧ください"
+    },
+    "ResearchPage": {
+        "title": "研究紹介",
+        "virtual_dynamics": "仮想ダイナミクス",
+        "virtual_dynamics_description_1": [
+            "システムを制御するヒトやモノに敢えて改変した情報を見せ，制御しやすいシステムに見せかけることで，制御の結果を改善する研究です．",
+        ],
+        "virtual_dynamics_description_2": [
+            "システムは，それを目的の状態にする「制御」によって，初めて意味を持ちます．",
+            "たとえば，自動車やドローンは適切なルートを通って目的地に着くように，ヒトが運転したりAIが自動運転したりします．",
+        ],
+    },
+    "PublicationsPage": {
+        "title": "研究業績",
+        "detail": "詳細",
+        "journal_papers": "学術雑誌掲載論文",
+        "international_conference": "国際会議",
+        "domestic_conference": "国内会議",
+        "awards": "受賞",
+        "others": "その他",
+    },
+    "ProfilePage": {
+        "title": "プロフィール",
+        "name_label": "氏名",
+        "affiliation_label": "所属",
+        "birth_date_label": "生年月日",
+        "birth_date_value": "1999年2月11日",
+        "career_date_header": "年月",
+        "career_description_header": "略歴",
+        "career_items": [
+            { "date": "2014年4月", "description": "千葉県立東葛飾高等学校普通科 入学" },
+            { "date": "2017年3月", "description": "千葉県立東葛飾高等学校普通科 卒業" },
+            { "date": "2017年4月", "description": "大阪大学 工学部 応用理工学科 入学" },
+            { "date": "2021年3月", "description": "大阪大学 工学部 応用理工学科 卒業" },
+            { "date": "2021年4月", "description": "大阪大学大学院 工学研究科 機械工学専攻 博士前期課程 入学" },
+            { "date": "2023年3月", "description": "大阪大学大学院 工学研究科 機械工学専攻 博士前期課程 修了" },
+            { "date": "2023年4月", "description": "大阪大学大学院 工学研究科 機械工学専攻 博士後期課程 入学" },
+            { "date": "2026年3月", "description": "大阪大学大学院 工学研究科 機械工学専攻 博士後期課程 修了" },
+            { "date": "2026年4月", "description": "兵庫県立大学 大学院工学研究科 助教" },
+        ],
+        "works_title": "制作物",
+        "works_items": [
+            {
+                "title": "NQLib",
+                "description": "Pythonによる，離散値制御のための動的量子化器の設計ライブラリ．",
+                "url": "https://github.com/knttnk/NQLib/"
+            },
+            {
+                "title": "The Inverted Pendulum Game",
+                "description": "情報改変の効果を体験できる，倒立振子を制御するゲーム．",
+                "url": "https://knttnk.github.io/pendulum_game_web/"
+            },
+            {
+                "title": "iscie.bst",
+                "description": "非公式のISCIE用BibTeXスタイルファイル．",
+                "url": "https://github.com/knttnk/iscie_bst/"
+            },
+            {
+                "title": "Snippet Utilities",
+                "description": "VS Codeでコードのテンプレを簡単に登録するための拡張機能．",
+                "url": "https://marketplace.visualstudio.com/items?itemName=knttnk.snippet-utilities"
+            },
+            {
+                "title": "カスタム日本語校正",
+                "description": "VS Codeで日本語を形態素解析や正規表現に基づいて自動校正できる拡張機能．",
+                "url": "https://marketplace.visualstudio.com/items?itemName=knttnk.custom-japanese-proofreading"
+            }
+        ],
+        "contact_title": "連絡先",
+        "github_label": "GitHub",
+        "twitter_label": "X (Twitter)",
+        "researchmap_label": "researchmap",
+        "address_label": "住所",
+        "address_1": "〒671-2280",
+        "address_2": "兵庫県姫路市書写2167",
+        "email_label": "メールアドレス",
+        "email_value": "kenta.tanaka.j +at+ gmail.com",
+        "phone_label": "電話番号",
+        "phone_value": "079-267-4981",
+        "copy_button": "Copy"
+    },
+    "Layout": {
+        "home": "ホーム",
+        "about": "About",
+        "about_research": "研究",
+        "research": "研究紹介",
+        "publications": "研究業績",
+        "profile": "プロフィール"
+    }
+}

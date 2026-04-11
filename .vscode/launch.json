@@ -1,0 +1,54 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "非本番環境デバッグ",
+            "type": "node",
+            "request": "launch",
+            "runtimeArgs": [
+                "run",
+                "dev"
+            ],
+            "runtimeExecutable": "${workspaceFolder}/.vfox/sdks/nodejs/npm.cmd",
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+        },
+        // {
+        //     "name": "ビルド",
+        //     "type": "node",
+        //     "request": "launch",
+        //     "cwd": "${workspaceFolder}",
+        //     "runtimeExecutable": "node",
+        //     "runtimeArgs": [
+        //         "--inspect",
+        //     ],
+        //     "program": "${workspaceFolder}/node_modules/next/dist/bin/next",
+        //     "args": [
+        //         "build"
+        //     ],
+        //     "console": "integratedTerminal",
+        //     "internalConsoleOptions": "neverOpen",
+        //     "autoAttachChildProcesses": true,
+        //     "sourceMaps": true,
+        //     "skipFiles": [
+        //         "<node_internals>/**"
+        //     ]
+        // },
+        // {
+        //     "name": "Chromeで起動",
+        //     "type": "chrome",
+        //     "preLaunchTask": "サーブ開始",
+        //     "request": "launch",
+        //     "url": "http://localhost:3000/",
+        //     "webRoot": "${workspaceFolder}",
+        //     "skipFiles": [
+        //         "chrome-extension://**"
+        //     ],
+        //     "runtimeArgs": [
+        //         "--auto-open-devtools-for-tabs",
+        //     ]
+        // }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+  "js/ts.tsdk.path": "${workspaceFolder}/.vfox/sdks/nodejs/node_modules/typescript/lib",
+  "js/ts.tsserver.node.path": "${workspaceFolder}/.vfox/sdks/nodejs/node.exe",
+  "[typescript][typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.printWidth": 150,
+    "prettier.semi": true,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "all",
+    "prettier.useTabs": true,
+  },
+  "[json][jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+  },
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "*.json[c5]"
+      ],
+      "schema": {
+        "allowTrailingCommas": true
+      }
+    }
+  ],
+  "editor.tabSize": 2,
+}
