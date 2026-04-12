@@ -7,6 +7,7 @@ import { InsetPadding } from '@/components/inset-padding';
 import { Carousel, CarouselButton, CarouselContent, CarouselHandler, CarouselItem } from '@/components/ui/carousel';
 import conceptEn from '@/public/mines/concept-en.webp';
 import conceptJa from '@/public/mines/concept-ja.webp';
+import face from '@/public/mines/face.webp';
 import face2 from '@/public/mines/face2.webp';
 import { Link } from '@/components/ui/link';
 import { getPublications, type Publication } from './publications/get-publications';
@@ -52,7 +53,7 @@ export default async function IndexPage({ params }: { params: Promise<{ locale: 
 	return (
 		<>
 			<div style={{ position: 'relative', width: '100%', height: '60vh' }}>
-				<Image src="/mines/face.webp" alt="Profile Picture" fill style={{ objectFit: 'cover' }} loading="eager" />
+				<Image src={face} alt="Profile Picture" fill style={{ objectFit: 'cover' }} loading="eager" />
 			</div>
 			<InsetPadding>
 				<Carousel opts={{ loop: true }} className="w-full">
