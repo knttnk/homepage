@@ -3,7 +3,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 // GitHub Pages では，リポジトリ名をベースパスとして使用
 const isGitHubActions = process.env.GITHUB_ACTIONS === 'true'
-const basePath = isGitHubActions ? '/homepage_test' : ''
+const basePath = isGitHubActions ? '/homepage' : ''
 
 // ソースマップを作成
 const isProduction = process.env.NODE_ENV === 'production';

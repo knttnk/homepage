@@ -18,10 +18,10 @@ export async function metadataFrom({
   return {
     title: t("title"),
     alternates: {
-      canonical: `https://knttnk.github.io/homepage_test/ja${root}`,
+      canonical: `https://knttnk.github.io/homepage/ja${root}`,
       languages: {
-        en: `https://knttnk.github.io/homepage_test/en${root}`,
-        ja: `https://knttnk.github.io/homepage_test/ja${root}`,
+        en: `https://knttnk.github.io/homepage/en${root}`,
+        ja: `https://knttnk.github.io/homepage/ja${root}`,
       },
     },
   };
