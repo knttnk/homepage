@@ -43,7 +43,6 @@
         "affiliation_label": "Affiliation",
         "birth_date_label": "Date of Birth",
         "birth_date_value": "February 11, 1999",
-        "career_title": "Education & Career",
         "career_date_header": "Date",
         "career_description_header": "Description",
         "career_items": [
@@ -104,7 +103,6 @@
         "about_research": "Research",
         "research": "Research",
         "publications": "Publications",
-        "other": "Other",
         "profile": "Profile"
     }
 }
