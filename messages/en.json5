@@ -20,13 +20,6 @@
     "ResearchPage": {
         "title": "Research Introduction",
         "virtual_dynamics": "Virtual Dynamics",
-        "virtual_dynamics_description_1": [
-            "(This page is under construction.)",
-        ],
-        "virtual_dynamics_description_2": [
-            "Systems only become meaningful through 'control' that brings them to the desired state.",
-            "For example, automobiles and drones are guided to their destinations through appropriate routes by humans driving or AI performing autonomous driving.",
-        ],
     },
     "PublicationsPage": {
         "title": "Publications",

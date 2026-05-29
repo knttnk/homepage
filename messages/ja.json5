@@ -20,13 +20,6 @@
     "ResearchPage": {
         "title": "研究紹介",
         "virtual_dynamics": "仮想ダイナミクス",
-        "virtual_dynamics_description_1": [
-            "（このページは工事中です．）",
-        ],
-        "virtual_dynamics_description_2": [
-            "システムは，それを目的の状態にする「制御」によって，初めて意味を持ちます．",
-            "たとえば，自動車やドローンは適切なルートを通って目的地に着くように，ヒトが運転したりAIが自動運転したりします．",
-        ],
     },
     "PublicationsPage": {
         "title": "研究業績",

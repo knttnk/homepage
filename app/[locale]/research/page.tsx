@@ -1,25 +1,30 @@
-import { setRequestLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import { use } from 'react';
-import { Text } from '@/components/ui/text';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Heading } from '@/components/ui/heading';
 import { InsetPadding } from '@/components/inset-padding';
+import { Markdown } from '@/components/markdown';
+import { loadResearchMarkdown } from '@/lib/markdown';
 
+// `output: "export"` のため，対応ロケール分のページを静的生成する．
 export function generateStaticParams() {
 	return routing.locales.map((locale) => ({ locale }));
 }
 
-export default function ResearchPage({ params }: { params: Promise<{ locale: string }> }) {
-	const { locale } = use(params);
+/**
+ * 研究紹介ページ．
+ * Card等のレイアウトはJSXで保持し，各セクションの本文は
+ * `content/research/<slug>/<locale>.md` から読み込んで描画する．
+ */
+export default async function ResearchPage({ params }: { params: Promise<{ locale: string }> }) {
+	const { locale } = await params;
 
 	// Enable static rendering
 	setRequestLocale(locale);
 
-	// Once the request locale is set, you
-	// can call hooks from `next-intl`
-	const t = useTranslations('ResearchPage');
+	const t = await getTranslations('ResearchPage');
+
+	const virtualDynamics = await loadResearchMarkdown('virtual-dynamics', locale);
 
 	return (
 		<InsetPadding>
@@ -27,7 +32,7 @@ export default function ResearchPage({ params }: { params: Promise<{ locale: str
 			<Card>
 				<CardHeader>{t('virtual_dynamics')}</CardHeader>
 				<CardContent>
-					<Text>{t('virtual_dynamics_description_1')}</Text>
+					<Markdown>{virtualDynamics}</Markdown>
 				</CardContent>
 			</Card>
 		</InsetPadding>
