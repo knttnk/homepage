@@ -1,18 +1,18 @@
 "use client"
 
 import { ChevronRightIcon } from "@heroicons/react/20/solid"
+import { Button } from "react-aria-components/Button"
 import type {
   TreeItemContentProps,
   TreeItemContentRenderProps,
   TreeItemProps,
   TreeProps,
-} from "react-aria-components"
+} from "react-aria-components/Tree"
 import {
-  Button,
   TreeItemContent,
   TreeItem as TreeItemPrimitive,
   Tree as TreePrimitive,
-} from "react-aria-components"
+} from "react-aria-components/Tree"
 import { twJoin, twMerge } from "tailwind-merge"
 import { cx } from "@/lib/primitive"
 import { Checkbox } from "./checkbox"
@@ -41,7 +41,8 @@ const TreeItem = <T extends object>({ className, ...props }: TreeItemProps<T>) =
           "group/tree-item relative flex select-none rounded-lg focus:outline-hidden",
           "focus:bg-(--tree-active-bg) focus:text-(--tree-active-fg) focus:**:[.text-muted-fg]:text-(--tree-active-fg)",
           "**:data-[slot=avatar]:*:size-6 **:data-[slot=avatar]:size-6 sm:**:data-[slot=avatar]:*:size-5 sm:**:data-[slot=avatar]:size-5",
-          "**:data-[slot=icon]:me-1 **:data-[slot=icon]:size-5 **:data-[slot=icon]:shrink-0 sm:**:data-[slot=icon]:size-4",
+          "**:[svg]:size-5 **:[svg]:shrink-0 sm:**:[svg]:size-4",
+          "**:[svg:not([data-slot=check-indicator]):not([data-slot=chevron])]:me-1",
           "disabled:opacity-50 forced-colors:[",
           "href" in props ? "cursor-pointer" : "cursor-default",
         ],
@@ -66,12 +67,13 @@ const TreeContent = ({ className, children, ...props }: TreeContentProps) => {
             className,
           )}
         >
+          {values.allowsDragging && <Button className="sr-only" slot="drag" />}
           {values.selectionMode === "multiple" && values.selectionBehavior === "toggle" && (
-            <Checkbox className="[--indicator-mt:0] sm:[--indicator-mt:0]" slot="selection" />
+            <Checkbox slot="selection" />
           )}
           <div
             className={twJoin(
-              "relative w-[calc(calc(var(--tree-item-level)-1)*calc(var(--spacing)*5))] shrink-0",
+              "relative w-[calc(calc(var(--tree-item-level)-1)*(--spacing(5)))] shrink-0",
               "before:absolute before:inset-0 before:-ms-1 before:bg-[repeating-linear-gradient(to_right,transparent_0,transparent_calc(var(--tree-item-level)-1px),var(--border)_calc(var(--tree-item-level)-1px),var(--border)_calc(var(--tree-item-level)))]",
             )}
           />
@@ -109,7 +111,7 @@ const TreeIndicator = ({
       <ChevronRightIcon
         data-slot="chevron"
         className={twJoin(
-          "size-4 transition-transform duration-200 ease-in-out sm:size-5",
+          "-mx-0.5 size-5 transition-transform duration-200 ease-in-out sm:size-4",
           values.isExpanded && "rotate-90",
         )}
       />
@@ -117,5 +119,5 @@ const TreeIndicator = ({
   )
 }
 
-export type { TreeProps, TreeItemProps }
-export { Tree, TreeItem, TreeIndicator, TreeContent }
+export type { TreeItemProps, TreeProps }
+export { Tree, TreeContent, TreeIndicator, TreeItem }

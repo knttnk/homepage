@@ -37,7 +37,7 @@ const CardTitle = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
     <div
       data-slot="card-title"
-      className={twMerge("text-balance font-semibold text-base/6", className)}
+      className={twMerge("text-balance font-display font-semibold text-base/6", className)}
       {...props}
     />
   )
@@ -90,4 +90,4 @@ const CardFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement
   )
 }
 
-export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, CardAction }
+export { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }

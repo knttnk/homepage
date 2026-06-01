@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid"
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react"
 import { createContext, use, useCallback, useEffect, useState } from "react"
 import { twMerge } from "tailwind-merge"
@@ -226,4 +226,4 @@ const CarouselButton = ({
 }
 
 export type { CarouselApi }
-export { Carousel, CarouselContent, CarouselHandler, CarouselItem, CarouselButton }
+export { Carousel, CarouselButton, CarouselContent, CarouselHandler, CarouselItem }

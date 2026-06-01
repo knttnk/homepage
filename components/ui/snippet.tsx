@@ -1,7 +1,7 @@
 "use client"
 
-import type { TabPanelProps, TabsProps } from "react-aria-components"
-import { TabsContext, useSlottedContext } from "react-aria-components"
+import { useSlottedContext } from "react-aria-components/slots"
+import { type TabPanelProps, TabsContext, type TabsProps } from "react-aria-components/Tabs"
 import { Button } from "@/components/ui/button"
 import { Tab, TabList, type TabListProps, TabPanel, TabPanels, Tabs } from "@/components/ui/tabs"
 import { useClipboard } from "@/hooks/use-clipboard"
@@ -22,9 +22,9 @@ export function SnippetTabsList<T extends object>({ className, ...props }: TabLi
   return (
     <TabList
       className={cx(
+        "bg-muted",
         orientation === "horizontal" &&
           "flex-row gap-x-(--tab-list-gutter) rounded-(--tab-list-rounded) border-b px-4 py-(--tab-list-gutter)",
-        "bg-muted",
         className,
       )}
       {...props}
