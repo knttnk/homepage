@@ -9,7 +9,7 @@ import remarkGfm from 'remark-gfm';
  */
 export function Markdown({ children }: { children: string }) {
 	return (
-		<div className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-24">
+		<div className="prose dark:prose-invert font-serif max-w-none prose-headings:scroll-mt-24 prose-headings:font-sans prose-strong:font-sans">
 			<ReactMarkdown remarkPlugins={[remarkGfm]}>{children}</ReactMarkdown>
 		</div>
 	);
