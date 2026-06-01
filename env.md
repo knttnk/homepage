@@ -25,6 +25,19 @@ node -v
 npm -v
 ```
 
+これでこのプロジェクトを作ったが，もう必要ないはず。
+
+```sh
+npx create-next-app@latest
+```
+
+## アップデート
+
+```sh
+npm update
+npx shadcn@latest add @intentui/all
+```
+
 ## その他
 
 ```sh
