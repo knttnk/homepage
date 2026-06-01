@@ -1,10 +1,8 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Heading } from '@/components/ui/heading';
 import { InsetPadding } from '@/components/inset-padding';
-import { Markdown } from '@/components/markdown';
-import { loadResearchMarkdown } from '@/lib/markdown';
+import { ResearchCard } from '@/components/research-card';
 
 // `output: "export"` のため，対応ロケール分のページを静的生成する．
 export function generateStaticParams() {
@@ -24,16 +22,10 @@ export default async function ResearchPage({ params }: { params: Promise<{ local
 
 	const t = await getTranslations('ResearchPage');
 
-	const virtualDynamics = await loadResearchMarkdown('virtual-dynamics', locale);
-
 	return (
 		<InsetPadding>
-			<Heading level={2}>{t('title')}</Heading>
-			<Card>
-				<CardContent>
-					<Markdown>{virtualDynamics}</Markdown>
-				</CardContent>
-			</Card>
+			<Heading level={1}>{t('title')}</Heading>
+			<ResearchCard slug="virtual-dynamics" locale={locale} />
 		</InsetPadding>
 	);
 }
