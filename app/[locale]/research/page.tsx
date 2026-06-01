@@ -30,7 +30,6 @@ export default async function ResearchPage({ params }: { params: Promise<{ local
 		<InsetPadding>
 			<Heading level={2}>{t('title')}</Heading>
 			<Card>
-				<CardHeader>{t('virtual_dynamics')}</CardHeader>
 				<CardContent>
 					<Markdown>{virtualDynamics}</Markdown>
 				</CardContent>
