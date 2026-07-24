@@ -9,8 +9,9 @@
     "prettier.trailingComma": "all",
     "prettier.useTabs": true,
   },
-  "[json][jsonc]": {
+  "[json][jsonc][jsonl]": {
     "editor.defaultFormatter": "vscode.json-language-features",
+
   },
   "json.schemas": [
     {
