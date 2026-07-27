@@ -197,6 +197,117 @@ function formatEntry(entry: RmEntry, locale: string): string | null {
 	return str || null;
 }
 
+// --- Validation ---
+
+function entryLabel(entry: RmEntry): string {
+	const m = entry.merge;
+	const title = m.paper_title?.ja ?? m.paper_title?.en
+		?? m.presentation_title?.ja ?? m.presentation_title?.en
+		?? m.award_name?.ja ?? m.award_name?.en
+		?? m.work_title?.ja ?? m.work_title?.en
+		?? m.research_project_title?.ja ?? m.research_project_title?.en
+		?? m.other_title?.ja ?? m.other_title?.en
+		?? m.keyword?.ja ?? m.keyword?.en
+		?? m.affiliation?.ja ?? m.affiliation?.en
+		?? '';
+	return title.length > 40 ? title.substring(0, 40) + '...' : title;
+}
+
+function requireFields(m: Record<string, any>, fields: string[], ctx: string, errors: string[]): void {
+	for (const f of fields) {
+		if (m[f] === undefined || m[f] === null) {
+			errors.push(`${ctx}: missing "${f}"`);
+		}
+	}
+}
+
+function requireAuthor(field: BilingualNames | undefined, fieldName: string, ctx: string, errors: string[]): void {
+	if (!field) {
+		errors.push(`${ctx}: missing "${fieldName}"`);
+		return;
+	}
+	if (field.ja && !field.ja.some(a => a.name === '田中 健太')) {
+		errors.push(`${ctx}: "田中 健太" not found in ${fieldName}.ja`);
+	}
+	if (field.en && !field.en.some(a => a.name === 'Kenta Tanaka')) {
+		errors.push(`${ctx}: "Kenta Tanaka" not found in ${fieldName}.en`);
+	}
+}
+
+function validateEntries(entries: RmEntry[]): void {
+	const errors: string[] = [];
+
+	for (const entry of entries) {
+		const type = entry.insert.type;
+		const id = entry.insert.id;
+		const m = entry.merge;
+		const ctx = `[${type} id:${id}] ${entryLabel(entry)}`;
+
+		if (!id) {
+			errors.push(`${ctx}: missing "insert.id"`);
+		}
+
+		// Bilingual check: all types, all fields with ja must also have en
+		for (const key of Object.keys(m)) {
+			const val = m[key];
+			if (val && typeof val === 'object' && !Array.isArray(val) && 'ja' in val && !('en' in val)) {
+				errors.push(`${ctx}: "${key}" has "ja" but missing "en"`);
+			}
+		}
+
+		switch (type) {
+			case 'published_papers': {
+				requireFields(m, [
+					'paper_title', 'publication_date', 'publication_name', 'publisher',
+					'languages', 'referee', 'invited', 'published_paper_type',
+					'is_international_journal', 'see_also',
+				], ctx, errors);
+				if (!m.identifiers?.doi?.length) {
+					errors.push(`${ctx}: missing "identifiers.doi"`);
+				}
+				if (Array.isArray(m.see_also)) {
+					for (const sa of m.see_also) {
+						if (sa.is_downloadable === undefined) {
+							errors.push(`${ctx}: see_also entry "${sa['@id'] ?? '?'}" missing "is_downloadable"`);
+						}
+					}
+				}
+				requireAuthor(m.authors, 'authors', ctx, errors);
+				if (m.authors?.ja?.[0]?.name === '田中 健太' && !m.published_paper_owner_roles?.includes('lead')) {
+					errors.push(`${ctx}: first author is "田中 健太" but "lead" not in published_paper_owner_roles`);
+				}
+				break;
+			}
+			case 'presentations': {
+				requireFields(m, [
+					'presentation_title', 'presenters', 'event',
+					'publication_date', 'from_event_date', 'to_event_date',
+					'invited', 'languages', 'presentation_type', 'location', 'address_country',
+					'is_international_presentation', 'is_international_collaboration', 'starting_page',
+				], ctx, errors);
+				requireAuthor(m.presenters, 'presenters', ctx, errors);
+				break;
+			}
+			case 'awards':
+				requireFields(m, ['award_name', 'award_date'], ctx, errors);
+				break;
+			case 'research_projects':
+				requireFields(m, ['offer_organization', 'from_date', 'to_date'], ctx, errors);
+				break;
+			case 'works':
+				requireFields(m, ['work_title', 'work_type'], ctx, errors);
+				break;
+			case 'others':
+				requireFields(m, ['other_title'], ctx, errors);
+				break;
+		}
+	}
+
+	if (errors.length > 0) {
+		throw new Error(`rm_achievements validation failed:\n${errors.map(e => `  - ${e}`).join('\n')}`);
+	}
+}
+
 export async function getPublications(locale: string): Promise<PublicationsMap> {
 	const dir = path.join(process.cwd(), 'content/achievement');
 	let files: string[];
@@ -216,6 +327,8 @@ export async function getPublications(locale: string): Promise<PublicationsMap> 
 	const entries: RmEntry[] = content.trim().split('\n')
 		.filter(l => l.trim())
 		.map(l => JSON.parse(l));
+
+	validateEntries(entries);
 
 	const result: PublicationsMap = Object.fromEntries(
 		CATEGORIES.map(c => [c, [] as Publication[]])
