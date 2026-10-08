@@ -7,7 +7,7 @@ platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
 [dependencies]
 # npm is included in the conda-forge Node.js package.
 # Exact versions and package builds are recorded in pixi.lock.
-nodejs = "24.*"
+nodejs = "26.*"
 
 [tasks]
 setup = { cmd = "npm ci", description = "Install locked JavaScript dependencies" }
