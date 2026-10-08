@@ -26,7 +26,9 @@ pixi run node -v
 pixi run npm -v
 ```
 
-`pixi shell` で入ると、以降は `pixi run` を付けずに `node` や `npm` を使える。
+`pixi shell` を実行すると、pixiで入れたNode.jsが使えるシェルが開く。
+そのシェルの中では、`pixi run` を付けずに `node` や `npm` をそのまま打てる。
+下の「アップデート」と「その他」のコマンドは、このシェルの中で実行する。
 
 これでこのプロジェクトを作ったが，もう必要ないはず。
 
