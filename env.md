@@ -1,34 +1,47 @@
 # 環境構築
 
-## Vfoxを入れる
+## Pixiを入れる
 
-<https://github.com/version-fox/vfox?tab=readme-ov-file> に従って、
+<https://pixi.sh/latest/installation/> に従って、
 
 ```sh
-vfox
+pixi
 ```
 
 とできるまでやる。
 
-## Node.jsを入れる
+## Node.jsと依存パッケージを入れる
+
+Node.js（npm同梱）は `pixi.toml` で指定しており、`.pixi/` 以下に入る。
 
 ```sh
-vfox add nodejs
-vfox install nodejs@24
-vfox use -p nodejs@24
+pixi install
+pixi run setup
 ```
 
 確認。
 
 ```sh
-node -v
-npm -v
+pixi run node -v
+pixi run npm -v
 ```
+
+`pixi shell` で入ると、以降は `pixi run` を付けずに `node` や `npm` を使える。
 
 これでこのプロジェクトを作ったが，もう必要ないはず。
 
 ```sh
 npx create-next-app@latest
+```
+
+## よく使うタスク
+
+```sh
+pixi run dev        # 開発サーバ
+pixi run build      # out/ に静的書き出し
+pixi run lint
+pixi run typecheck
+pixi run serve      # out/ を配信
 ```
 
 ## アップデート

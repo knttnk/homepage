@@ -1,0 +1,18 @@
+[workspace]
+name = "homepage"
+version = "0.1.0"
+channels = ["conda-forge"]
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
+
+[dependencies]
+# npm is included in the conda-forge Node.js package.
+# Exact versions and package builds are recorded in pixi.lock.
+nodejs = "24.*"
+
+[tasks]
+setup = { cmd = "npm ci", description = "Install locked JavaScript dependencies" }
+dev = { cmd = "npm run dev", description = "Start the Next.js dev server at http://localhost:3000" }
+build = { cmd = "npm run build", description = "Build and export the static site to out/" }
+lint = { cmd = "npm run lint", description = "Run ESLint" }
+typecheck = { cmd = "npx tsc --noEmit", description = "Run the TypeScript type check" }
+serve = { cmd = "npm run serve:out", description = "Serve out/ at http://localhost:3000" }

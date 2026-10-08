@@ -9,7 +9,7 @@
                 "run",
                 "dev"
             ],
-            "runtimeExecutable": "${workspaceFolder}/.vfox/sdks/nodejs/npm.cmd",
+            "runtimeExecutable": "${workspaceFolder}/.pixi/envs/default/npm.cmd",
             "console": "integratedTerminal",
             "skipFiles": [
                 "<node_internals>/**"
