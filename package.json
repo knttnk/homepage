@@ -16,6 +16,7 @@
     "@next/third-parties": "^16.2.3",
     "@react-aria/i18n": "^3.12.16",
     "@react-stately/color": "^3.10.1",
+    "cn": "^0.2.6",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "json5": "^2.2.3",

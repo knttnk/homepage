@@ -1,10 +1,7 @@
-"use client"
+'use client'
 
-import { createContext, use, useRef, useState } from "react"
-import { twMerge } from "tailwind-merge"
 import {
   MenuContent,
-  type MenuContentProps,
   MenuDescription,
   MenuHeader,
   MenuItem,
@@ -12,96 +9,37 @@ import {
   MenuSection,
   MenuSeparator,
   MenuShortcut,
-} from "./menu"
+  MenuSubMenu,
+} from './menu'
+import { MenuTrigger, type MenuTriggerProps } from 'react-aria-components/Menu'
+import { type PopoverContentProps } from '@/components/ui/popover'
 
-interface ContextMenuTriggerContextType {
-  buttonRef: React.RefObject<HTMLButtonElement | null>
-  contextMenuOffset: { offset: number; crossOffset: number } | null
-  setContextMenuOffset: React.Dispatch<
-    React.SetStateAction<{ offset: number; crossOffset: number } | null>
-  >
+function ContextMenu(props: Omit<MenuTriggerProps, 'trigger'>) {
+  return <MenuTrigger trigger="contextMenu" {...props} />
 }
 
-const ContextMenuTriggerContext = createContext<ContextMenuTriggerContextType | undefined>(
-  undefined,
-)
-
-const useContextMenuTrigger = () => {
-  const context = use(ContextMenuTriggerContext)
-  if (!context) {
-    throw new Error("useContextMenuTrigger must be used within a ContextMenuTrigger")
-  }
-  return context
-}
-
-interface ContextMenuProps {
-  children: React.ReactNode
-}
-
-const ContextMenu = ({ children }: ContextMenuProps) => {
-  const [contextMenuOffset, setContextMenuOffset] = useState<{
-    offset: number
-    crossOffset: number
-  } | null>(null)
-  const buttonRef = useRef<HTMLButtonElement>(null)
+function ContextMenuContent({
+  placement = 'bottom start',
+  offset = 4,
+  crossOffset = 0,
+  children,
+  ...props
+}: Omit<React.ComponentProps<typeof MenuContent<object>>, 'children'> &
+  Pick<PopoverContentProps, 'placement' | 'offset' | 'crossOffset'> & {
+    children?: React.ReactNode
+  }) {
   return (
-    <ContextMenuTriggerContext.Provider
-      value={{ buttonRef, contextMenuOffset, setContextMenuOffset }}
-    >
-      {children}
-    </ContextMenuTriggerContext.Provider>
-  )
-}
-
-type ContextMenuTriggerProps = React.ButtonHTMLAttributes<HTMLButtonElement>
-
-const ContextMenuTrigger = ({ className, ...props }: ContextMenuTriggerProps) => {
-  const { buttonRef, setContextMenuOffset } = useContextMenuTrigger()
-
-  const onContextMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    const rect = e.currentTarget.getBoundingClientRect()
-    setContextMenuOffset({
-      offset: e.clientY - rect.bottom,
-      crossOffset: e.clientX - rect.left,
-    })
-  }
-  return (
-    <button
-      className={twMerge(
-        "cursor-default focus:outline-hidden disabled:opacity-60 disabled:forced-colors:disabled:text-[GrayText]",
-        className,
-      )}
-      ref={buttonRef}
-      aria-haspopup="menu"
-      onContextMenu={onContextMenu}
-      {...props}
-    />
-  )
-}
-
-type ContextMenuContentProps<T> = Omit<
-  MenuContentProps<T>,
-  "arrow" | "isOpen" | "onOpenChange" | "triggerRef" | "placement" | "shouldFlip"
->
-
-const ContextMenuContent = <T extends object>(props: ContextMenuContentProps<T>) => {
-  const { contextMenuOffset, setContextMenuOffset, buttonRef } = useContextMenuTrigger()
-  return contextMenuOffset ? (
     <MenuContent
       popover={{
-        isOpen: !!contextMenuOffset,
-        shouldFlip: false,
-        triggerRef: buttonRef,
-        onOpenChange: () => setContextMenuOffset(null),
-        placement: "bottom left",
-        offset: contextMenuOffset.offset,
-        crossOffset: contextMenuOffset.crossOffset,
+        placement,
+        offset,
+        crossOffset,
       }}
-      onClose={() => setContextMenuOffset(null)}
       {...props}
-    />
-  ) : null
+    >
+      {children}
+    </MenuContent>
+  )
 }
 
 const ContextMenuItem = MenuItem
@@ -111,10 +49,11 @@ const ContextMenuSection = MenuSection
 const ContextMenuHeader = MenuHeader
 const ContextMenuShortcut = MenuShortcut
 const ContextMenuLabel = MenuLabel
+const ContextMenuSub = MenuSubMenu
 
-export type { ContextMenuProps }
 export {
   ContextMenu,
+  ContextMenuSub,
   ContextMenuContent,
   ContextMenuDescription,
   ContextMenuHeader,
@@ -123,5 +62,4 @@ export {
   ContextMenuSection,
   ContextMenuSeparator,
   ContextMenuShortcut,
-  ContextMenuTrigger,
 }
