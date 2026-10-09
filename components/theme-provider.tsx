@@ -1,18 +1,5 @@
 "use client";
 
-import {
-  ThemeProvider as NextThemesProvider,
-  type ThemeProviderProps,
-  useTheme,
-} from "next-themes";
-
-const ThemeProvider = ({ children, ...props }: ThemeProviderProps) => {
-  return (
-    // BUG: https://github.com/shadcn-ui/ui/issues/10200 が解決するまではエラーが出る
-    <NextThemesProvider enableSystem storageKey="intentui-theme" {...props}>
-      {children}
-    </NextThemesProvider>
-  );
-};
-
-export { ThemeProvider, useTheme };
+// ThemeProvider は app/layout.tsx で @wrksz/themes/next から読み込む。
+// intentui のコンポーネント（toast.tsx など）がここから useTheme を import するため、再エクスポートだけ残す。
+export { useTheme } from "@wrksz/themes/client";

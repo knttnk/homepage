@@ -4,6 +4,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { Metadata } from 'next';
 import { metadataFrom } from './metadata';
 import { routing } from '@/i18n/routing';
+import { ThemeProvider } from '@wrksz/themes/next';
 
 const notosansjp = Noto_Sans_JP({
 	subsets: ['latin'],
@@ -33,7 +34,11 @@ export default async function Layout({ children }: { children: React.ReactNode }
 			suppressHydrationWarning
 			className={`${notosansjp.variable} ${lora.variable} ${notoserifjp.variable}`}
 		>
-			<body>{children}</body>
+			<body>
+				<ThemeProvider attribute="class" storage="localStorage" storageKey="intentui-theme" enableSystem>
+					{children}
+				</ThemeProvider>
+			</body>
 			<GoogleAnalytics gaId="G-7QRCL4J4CZ" />
 		</html>
 	);
