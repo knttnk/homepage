@@ -87,6 +87,8 @@
         "address_2": "Himeji, Hyogo 671-2280, Japan",
         "email_label": "Email",
         "email_value": "kenta.tanaka.j +at+ gmail.com",
+        "affiliation_email_label": "Email (Affiliation)",
+        "affiliation_email_value": "kenta.tanaka +at+ eng.u-hyogo.ac.jp",
         "phone_label": "Phone",
         "phone_value": "+81-79-267-4981",
         "copy_button": "Copy"

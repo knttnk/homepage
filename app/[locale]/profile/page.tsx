@@ -28,6 +28,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
 
 	const addressText = `${t('address_1')} ${t('address_2')}`;
 	const emailText = t('email_value');
+	const affiliationEmailText = t('affiliation_email_value');
 	const phoneText = t('phone_value');
 
 	return (
@@ -113,6 +114,11 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
 							<DescriptionDetails className="flex items-center justify-between gap-2">
 								<span>{emailText}</span>
 								<CopyButton copyText={emailText} />
+							</DescriptionDetails>
+							<DescriptionTerm>{t('affiliation_email_label')}</DescriptionTerm>
+							<DescriptionDetails className="flex items-center justify-between gap-2">
+								<span>{affiliationEmailText}</span>
+								<CopyButton copyText={affiliationEmailText} />
 							</DescriptionDetails>
 							<DescriptionTerm>{t('phone_label')}</DescriptionTerm>
 							<DescriptionDetails className="flex items-center justify-between gap-2">

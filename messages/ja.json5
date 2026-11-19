@@ -87,6 +87,8 @@
         "address_2": "兵庫県姫路市書写2167",
         "email_label": "メールアドレス",
         "email_value": "kenta.tanaka.j +at+ gmail.com",
+        "affiliation_email_label": "メールアドレス（所属）",
+        "affiliation_email_value": "kenta.tanaka +at+ eng.u-hyogo.ac.jp",
         "phone_label": "電話番号",
         "phone_value": "079-267-4981",
         "copy_button": "Copy"
