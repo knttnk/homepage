@@ -33,7 +33,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
 	return (
 		<InsetPadding>
 			{/* プロフィール基本情報 */}
-			<Card className="[--card-spacing:var(--gutter)]">
+			<Card>
 				<CardHeader>
 					<CardTitle>{t('title')}</CardTitle>
 				</CardHeader>
@@ -66,7 +66,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
 							<div key={index} className="border-t pt-4 first:border-none first:pt-0 flex items-start justify-between gap-4">
 								<div className="flex-1">
 									<h3 className="font-semibold text-base mb-1">{item.title}</h3>
-									<p className="text-sm text-muted-fg mb-3">{item.description}</p>
+									<p className="text-sm text-muted-foreground mb-3">{item.description}</p>
 								</div>
 								<ButtonLink href={item.url} target="_blank" rel="noopener noreferrer" size="sq-md">
 									<IconOpenLink />

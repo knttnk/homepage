@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@plugin "tailwindcss-react-aria-components";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -19,42 +20,42 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-bg: var(--bg);
-  --color-fg: var(--fg);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
   --color-primary: var(--primary);
-  --color-primary-fg: var(--primary-fg);
+  --color-primary-foreground: var(--primary-foreground);
   --color-primary-subtle: var(--primary-subtle);
-  --color-primary-subtle-fg: var(--primary-subtle-fg);
+  --color-primary-subtle-foreground: var(--primary-subtle-foreground);
   --color-secondary: var(--secondary);
-  --color-secondary-fg: var(--secondary-fg);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-accent: var(--accent);
-  --color-accent-fg: var(--accent-fg);
+  --color-accent-foreground: var(--accent-foreground);
   --color-success: var(--success);
-  --color-success-fg: var(--success-fg);
+  --color-success-foreground: var(--success-foreground);
   --color-success-subtle: var(--success-subtle);
-  --color-success-subtle-fg: var(--success-subtle-fg);
+  --color-success-subtle-foreground: var(--success-subtle-foreground);
   --color-danger: var(--danger);
-  --color-danger-fg: var(--danger-fg);
+  --color-danger-foreground: var(--danger-foreground);
   --color-danger-subtle: var(--danger-subtle);
-  --color-danger-subtle-fg: var(--danger-subtle-fg);
+  --color-danger-subtle-foreground: var(--danger-subtle-foreground);
   --color-warning: var(--warning);
-  --color-warning-fg: var(--warning-fg);
+  --color-warning-foreground: var(--warning-foreground);
   --color-warning-subtle: var(--warning-subtle);
-  --color-warning-subtle-fg: var(--warning-subtle-fg);
+  --color-warning-subtle-foreground: var(--warning-subtle-foreground);
   --color-info-subtle: var(--info-subtle);
-  --color-info-subtle-fg: var(--info-subtle-fg);
+  --color-info-subtle-foreground: var(--info-subtle-foreground);
   --color-muted: var(--muted);
-  --color-muted-fg: var(--muted-fg);
+  --color-muted-foreground: var(--muted-foreground);
   --color-overlay: var(--overlay);
-  --color-overlay-fg: var(--overlay-fg);
+  --color-overlay-foreground: var(--overlay-foreground);
   --color-navbar: var(--navbar);
-  --color-navbar-fg: var(--navbar-fg);
+  --color-navbar-foreground: var(--navbar-foreground);
   --color-sidebar: var(--sidebar);
-  --color-sidebar-fg: var(--sidebar-fg);
+  --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-fg: var(--sidebar-primary-fg);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-fg: var(--sidebar-accent-fg);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-chart-1: var(--chart-1);
@@ -70,6 +71,22 @@
   --radius-2xl: var(--radius-2xl);
   --radius-3xl: var(--radius-3xl);
   --radius-4xl: var(--radius-4xl);
+
+  --animate-sheet-backdrop: sheet-backdrop 300ms linear both;
+  --animate-sheet-scale-back: sheet-scale-back 300ms ease-out both;
+  @keyframes sheet-backdrop {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes sheet-scale-back {
+    to {
+      transform: translate(var(--sheet-stack-x, 0px), var(--sheet-stack-y, 0px)) scale(0.95);
+    }
+  }
 }
 
 :root {
@@ -81,60 +98,60 @@
   --accent-origin: #2f4a0b;
 
   /* モード適用 (Light Mode) */
-  --bg: var(--bg-origin);
-  --fg: var(--fg-origin);
+  --background: var(--bg-origin);
+  --foreground: var(--fg-origin);
   --primary: var(--primary-origin);
   --secondary: var(--secondary-origin);
   --accent: var(--accent-origin);
 
   /* 派生色 - Base Colorsから自動生成 */
-  --primary-fg: oklch(1 0 0);
+  --primary-foreground: oklch(1 0 0);
   --primary-subtle: oklch(from var(--primary) calc(l - 0.4) c h / 0.1);
-  --primary-subtle-fg: var(--primary);
+  --primary-subtle-foreground: var(--primary);
 
-  --secondary-fg: oklch(0.1 0 0);
-  --accent-fg: oklch(0.1 0 0);
+  --secondary-foreground: oklch(0.1 0 0);
+  --accent-foreground: oklch(0.1 0 0);
 
-  --overlay: var(--bg);
-  --overlay-fg: var(--fg);
+  --overlay: var(--background);
+  --overlay-foreground: var(--foreground);
 
   /* 状態のスタイル */
-  --muted: oklch(from var(--bg) calc(l - 0.04) c h);
-  --muted-fg: oklch(from var(--fg) l c h / 0.6);
+  --muted: oklch(from var(--background) calc(l - 0.04) c h);
+  --muted-foreground: oklch(from var(--foreground) l c h / 0.6);
 
   --success: oklch(0.596 0.145 163.225);
-  --success-fg: oklch(1 0 0);
+  --success-foreground: oklch(1 0 0);
   --success-subtle: oklch(from var(--success) calc(l - 0.4) c h / 0.15);
-  --success-subtle-fg: oklch(from var(--success) calc(l - 0.2) c h);
+  --success-subtle-foreground: oklch(from var(--success) calc(l - 0.2) c h);
 
   --info-subtle: oklch(from oklch(0.685 0.169 237.323) calc(l - 0.4) c h / 0.15);
-  --info-subtle-fg: oklch(0.5 0.134 242.749);
+  --info-subtle-foreground: oklch(0.5 0.134 242.749);
 
   --warning: oklch(0.828 0.189 84.429);
-  --warning-fg: oklch(0.279 0.077 45.635);
+  --warning-foreground: oklch(0.279 0.077 45.635);
   --warning-subtle: oklch(from var(--warning) calc(l - 0.4) c h / 0.2);
-  --warning-subtle-fg: oklch(from var(--warning) calc(l - 0.3) c h);
+  --warning-subtle-foreground: oklch(from var(--warning) calc(l - 0.3) c h);
 
   --danger: oklch(0.577 0.245 27.325);
-  --danger-fg: oklch(0.971 0.013 17.38);
+  --danger-foreground: oklch(0.971 0.013 17.38);
   --danger-subtle: oklch(from var(--danger) calc(l - 0.4) c h / 0.15);
-  --danger-subtle-fg: var(--danger);
+  --danger-subtle-foreground: var(--danger);
 
   /* その他UIコンポーネント */
-  --border: oklch(from var(--fg) l c h / 0.2);
-  --input: oklch(from var(--fg) l c h / 0.2);
+  --border: oklch(from var(--foreground) l c h / 0.2);
+  --input: oklch(from var(--foreground) l c h / 0.2);
   --ring: var(--primary);
 
-  --navbar: oklch(from var(--bg) calc(l - 0.02) c h);
-  --navbar-fg: var(--fg);
+  --navbar: oklch(from var(--background) calc(l - 0.02) c h);
+  --navbar-foreground: var(--foreground);
 
-  --sidebar: oklch(from var(--bg) calc(l - 0.02) c h);
-  --sidebar-fg: var(--fg);
+  --sidebar: oklch(from var(--background) calc(l - 0.02) c h);
+  --sidebar-foreground: var(--foreground);
   --sidebar-primary: oklch(from var(--primary) calc(l - 0.4) c h / 0.15);
-  --sidebar-primary-fg: var(--primary);
+  --sidebar-primary-foreground: var(--primary);
   --sidebar-accent: oklch(from var(--accent) calc(l - 0.4) c h / 0.15);
-  --sidebar-accent-fg: var(--accent);
-  --sidebar-border: oklch(from var(--fg) l c h / 0.1);
+  --sidebar-accent-foreground: var(--accent);
+  --sidebar-border: oklch(from var(--foreground) l c h / 0.1);
   --sidebar-ring: var(--ring);
 
   --chart-1: var(--primary);
@@ -154,59 +171,59 @@
 
 .dark {
   /* Dark Mode - Base Colorsの明度を反転 */
-  --bg: oklch(from var(--bg-origin) calc(1 - l) c h);
-  --fg: oklch(from var(--fg-origin) calc(1 - l) c h);
+  --background: oklch(from var(--bg-origin) calc(1 - l) c h);
+  --foreground: oklch(from var(--fg-origin) calc(1 - l) c h);
   --primary: oklch(from var(--primary-origin) calc(1 - l) c h);
   --secondary: oklch(from var(--secondary-origin) calc(1 - l) c h);
   --accent: oklch(from var(--accent-origin) calc(1 - l) c h);
 
   /* 派生色 - Base Colorsから自動生成 */
-  --primary-fg: oklch(0 0 0);
+  --primary-foreground: oklch(0 0 0);
   --primary-subtle: oklch(from var(--primary) calc(l + 0.4) c h / 0.1);
-  /* --primary-subtle-fg: var(--primary); */
-  --secondary-fg: oklch(1 0 0);
-  --accent-fg: oklch(1 0 0);
+  /* --primary-subtle-foreground: var(--primary); */
+  --secondary-foreground: oklch(1 0 0);
+  --accent-foreground: oklch(1 0 0);
 
-  /* --overlay: var(--bg); */
-  /* --overlay-fg: var(--fg); */
+  /* --overlay: var(--background); */
+  /* --overlay-foreground: var(--foreground); */
 
-  --muted: oklch(from var(--bg) calc(l + 0.05) c h);
-  /* --muted-fg: oklch(from var(--fg) l c h / 0.6); */
+  --muted: oklch(from var(--background) calc(l + 0.05) c h);
+  /* --muted-foreground: oklch(from var(--foreground) l c h / 0.6); */
 
   /* 状態のスタイル */
   /* --success: oklch(0.596 0.145 163.225); */
-  /* --success-fg: oklch(1 0 0); */
+  /* --success-foreground: oklch(1 0 0); */
   --success-subtle: oklch(from var(--success) calc(l + 0.4) c h / 0.15);
-  --success-subtle-fg: oklch(0.765 0.177 163.223);
+  --success-subtle-foreground: oklch(0.765 0.177 163.223);
 
   --info-subtle: oklch(from oklch(0.685 0.169 237.323) calc(l + 0.4) c h / 0.1);
-  --info-subtle-fg: oklch(0.828 0.111 230.318);
+  --info-subtle-foreground: oklch(0.828 0.111 230.318);
 
   /* --warning: oklch(0.828 0.189 84.429); */
-  /* --warning-fg: oklch(0.279 0.077 45.635); */
+  /* --warning-foreground: oklch(0.279 0.077 45.635); */
   --warning-subtle: oklch(from var(--warning) calc(l + 0.4) c h / 0.2);
-  --warning-subtle-fg: var(--warning);
+  --warning-subtle-foreground: var(--warning);
 
   /* --danger: oklch(0.577 0.245 27.325); */
-  /* --danger-fg: oklch(0.971 0.013 17.38); */
+  /* --danger-foreground: oklch(0.971 0.013 17.38); */
   --danger-subtle: oklch(from var(--danger) calc(l + 0.4) c h / 0.1);
-  --danger-subtle-fg: oklch(from var(--danger) calc(l + 0.1) c h);
+  --danger-subtle-foreground: oklch(from var(--danger) calc(l + 0.1) c h);
 
   /* その他UIコンポーネント */
-  /* --border: oklch(from var(--fg) l c h / 0.2); */
-  /* --input: oklch(from var(--fg) l c h / 0.2); */
+  /* --border: oklch(from var(--foreground) l c h / 0.2); */
+  /* --input: oklch(from var(--foreground) l c h / 0.2); */
   /* --ring: var(--primary); */
 
-  --navbar: oklch(from var(--bg) calc(l + 0.05) c h);
-  /* --navbar-fg: var(--fg); */
+  --navbar: oklch(from var(--background) calc(l + 0.05) c h);
+  /* --navbar-foreground: var(--foreground); */
 
-  --sidebar: oklch(from var(--bg) calc(l + 0.05) c h);
-  /* --sidebar-fg: var(--fg); */
+  --sidebar: oklch(from var(--background) calc(l + 0.05) c h);
+  /* --sidebar-foreground: var(--foreground); */
   --sidebar-primary: oklch(from var(--primary) calc(l + 0.4) c h / 0.15);
-  /* --sidebar-primary-fg: var(--primary); */
+  /* --sidebar-primary-foreground: var(--primary); */
   --sidebar-accent: oklch(from var(--accent) calc(l + 0.4) c h / 0.15);
-  /* --sidebar-accent-fg: var(--accent); */
-  /* --sidebar-border: oklch(from var(--fg) l c h / 0.1); */
+  /* --sidebar-accent-foreground: var(--accent); */
+  /* --sidebar-border: oklch(from var(--foreground) l c h / 0.1); */
   /* --sidebar-ring: var(--ring); */
 
   /* --chart-1: var(--primary); */
@@ -217,7 +234,30 @@
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--fg);
+  background-color: var(--background);
+  color: var(--foreground);
   height: 100dvh;
+}
+
+@utility touch-target {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    min-height: 44px;
+    min-width: 44px;
+    z-index: 9999;
+  }
+}
+
+@supports not (animation-timeline: view()) {
+  .react-aria-sheet[data-has-descendants] {
+    transform: translate(var(--sheet-stack-x, 0px), var(--sheet-stack-y, 0px)) scale(0.95);
+  }
 }

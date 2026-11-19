@@ -25,7 +25,7 @@ export default async function ResearchPage({ params }: { params: Promise<{ local
 			{CATEGORIES.map((category) => {
 				const items = publications[category].map((item, index) => ({ ...item, index: index + 1 }));
 				return (
-					<Card key={category} className="[--card-spacing:var(--gutter)]">
+					<Card key={category}>
 						<CardHeader>
 							<CardTitle>{t(category)}</CardTitle>
 						</CardHeader>

@@ -1,30 +1,30 @@
-'use client'
+"use client"
 
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import { createContext, use, useEffect } from 'react'
-import { Autocomplete, type AutocompleteProps, useFilter } from 'react-aria-components/Autocomplete'
-import { Button } from 'react-aria-components/Button'
-import { Collection } from 'react-aria-components/Collection'
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid"
+import { createContext, use, useEffect } from "react"
+import { Autocomplete, type AutocompleteProps, useFilter } from "react-aria-components/Autocomplete"
+import { Button } from "react-aria-components/Button"
+import { Collection } from "react-aria-components/Collection"
 import {
   type CollectionRenderer,
   CollectionRendererContext,
   DefaultCollectionRenderer,
-} from 'react-aria-components/CollectionBuilder'
-import { Dialog, OverlayTriggerStateContext } from 'react-aria-components/Dialog'
-import { Header } from 'react-aria-components/Header'
-import { Input } from 'react-aria-components/Input'
-import type { MenuProps, MenuTriggerProps } from 'react-aria-components/Menu'
-import { Menu as MenuPrimitive, MenuSection } from 'react-aria-components/Menu'
-import type { ModalOverlayProps } from 'react-aria-components/Modal'
-import { Modal, ModalContext, ModalOverlay } from 'react-aria-components/Modal'
-import { SearchField, type SearchFieldProps } from 'react-aria-components/SearchField'
-import { cn } from 'cn'
-import { cx } from '@/lib/primitive'
-import { DropdownKeyboard } from './dropdown'
-import { Loader } from './loader'
-import { MenuDescription, MenuItem, MenuLabel, type MenuSectionProps, MenuSeparator } from './menu'
+} from "react-aria-components/CollectionBuilder"
+import { Dialog, OverlayTriggerStateContext } from "react-aria-components/Dialog"
+import { Header } from "react-aria-components/Header"
+import { Input } from "react-aria-components/Input"
+import type { MenuProps, MenuTriggerProps } from "react-aria-components/Menu"
+import { Menu as MenuPrimitive, MenuSection } from "react-aria-components/Menu"
+import type { ModalOverlayProps } from "react-aria-components/Modal"
+import { Modal, ModalContext, ModalOverlay } from "react-aria-components/Modal"
+import { SearchField, type SearchFieldProps } from "react-aria-components/SearchField"
+import { cn } from "cn"
+import { cx } from "@/lib/primitive"
+import { DropdownKeyboard } from "./dropdown"
+import { Loader } from "./loader"
+import { MenuDescription, MenuItem, MenuLabel, type MenuSectionProps, MenuSeparator } from "./menu"
 
-interface CommandMenuProviderProps {
+export interface CommandMenuProviderProps {
   isPending?: boolean
   escapeButton?: boolean
 }
@@ -35,43 +35,44 @@ const useCommandMenu = () => {
   const context = use(CommandMenuContext)
 
   if (!context) {
-    throw new Error('useCommandMenu must be used within a <CommandMenuProvider />')
+    throw new Error("useCommandMenu must be used within a <CommandMenuProvider />")
   }
 
   return context
 }
 
 const sizes = {
-  xs: 'sm:max-w-xs',
-  sm: 'sm:max-w-sm',
-  md: 'sm:max-w-md',
-  lg: 'sm:max-w-lg',
-  xl: 'sm:max-w-xl',
-  '2xl': 'sm:max-w-2xl',
-  '3xl': 'sm:max-w-3xl',
+  xs: "sm:max-w-xs",
+  sm: "sm:max-w-sm",
+  md: "sm:max-w-md",
+  lg: "sm:max-w-lg",
+  xl: "sm:max-w-xl",
+  "2xl": "sm:max-w-2xl",
+  "3xl": "sm:max-w-3xl",
 }
 
-interface CommandMenuProps extends AutocompleteProps, MenuTriggerProps, CommandMenuProviderProps {
+export interface CommandMenuProps
+  extends AutocompleteProps, MenuTriggerProps, CommandMenuProviderProps {
   isDismissable?: boolean
-  'aria-label'?: string
+  "aria-label"?: string
   shortcut?: string
   className?: string
   size?: keyof typeof sizes
-  overlay?: Pick<ModalOverlayProps, 'className'>
+  overlay?: Pick<ModalOverlayProps, "className">
 }
 
-const CommandMenu = ({
+export function CommandMenu({
   onOpenChange,
   className,
   isDismissable = true,
   escapeButton = true,
   isPending,
   overlay,
-  size = 'lg',
+  size = "lg",
   shortcut,
   ...props
-}: CommandMenuProps) => {
-  const { contains } = useFilter({ sensitivity: 'base' })
+}: CommandMenuProps) {
+  const { contains } = useFilter({ sensitivity: "base" })
   const filter = (textValue: string, inputValue: string) => contains(textValue, inputValue)
   useEffect(() => {
     if (!shortcut) return
@@ -82,8 +83,8 @@ const CommandMenu = ({
       }
     }
 
-    document.addEventListener('keydown', onKeyDown)
-    return () => document.removeEventListener('keydown', onKeyDown)
+    document.addEventListener("keydown", onKeyDown)
+    return () => document.removeEventListener("keydown", onKeyDown)
   }, [shortcut, onOpenChange])
   return (
     <CommandMenuContext value={{ isPending: isPending, escapeButton: escapeButton }}>
@@ -92,26 +93,26 @@ const CommandMenu = ({
           {...props}
           isDismissable={isDismissable}
           className={cx(
-            'fixed inset-0 z-50 h-(--visual-viewport-height,100vh) w-screen overflow-hidden bg-black/15',
-            'grid grid-rows-[1fr_auto] justify-items-center text-center sm:grid-rows-[1fr_auto_3fr]',
-            'entering:fade-in entering:animate-in entering:duration-300 entering:ease-out',
-            'exiting:fade-out exiting:animate-out exiting:ease-in',
+            "fixed inset-0 z-50 h-(--visual-viewport-height,100vh) w-screen overflow-hidden bg-black/15",
+            "grid grid-rows-[1fr_auto] justify-items-center text-center sm:grid-rows-[1fr_auto_3fr]",
+            "entering:fade-in entering:animate-in entering:duration-300 entering:ease-out",
+            "exiting:fade-out exiting:animate-out exiting:ease-in",
             overlay?.className
           )}
         >
           <Modal
             className={cx(
-              'row-start-2 bg-overlay text-start text-overlay-fg shadow-lg outline-none ring ring-muted-fg/15 md:row-start-1 dark:ring-border',
-              'max-h-[calc(var(--visual-viewport-height)*0.8)] w-full sm:fixed sm:top-[10%] sm:left-1/2 sm:-translate-x-1/2',
-              'rounded-t-2xl md:rounded-xl',
+              "row-start-2 bg-overlay text-start text-overlay-foreground shadow-lg outline-none ring ring-muted-foreground/15 md:row-start-1 dark:ring-border",
+              "max-h-[calc(var(--visual-viewport-height)*0.8)] w-full sm:fixed sm:top-[10%] sm:left-1/2 sm:-translate-x-1/2",
+              "rounded-t-2xl md:rounded-xl",
               sizes[size],
-              'entering:slide-in-from-bottom sm:entering:zoom-in-95 sm:entering:slide-in-from-bottom-0 entering:animate-in entering:duration-300 entering:ease-out',
-              'exiting:slide-out-to-bottom sm:exiting:zoom-out-95 sm:exiting:slide-out-to-bottom-0 exiting:animate-out exiting:ease-in',
+              "entering:slide-in-from-bottom sm:entering:zoom-in-95 sm:entering:slide-in-from-bottom-0 entering:animate-in entering:duration-300 entering:ease-out",
+              "exiting:slide-out-to-bottom sm:exiting:zoom-out-95 sm:exiting:slide-out-to-bottom-0 exiting:animate-out exiting:ease-in",
               className
             )}
           >
             <Dialog
-              aria-label={props['aria-label'] ?? 'Command Menu'}
+              aria-label={props["aria-label"] ?? "Command Menu"}
               className="flex max-h-[inherit] flex-col overflow-hidden outline-hidden"
             >
               <Autocomplete filter={filter} {...props} />
@@ -123,19 +124,19 @@ const CommandMenu = ({
   )
 }
 
-interface CommandMenuSearchProps extends SearchFieldProps {
+export interface CommandMenuSearchProps extends SearchFieldProps {
   placeholder?: string
   className?: string
 }
 
-const CommandMenuSearch = ({ className, placeholder, ...props }: CommandMenuSearchProps) => {
+export function CommandMenuSearch({ className, placeholder, ...props }: CommandMenuSearchProps) {
   const state = use(OverlayTriggerStateContext)!
   const { isPending, escapeButton } = useCommandMenu()
   return (
     <SearchField
       aria-label="Quick search"
       autoFocus
-      className={cx('flex w-full items-center px-2.5 py-1', className)}
+      className={cx("flex w-full items-center px-2.5 py-1", className)}
       {...props}
     >
       {isPending ? (
@@ -143,12 +144,12 @@ const CommandMenuSearch = ({ className, placeholder, ...props }: CommandMenuSear
       ) : (
         <MagnifyingGlassIcon
           data-slot="command-menu-search-icon"
-          className="size-5 shrink-0 text-muted-fg"
+          className="size-5 shrink-0 text-muted-foreground"
         />
       )}
       <Input
-        placeholder={placeholder ?? 'Search...'}
-        className="w-full min-w-0 bg-transparent px-2.5 py-2 text-base text-fg placeholder-muted-fg outline-hidden focus:outline-hidden sm:px-2 sm:py-1.5 sm:text-sm [&::-ms-reveal]:hidden [&::-webkit-search-cancel-button]:hidden"
+        placeholder={placeholder ?? "Search..."}
+        className="w-full min-w-0 bg-transparent px-2.5 py-2 text-base text-foreground placeholder-muted-foreground outline-hidden focus:outline-hidden sm:px-2 sm:py-1.5 sm:text-sm [&::-ms-reveal]:hidden [&::-webkit-search-cancel-button]:hidden"
       />
       {escapeButton && (
         <Button
@@ -162,12 +163,12 @@ const CommandMenuSearch = ({ className, placeholder, ...props }: CommandMenuSear
   )
 }
 
-const CommandMenuList = <T extends object>({ className, ...props }: MenuProps<T>) => {
+export function CommandMenuList<T extends object>({ className, ...props }: MenuProps<T>) {
   return (
     <CollectionRendererContext.Provider value={renderer}>
       <MenuPrimitive
         className={cx(
-          'grid max-h-full flex-1 grid-cols-[auto_1fr] content-start overflow-y-auto border-t p-2 sm:max-h-110 *:[[role=group]]:mb-6 *:[[role=group]]:last:mb-0',
+          "grid max-h-full flex-1 grid-cols-[auto_1fr] content-start overflow-y-auto border-t p-2 sm:max-h-110 *:[[role=group]]:mb-6 *:[[role=group]]:last:mb-0",
           className
         )}
         {...props}
@@ -176,19 +177,19 @@ const CommandMenuList = <T extends object>({ className, ...props }: MenuProps<T>
   )
 }
 
-const CommandMenuSection = <T extends object>({
+export function CommandMenuSection<T extends object>({
   className,
   ref,
   ...props
-}: MenuSectionProps<T>) => {
+}: MenuSectionProps<T>) {
   return (
     <MenuSection
       ref={ref}
-      className={cn('col-span-full grid grid-cols-[auto_1fr] content-start gap-y-0.25', className)}
+      className={cn("col-span-full grid grid-cols-[auto_1fr] content-start gap-y-0.25", className)}
       {...props}
     >
-      {'label' in props && (
-        <Header className="col-span-full mb-1 block min-w-(--trigger-width) truncate px-2.5 text-muted-fg text-xs">
+      {"label" in props && (
+        <Header className="col-span-full mb-1 block min-w-(--trigger-width) truncate px-2.5 text-muted-foreground text-xs">
           {props.label}
         </Header>
       )}
@@ -197,29 +198,31 @@ const CommandMenuSection = <T extends object>({
   )
 }
 
-const CommandMenuItem = ({ className, ...props }: React.ComponentProps<typeof MenuItem>) => {
+export function CommandMenuItem({ className, ...props }: React.ComponentProps<typeof MenuItem>) {
   const textValue =
-    props.textValue || (typeof props.children === 'string' ? props.children : undefined)
+    props.textValue || (typeof props.children === "string" ? props.children : undefined)
   return (
     <MenuItem
       {...props}
       textValue={textValue}
-      className={cx('items-center gap-y-0.5', className)}
+      className={cx("items-center gap-y-0.5", className)}
     />
   )
 }
 
-interface CommandMenuDescriptionProps extends React.ComponentProps<typeof MenuDescription> {}
+export interface CommandMenuDescriptionProps extends React.ComponentProps<typeof MenuDescription> {}
 
-const CommandMenuDescription = ({ className, ...props }: CommandMenuDescriptionProps) => {
-  return <MenuDescription className={cn('col-start-3 row-start-1 ms-auto', className)} {...props} />
+export function CommandMenuDescription({ className, ...props }: CommandMenuDescriptionProps) {
+  return <MenuDescription className={cn("col-start-3 row-start-1 ms-auto", className)} {...props} />
 }
 
 const renderer: CollectionRenderer = {
   CollectionRoot(props) {
     if (props.collection.size === 0) {
       return (
-        <div className="col-span-full p-4 text-center text-muted-fg text-sm">No results found.</div>
+        <div className="col-span-full p-4 text-center text-muted-foreground text-sm">
+          No results found.
+        </div>
       )
     }
     return <DefaultCollectionRenderer.CollectionRoot {...props} />
@@ -227,19 +230,19 @@ const renderer: CollectionRenderer = {
   CollectionBranch: DefaultCollectionRenderer.CollectionBranch,
 }
 
-const CommandMenuSeparator = ({
+export function CommandMenuSeparator({
   className,
   ...props
-}: React.ComponentProps<typeof MenuSeparator>) => (
-  <MenuSeparator className={cn('-mx-2', className)} {...props} />
-)
+}: React.ComponentProps<typeof MenuSeparator>) {
+  return <MenuSeparator className={cn("-mx-2", className)} {...props} />
+}
 
-const CommandMenuFooter = ({ className, ...props }: React.ComponentProps<'div'>) => {
+export function CommandMenuFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        'col-span-full flex-none border-t px-2 py-1.5 text-muted-fg text-sm',
-        '*:[kbd]:inset-ring *:[kbd]:inset-ring-fg/10 *:[kbd]:mx-1 *:[kbd]:inline-grid *:[kbd]:h-4 *:[kbd]:min-w-4 *:[kbd]:place-content-center *:[kbd]:rounded-xs *:[kbd]:bg-secondary',
+        "col-span-full flex-none border-t px-2 py-1.5 text-muted-foreground text-sm",
+        "*:[kbd]:inset-ring *:[kbd]:inset-ring-foreground/10 *:[kbd]:mx-1 *:[kbd]:inline-grid *:[kbd]:h-4 *:[kbd]:min-w-4 *:[kbd]:place-content-center *:[kbd]:rounded-xs *:[kbd]:bg-secondary",
         className
       )}
       {...props}
@@ -247,30 +250,18 @@ const CommandMenuFooter = ({ className, ...props }: React.ComponentProps<'div'>)
   )
 }
 
-const CommandMenuLabel = MenuLabel
-const CommandMenuShortcut = ({
+export const CommandMenuLabel = MenuLabel
+export function CommandMenuShortcut({
   className,
   ...props
-}: React.ComponentProps<typeof DropdownKeyboard>) => (
-  <DropdownKeyboard
-    className={cn(
-      'gap-0.5 font-sans text-[10.5px] uppercase *:inset-ring *:inset-ring-muted-fg/20 *:grid *:size-5.5 *:place-content-center *:rounded-xs *:bg-bg',
-      className
-    )}
-    {...props}
-  />
-)
-
-export type { CommandMenuDescriptionProps, CommandMenuProps, CommandMenuSearchProps }
-export {
-  CommandMenu,
-  CommandMenuDescription,
-  CommandMenuFooter,
-  CommandMenuItem,
-  CommandMenuLabel,
-  CommandMenuList,
-  CommandMenuSearch,
-  CommandMenuSection,
-  CommandMenuSeparator,
-  CommandMenuShortcut,
+}: React.ComponentProps<typeof DropdownKeyboard>) {
+  return (
+    <DropdownKeyboard
+      className={cn(
+        "gap-0.5 font-sans text-[10.5px] uppercase *:inset-ring *:inset-ring-muted-foreground/20 *:grid *:size-5.5 *:place-content-center *:rounded-xs *:bg-background",
+        className
+      )}
+      {...props}
+    />
+  )
 }

@@ -3,7 +3,7 @@
 import { LanguageIcon } from '@heroicons/react/24/solid';
 import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Menu, MenuContent, MenuHeader, MenuItem, MenuLabel, MenuTrigger } from '@/components/ui/menu';
+import { Menu, MenuHeader, MenuItem, MenuLabel, MenuTrigger } from '@/components/ui/menu';
 import { routing } from '@/i18n/routing';
 
 const languageLabels: Record<string, string> = {
@@ -32,11 +32,11 @@ export function LanguageSwitcher({ languageText }: { languageText: string }) {
 
 	return (
 		<div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-50">
-			<Menu>
+			<MenuTrigger>
 				<Button aria-label="Switch language" intent="primary" size="sq-lg" isCircle>
 					<LanguageIcon data-slot="icon" />
 				</Button>
-				<MenuContent
+				<Menu
 					placement="top end"
 					selectedKeys={[selectedLocale]}
 					selectionMode="single"
@@ -56,8 +56,8 @@ export function LanguageSwitcher({ languageText }: { languageText: string }) {
 							<MenuLabel>{languageLabels[supportedLocale] ?? supportedLocale.toUpperCase()}</MenuLabel>
 						</MenuItem>
 					))}
-				</MenuContent>
-			</Menu>
+				</Menu>
+			</MenuTrigger>
 		</div>
 	);
 }

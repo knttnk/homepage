@@ -1,24 +1,24 @@
-'use client'
+"use client"
 
-import { EyeDropperIcon } from '@heroicons/react/24/solid'
-import { parseColor } from '@react-stately/color'
-import { use } from 'react'
+import { EyeDropperIcon } from "@heroicons/react/24/solid"
+import { parseColor } from "@react-stately/color"
+import { use } from "react"
 import {
   ColorPicker as ColorPickerPrimitive,
   type ColorPickerProps as ColorPickerPrimitiveProps,
   ColorPickerStateContext,
-} from 'react-aria-components/ColorPicker'
-import { cn } from 'cn'
-import { Button } from './button'
-import { fieldStyles } from './field'
+} from "react-aria-components/ColorPicker"
+import { cn } from "cn"
+import { Button } from "./button"
+import { fieldStyles } from "./field"
 
-interface ColorPickerProps extends ColorPickerPrimitiveProps {
+export interface ColorPickerProps extends ColorPickerPrimitiveProps {
   className?: string
 }
 
-const ColorPicker = ({ className, ...props }: ColorPickerProps) => {
+export function ColorPicker({ className, ...props }: ColorPickerProps) {
   return (
-    <div data-slot="control" className={cn(fieldStyles({ className: 'w-fit' }), className)}>
+    <div data-slot="control" className={cn(fieldStyles({ className: "w-fit" }), className)}>
       <ColorPickerPrimitive {...props} />
     </div>
   )
@@ -30,11 +30,11 @@ declare global {
   }
 }
 
-const EyeDropper = () => {
+export function EyeDropper() {
   const state = use(ColorPickerStateContext)!
 
   if (!window.EyeDropper) {
-    return 'EyeDropper is not supported in your browser.'
+    return "EyeDropper is not supported in your browser."
   }
 
   return (
@@ -52,6 +52,3 @@ const EyeDropper = () => {
     </Button>
   )
 }
-
-export type { ColorPickerProps }
-export { ColorPicker, EyeDropper }
