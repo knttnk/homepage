@@ -18,6 +18,15 @@ researchmap からエクスポートした JSONL ファイルを管理するデ�
 2. ウェブサイトをビルドして反映を確認する
 3. このファイルを researchmap にインポートする
 
+### 指導学生の発表を教育業績に載せる
+
+1. 上の手順で発表を `rm_achievements.jsonl` に追加し、researchmap で採番された `insert.id` を書き戻す
+2. その `id` を `supervised_presentations.json5` に追加する（行末のコメントに発表者と題目を書く）
+
+ここに書いた発表は、研究業績（国内会議・国際会議）に加えて、publications ページの教育業績「指導学生の学会発表」にも載る。
+名前で自動判定しないのは、指導学生が後に教員になって共著したときに誤って載せないためである。
+`supervised_presentations.json5` はウェブサイト専用のファイルで、researchmap には送らない。
+
 ### researchmap からエクスポートし直す場合
 
 researchmap のエクスポートは非標準フィールドを落とす。特に presentations の `starting_page` / `ending_page` は全て消えるため、エクスポートしたファイルでこのファイルを置き換えてはいけない。

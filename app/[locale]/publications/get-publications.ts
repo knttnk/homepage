@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import json5 from 'json5';
 
 export interface PublicationItem {
 	year: number;
@@ -29,6 +30,9 @@ interface RmEntry {
 }
 
 export const CATEGORIES = ['journal_papers', 'thesis', 'international_conference', 'domestic_conference', 'awards', 'others'] as const;
+// 教育業績。rm_achievements.jsonl の presentations を supervised_presentations.json5 の id で選んで、研究業績と重ねて載せる
+export const EDUCATION_CATEGORIES = ['supervised_presentations'] as const;
+const ALL_CATEGORIES = [...CATEGORIES, ...EDUCATION_CATEGORIES];
 
 function getLocalized(field: BilingualText | undefined, locale: string): string | null {
 	if (!field) return null;
@@ -334,6 +338,48 @@ function validateEntries(entries: RmEntry[]): void {
 	}
 }
 
+/** 指定された id がすべて rm_achievements.jsonl の presentations にあるか確かめる */
+function validateSupervisedPresentations(ids: string[], entries: RmEntry[]): void {
+	const errors: string[] = [];
+	const seen = new Set<string>();
+
+	for (const id of ids) {
+		if (typeof id !== 'string' || !id) {
+			errors.push(`${JSON.stringify(id)}: id must be a non-empty string`);
+			continue;
+		}
+		if (seen.has(id)) {
+			errors.push(`${id}: listed more than once`);
+		}
+		seen.add(id);
+
+		const entry = entries.find(e => e.insert.id === id);
+		if (!entry) {
+			errors.push(`${id}: not found in rm_achievements.jsonl`);
+		} else if (entry.insert.type !== 'presentations') {
+			errors.push(`${id}: type is "${entry.insert.type}", not "presentations"`);
+		}
+	}
+
+	if (errors.length > 0) {
+		throw new Error(`supervised_presentations validation failed:\n${errors.map(e => `  - ${e}`).join('\n')}`);
+	}
+}
+
+async function loadSupervisedPresentationIds(dir: string): Promise<string[]> {
+	try {
+		const content = await fs.readFile(path.join(dir, 'supervised_presentations.json5'), 'utf8');
+		return json5.parse(content) as string[];
+	} catch (e) {
+		if ((e as NodeJS.ErrnoException).code === 'ENOENT') return [];
+		throw e;
+	}
+}
+
+function emptyPublications(): PublicationsMap {
+	return Object.fromEntries(ALL_CATEGORIES.map(c => [c, [] as Publication[]]));
+}
+
 export async function getPublications(locale: string): Promise<PublicationsMap> {
 	const dir = path.join(process.cwd(), 'content/achievement');
 	let files: string[];
@@ -342,11 +388,11 @@ export async function getPublications(locale: string): Promise<PublicationsMap> 
 			.filter(f => f.startsWith('rm_achievements') && f.endsWith('.jsonl'))
 			.sort();
 	} catch {
-		return Object.fromEntries(CATEGORIES.map(c => [c, []]));
+		return emptyPublications();
 	}
 
 	if (files.length === 0) {
-		return Object.fromEntries(CATEGORIES.map(c => [c, []]));
+		return emptyPublications();
 	}
 
 	const content = await fs.readFile(path.join(dir, files[files.length - 1]), 'utf8');
@@ -356,9 +402,11 @@ export async function getPublications(locale: string): Promise<PublicationsMap> 
 
 	validateEntries(entries);
 
-	const result: PublicationsMap = Object.fromEntries(
-		CATEGORIES.map(c => [c, [] as Publication[]])
-	);
+	const supervisedIds = await loadSupervisedPresentationIds(dir);
+	validateSupervisedPresentations(supervisedIds, entries);
+	const supervisedIdSet = new Set(supervisedIds);
+
+	const result = emptyPublications();
 
 	for (const entry of entries) {
 		if (entry.merge.display !== 'disclosed') continue;
@@ -366,18 +414,21 @@ export async function getPublications(locale: string): Promise<PublicationsMap> 
 		if (!category) continue;
 
 		const date = getEntryDate(entry);
-		result[category].push({
+		const item = {
 			id: entry.insert.id,
-			category,
 			year: date.year,
 			month: date.month,
 			day: date.day,
 			str: formatEntry(entry, locale),
 			url: getUrl(entry.merge),
-		});
+		};
+		result[category].push({ ...item, category });
+		if (supervisedIdSet.has(entry.insert.id)) {
+			result.supervised_presentations.push({ ...item, category: 'supervised_presentations' });
+		}
 	}
 
-	for (const cat of CATEGORIES) {
+	for (const cat of ALL_CATEGORIES) {
 		result[cat].sort((a, b) => {
 			if (a.year !== b.year) return b.year - a.year;
 			if (a.month !== b.month) return (b.month ?? 0) - (a.month ?? 0);

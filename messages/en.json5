@@ -30,6 +30,8 @@
         "domestic_conference": "Domestic Conference (Japan)",
         "awards": "Awards",
         "others": "Others",
+        "education_title": "Education",
+        "supervised_presentations": "Conference Presentations by Supervised Students",
     },
     "ProfilePage": {
         "title": "Profile",

@@ -30,6 +30,8 @@
         "domestic_conference": "国内会議",
         "awards": "受賞",
         "others": "その他",
+        "education_title": "教育業績",
+        "supervised_presentations": "指導学生の学会発表",
     },
     "ProfilePage": {
         "title": "プロフィール",
