@@ -49,12 +49,12 @@ pixi run serve      # out/ を配信
 ## アップデート
 
 ```sh
-npm update
-npx shadcn@latest add @intentui/all
+pixi run npm update
+pixi run npx shadcn@latest add @intentui/all --overwrite
 ```
 
 ## その他
 
 ```sh
-npm install -g serve npm-check-updates
+pixi run npm install -g serve npm-check-updates
 ```
