@@ -36,6 +36,7 @@ researchmap の JSONL エクスポート形式。1 行 1 JSON オブジェクト
 | `insert.type` | publications カテゴリ | 備考 |
 |---|---|---|
 | `published_papers` | journal_papers | `referee` で査読の有無を記録 |
+| `published_papers` (`published_paper_type: doctoral_thesis` / `master_thesis`) | thesis | `publication_name` に大学名を入れる |
 | `presentations` (`is_international_presentation: true`) | international_conference | |
 | `presentations` (`is_international_presentation: false`) | domestic_conference | |
 | `awards` | awards | `see_also` で受賞ページ URL を保持 |

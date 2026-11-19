@@ -28,7 +28,7 @@ interface RmEntry {
 	merge: Record<string, any>;
 }
 
-const CATEGORIES = ['journal_papers', 'international_conference', 'domestic_conference', 'awards', 'others'] as const;
+export const CATEGORIES = ['journal_papers', 'thesis', 'international_conference', 'domestic_conference', 'awards', 'others'] as const;
 
 function getLocalized(field: BilingualText | undefined, locale: string): string | null {
 	if (!field) return null;
@@ -66,9 +66,13 @@ function getUrl(merge: Record<string, any>): string | null {
 	return null;
 }
 
+function isThesis(m: Record<string, any>): boolean {
+	return m.published_paper_type === 'doctoral_thesis' || m.published_paper_type === 'master_thesis';
+}
+
 function mapCategory(entry: RmEntry): string | null {
 	switch (entry.insert.type) {
-		case 'published_papers': return 'journal_papers';
+		case 'published_papers': return isThesis(entry.merge) ? 'thesis' : 'journal_papers';
 		case 'presentations': return entry.merge.is_international_presentation ? 'international_conference' : 'domestic_conference';
 		case 'awards': return 'awards';
 		case 'works':
@@ -110,6 +114,27 @@ function formatPublishedPaper(m: Record<string, any>, locale: string): string {
 	const dateStr = date.month ? `${date.year}/${String(date.month).padStart(2, '0')}` : `${date.year}`;
 	let str = `${authors}${ja ? '：' : ': '}${title}${ja ? '；' : '; '}${journal}`;
 	if (details.length) str += `${sep}${details.join(', ')}`;
+	str += ` (${dateStr})`;
+
+	if (locale !== 'ja' && m.languages?.includes('jpn')) str += ' (in Japanese)';
+	return str;
+}
+
+function formatThesis(m: Record<string, any>, locale: string): string {
+	const ja = isUsingJapanese(m.paper_title, locale);
+	const sep = ja ? '，' : ', ';
+	const authors = getNames(m.authors, locale).join(sep);
+	const title = getLocalized(m.paper_title, locale) ?? '';
+	const university = getLocalized(m.publication_name, locale) ?? '';
+	const date = parseDate(m.publication_date);
+	const doctoral = m.published_paper_type === 'doctoral_thesis';
+	const degree = ja
+		? (doctoral ? '博士論文' : '修士論文')
+		: (doctoral ? 'Doctoral Dissertation' : 'Master\'s Thesis');
+
+	const dateStr = date.month ? `${date.year}/${String(date.month).padStart(2, '0')}` : `${date.year}`;
+	let str = `${authors}${ja ? '：' : ': '}${title}${ja ? '；' : '; '}${degree}`;
+	if (university) str += `${sep}${university}`;
 	str += ` (${dateStr})`;
 
 	if (locale !== 'ja' && m.languages?.includes('jpn')) str += ' (in Japanese)';
@@ -186,7 +211,7 @@ function formatOtherEntry(m: Record<string, any>, locale: string): string {
 function formatEntry(entry: RmEntry, locale: string): string | null {
 	let str: string;
 	switch (entry.insert.type) {
-		case 'published_papers': str = formatPublishedPaper(entry.merge, locale); break;
+		case 'published_papers': str = isThesis(entry.merge) ? formatThesis(entry.merge, locale) : formatPublishedPaper(entry.merge, locale); break;
 		case 'presentations': str = formatPresentation(entry.merge, locale); break;
 		case 'awards': str = formatAward(entry.merge, locale); break;
 		case 'works': str = formatWorks(entry.merge, locale); break;
@@ -259,8 +284,9 @@ function validateEntries(entries: RmEntry[]): void {
 			case 'published_papers': {
 				requireFields(m, [
 					'paper_title', 'publication_date', 'publication_name', 'publisher',
-					'languages', 'referee', 'invited', 'published_paper_type',
-					'is_international_journal', 'see_also',
+					'languages', 'referee', 'invited', 'published_paper_type', 'see_also',
+					// 学位論文は雑誌ではないので国際・国内誌の区別を求めない
+					...(isThesis(m) ? [] : ['is_international_journal']),
 				], ctx, errors);
 				if (!m.identifiers?.doi?.length) {
 					errors.push(`${ctx}: missing "identifiers.doi"`);
